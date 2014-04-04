@@ -4,6 +4,14 @@ module.exports = function (grunt) {
     // Project Configuration
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        compass: {
+            dist: {
+                options: {
+                    sassDir: 'sass',
+                    cssDir: 'public/css'
+                }
+            }
+        },
         watch: {
             jade: {
                 files: ['app/views/**'],
@@ -25,7 +33,7 @@ module.exports = function (grunt) {
                 }
             },
             css: {
-                files: 'sass/*.scss',
+                files: '**/*.scss',
                 tasks: ['compass'],
                 options: {
                     livereload: true
@@ -95,7 +103,7 @@ module.exports = function (grunt) {
     grunt.option('force', true);
 
     //Default task(s).
-    grunt.registerTask('default', ['jshint', 'concurrent']);
+    grunt.registerTask('default', ['jshint', 'concurrent', 'watch']);
 
     //Test task.
     grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
