@@ -1,0 +1,16 @@
+node_modules
+node_modules/*
+.DS_Store
+.idea
+.idea/*
+.project
+.project/*
+.nodemonignore
+.sass-cache/
+.bower-*/
+public/system/lib
+mean.iml
+test/coverage/
+modules/public/
+modules/views/
+/public/build/
