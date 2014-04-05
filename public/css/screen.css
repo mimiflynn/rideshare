@@ -33,11 +33,6 @@ footer p {
 }
 
 /* line 1, ../../sass/_articles.scss */
-h1 {
-  text-align: center;
-}
-
-/* line 5, ../../sass/_articles.scss */
 ul.articles li:not(:last-child) {
   border-bottom: 1px solid #cccccc;
 }

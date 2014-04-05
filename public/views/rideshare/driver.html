@@ -1,5 +1,39 @@
-<p>Name</p>
-<p>Number in party</p>
-<p>When will you arrive?</p>
-<p>What airport?</p>
-<p>How many seats are available in this car?</p>
+<h1><img src="/img/thenounproject/car.svg"> I have extra seats</h1>
+
+<h2>Info</h2>
+<div data-ng-controller="Driver">
+	<form name="form" class="css-form" novalidate data-ng-submit="create()">
+	    <input type="text" data-ng-model="user.name" name="uNameNew" required class="form-control" placeholder="Name"/><br/>
+	    <input type="text" data-ng-model="user.partyNumber" name="uNameNew" required class="form-control" placeholder="Number in party"/><br/>
+
+	    <div class="input-group">
+	      <input type="text" class="form-control" datepicker-popup="fullDate" ng-model="dt" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+	      <span class="input-group-btn">
+	        <button class="btn btn-default" ng-click="open($event)"><span class="glyphicon glyphicon-calendar"></span></button>
+	      </span>
+	    </div>
+	    
+	    <timepicker hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+
+	    <input type="text" data-ng-model="user.arrivalLocation" name="uNameNew" required class="form-control" placeholder="Arrival Location"/><br/>
+	    <input type="text" data-ng-model="user.notes" name="uNameNew" required class="form-control" placeholder="Notes"/><br/>
+
+	    <input type="email" data-ng-model="user.email" name="uEmailNew" required  class="form-control" placeholder="E-mail"/><br/>
+
+	    <div data-ng-show="form.uEmailNew.$dirty && form.uEmailNew.$invalid">Invalid:
+	        <span data-ng-show="form.uEmailNew.$error.required">Tell us your email.</span>
+	        <span data-ng-show="form.uEmailNew.$error.email">This is not a valid email.</span>
+	    </div>
+
+	    <button data-ng-click="reset()" data-ng-disabled="isUnchanged(user)" class="btn btn-default">RESET</button>
+	    <button data-ng-click="update(user)"
+	            data-ng-disabled="form.$invalid || isUnchanged(user)" class="btn btn-default">Sign Up
+	    </button>
+	</form>
+</div>
+
+<h2>Summary</h2>
+<p>Name: {{user.name}}</p>
+<p>Number in party: {{user.partNumber}}</p>
+<p>Arrival date and time: {{user.arrivalTime}}</p>
+<p>Arrival Location:  {{user.arrivalLocation}}</p>
