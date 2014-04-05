@@ -7,7 +7,10 @@ angular.module('mean', [
     'ui.bootstrap',
     'ui.route',
     'mean.system',
-    'mean.articles']);
+    'mean.articles',
+    'rideshare.controllers',
+    'rideshare.services'
+    ]);
 
 angular.module('mean.system', []);
 angular.module('mean.articles', []);

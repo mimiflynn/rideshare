@@ -19,8 +19,21 @@ angular.module('mean').config(['$routeProvider',
         when('/', {
             templateUrl: 'views/index.html'
         }).
+
+        // rideshare
+        when('/selectRole', {
+            templateUrl: 'views/rideshare/select.html'
+        }).
+        when('/rider', {
+            templateUrl: 'views/rideshare/rider.html'
+        }).
+        when('/driver', {
+            templateUrl: 'views/rideshare/driver.html'
+        }).
+
+        // default
         otherwise({
-            redirectTo: '/'
+            redirectTo: '/selectRole'
         });
     }
 ]);
