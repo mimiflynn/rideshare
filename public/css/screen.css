@@ -36,3 +36,11 @@ footer p {
 ul.articles li:not(:last-child) {
   border-bottom: 1px solid #cccccc;
 }
+
+/* line 1, ../../sass/_rideshare.scss */
+.summary {
+  border: solid 1px #dddddd;
+  -webkit-border-radius: 5px 5px;
+  -moz-border-radius: 5px / 5px;
+  border-radius: 5px / 5px;
+}
