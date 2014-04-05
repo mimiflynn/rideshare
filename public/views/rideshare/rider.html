@@ -1,29 +1,29 @@
 <h1><span class="glyphicon glyphicon-briefcase"></span> I need a ride</h1>
 
-<div class="container-fluid" data-ng-controller="User">
+<div class="container-fluid" data-ng-controller="CreateRideshare">
 	<div class="row">
 		<div class="col-md-8">
 			<h2>Details</h2>
-			<form name="form" class="css-form" novalidate data-ng-submit="create()">
-			    <input type="text" data-ng-model="rideshare.name" name="uNameNew" required class="form-control" placeholder="Name"/><br/>
-			    <input type="text" data-ng-model="rideshare.partyNumber" name="uNameNew" required class="form-control" placeholder="Number in party"/><br/>
-
+			<form name="form" class="css-form" novalidate data-ng-submit="createRideshare()">
+			    <input type="text" data-ng-model="name" name="uNameNew" required class="form-control" placeholder="Name"/><br/>
+			    <input type="text" data-ng-model="partyNumber" name="uNameNew" required class="form-control" placeholder="Number in party"/><br/>
+                <input type="hidden" data-ng-model="type" value="rider">
 			    <div class="input-group">
-			      <input type="text" class="form-control" datepicker-popup="fullDate" ng-model="rideshare.arrivalDate" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" placeholder="Date" />
+			      <input type="text" class="form-control" datepicker-popup="fullDate" ng-model="arrivalDate" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" placeholder="Date" />
 			      <span class="input-group-btn">
 			        <button class="btn btn-default" ng-click="open($event)"><span class="glyphicon glyphicon-calendar"></span></button>
 			      </span>
 			    </div>
 			    
-			    <div ng-model="rideshare.arrivalTime" ng-change="changed()" style="display:inline-block;">
+			    <div ng-model="arrivalTime" ng-change="changed()" style="display:inline-block;">
 			        <timepicker hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
 				</div>
 
-			    <input type="text" data-ng-model="rideshare.arrivalLocation" name="uNameNew" required class="form-control" placeholder="Arrival Location"/><br/>
+			    <input type="text" data-ng-model="arrivalLocation" name="uNameNew" required class="form-control" placeholder="Arrival Location"/><br/>
 
-			    <textarea data-ng-model="rideshare.notes" name="uNameNew" required class="form-control" placeholder="Notes"/></textarea><br/>
+			    <textarea data-ng-model="notes" name="uNameNew" required class="form-control" placeholder="Notes"/></textarea><br/>
 
-			    <input type="email" data-ng-model="rideshare.email" name="uEmailNew" required  class="form-control" placeholder="E-mail"/><br/>
+			    <input type="email" data-ng-model="email" name="uEmailNew" required  class="form-control" placeholder="E-mail"/><br/>
 
 			    <div data-ng-show="form.uEmailNew.$dirty && form.uEmailNew.$invalid">Invalid:
 			        <span data-ng-show="form.uEmailNew.$error.required">Tell us your email.</span>
@@ -38,10 +38,13 @@
 		</div>
 		<div class="col-md-4 summary">
 			<h2>Summary</h2>
-			<p><span class="text-muted">Name:</span> {{rideshare.name}}</p>
-			<p><span class="text-muted">Number in party:</span> {{rideshare.partNumber}}</p>
-			<p><span class="text-muted">Arrival date and time:</span>{{rideshare.arrivalDate}} {{rideshare.arrivalTime}}</p>
-			<p><span class="text-muted">Arrival Location:</span> {{rideshare.arrivalLocation}}</p>
+			<p><span class="text-muted">Name:</span> {{name}}</p>
+            <p><span class="text-muted">Type:</span> {{type}}</p>
+            <p><span class="text-muted">Number in party:</span> {{partyNumber}}</p>
+			<p><span class="text-muted">Arrival date and time:</span>{{arrivalDate}} {{arrivalTime}}</p>
+			<p><span class="text-muted">Arrival Location:</span> {{arrivalLocation}}</p>
+            <p><span class="text-muted">Notes:</span> {{notes}}</p>
+            <p><span class="text-muted">Email:</span> {{email}}</p>
 		</div>
 	</div>
 </div>

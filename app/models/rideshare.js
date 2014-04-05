@@ -13,6 +13,11 @@ var RideshareSchema = new Schema({
         default: '',
         trim: true
     },
+    type: {
+        type: String,
+        default: '',
+        trim: true
+    },
     partyNumber: {
         type: String,
         default: '',
@@ -33,12 +38,12 @@ var RideshareSchema = new Schema({
         default: '',
         trim: true
     },
-    arrivalNotes: {
+    notes: {
         type: String,
         default: '',
         trim: true
     },
-    arrivalEmail: {
+    email: {
         type: String,
         default: '',
         trim: true
@@ -54,4 +59,4 @@ RideshareSchema.statics.load = function(id, cb) {
     }).populate('user', 'name username').exec(cb);
 };
 
-mongoose.model('rideshare', RideshareSchema);
+mongoose.model('Rideshare', RideshareSchema);

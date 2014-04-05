@@ -1,11 +1,13 @@
-<section data-ng-controller="ArticlesController" data-ng-init="find()">
+<section data-ng-controller="Display" data-ng-init="find()">
     <ul class="articles unstyled">
-        <li data-ng-repeat="article in articles">
-            <span>{{rideshare.created | date:'medium'}}</span> /
-            <span>{{rideshare.user.name}}</span>
-            <h2><a data-ng-href="#!/articles/{{article._id}}">{{rideshare.title}}</a></h2>
-            <div>{{rideshare.content}}</div>
+        <li data-ng-repeat="rideshare in rideshares">
+            <h2>{{rideshare.name}}</h2>
+            <p><span class="text-muted">Email:</span> {{rideshare.email}}</p>
+            <p><span class="text-muted">Type:</span> {{rideshare.type}}</p>
+            <p><span class="text-muted">Number in party:</span> {{rideshare.partyNumber}}</p>
+            <p><span class="text-muted">Arrival date and time:</span>{{rideshare.arrivalDate}} {{rideshare.arrivalTime}}</p>
+            <p><span class="text-muted">Arrival Location:</span> {{rideshare.arrivalLocation}}</p>
+            <p><span class="text-muted">Notes:</span> {{rideshare.notes}}</p>
         </li>
     </ul>
-    <h1 data-ng-hide="!articles || articles.length">No articles yet. <br> Why don't you <a href="/#!/articles/create">Create One</a>?</h1>
 </section>

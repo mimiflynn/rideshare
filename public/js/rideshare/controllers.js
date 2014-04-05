@@ -5,22 +5,109 @@ angular.module('rideshare.controllers', []).
     controller('SelectRole', ['$scope', '$location', '$routeParams', function ($scope, $location, $routeParams) {
         $scope.rider = function () {
 
-            console.log('Rider Selected');
             $location.path('/rider');
 
         };
         $scope.driver = function () {
 
-            console.log('Driver Selected');
             $location.path('/driver');
+
+        };
+        $scope.list = function () {
+
+            $location.path('/list');
 
         };
     }]).
 
-    controller('User', ['$scope', '$location', '$routeParams', function ($scope, $location, $routeParams) {
-        $scope.create = function () {
-            console.log('Rider create');
+    controller('Display', ['$scope', '$location', '$routeParams', 'Global', 'Rideshare', function ($scope, $location, $routeParams, Global, Rideshare) {
+        $scope.global = Global;
+
+        $scope.find = function() {
+            Rideshare.query(function(rideshare) {
+                $scope.rideshares = rideshare;
+            });
         };
+
+        $scope.findOne = function() {
+            Rideshare.get({
+                RideshareId: $routeParams.rideshareId
+            }, function(rideshare) {
+                $scope.rideshare = rideshare;
+            });
+        };
+    }]).
+
+    controller('Administer', ['$scope', '$location', '$routeParams', 'Global', 'Rideshare', function ($scope, $location, $routeParams, Global, Rideshare) {
+        $scope.global = Global;
+
+        $scope.remove = function(rideshare) {
+            if (rideshare) {
+                rideshare.$remove();
+
+                for (var i in $scope.rideshares) {
+                    if ($scope.rideshares[i] === rideshare) {
+                        $scope.rideshares.splice(i, 1);
+                    }
+                }
+            }
+            else {
+                $scope.rideshare.$remove();
+                $location.path('rideshares');
+            }
+        };
+
+        $scope.update = function() {
+            var rideshare = $scope.rideshare;
+            if (!rideshare.updated) {
+                rideshare.updated = [];
+            }
+            rideshare.updated.push(new Date().getTime());
+
+            rideshare.$update(function() {
+                $location.path('rideshares/' + rideshare._id);
+            });
+        };
+    }]).
+
+    controller('CreateRideshare', ['$scope', '$location', '$routeParams', 'Global', 'Rideshare', function ($scope, $location, $routeParams, Global, Rideshare) {
+        $scope.createRideshare = function () {
+            var rideshare = new Rideshare({
+                name: this.name,
+                type: this.type,
+                partyNumber: this.partyNumber,
+                arrivalDate: this.arrivalDate,
+                arrivalTime: this.arrivalTime,
+                arrivalLocation: this.arrivalLocation,
+                notes: this.notes,
+                email: this.email
+            });
+            rideshare.$save(function(response) {
+                $location.path('rideshare/' + response._id);
+            });
+
+            this.name = '';
+            this.type = '';
+            this.partyNumber = '';
+            this.arrivalDate = '';
+            this.arrivalTime = '';
+            this.arrivalLocation = '';
+            this.notes = '';
+            this.email = '';
+        };
+
+        $scope.update = function() {
+            var rideshare = $scope.rideshare;
+            if (!rideshare.updated) {
+                rideshare.updated = [];
+            }
+            rideshare.updated.push(new Date().getTime());
+
+            rideshare.$update(function() {
+                $location.path('rideshare/' + rideshare._id);
+            });
+        };
+
         $scope.today = function () {
             $scope.dt = new Date();
         };

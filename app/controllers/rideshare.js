@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-    rideshare = mongoose.model('rideshare'),
+    Rideshare = mongoose.model('Rideshare'),
     _ = require('lodash');
 
 
@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
  * Find rideshare by id
  */
 exports.rideshare = function(req, res, next, id) {
-    rideshare.load(id, function(err, rideshare) {
+    Rideshare.load(id, function(err, rideshare) {
         if (err) return next(err);
         if (!rideshare) return next(new Error('Failed to load rideshare ' + id));
         req.rideshare = rideshare;
@@ -24,7 +24,7 @@ exports.rideshare = function(req, res, next, id) {
  * Create a rideshare
  */
 exports.create = function(req, res) {
-    var rideshare = new rideshare(req.body);
+    var rideshare = new Rideshare(req.body);
     rideshare.user = req.user;
 
     rideshare.save(function(err) {
@@ -88,7 +88,7 @@ exports.show = function(req, res) {
  * List of rideshare
  */
 exports.all = function(req, res) {
-    rideshare.find().sort('-created').populate('user', 'name username').exec(function(err, rideshare) {
+    Rideshare.find().sort('-created').populate('user', 'name username').exec(function(err, rideshare) {
         if (err) {
             res.render('error', {
                 status: 500
