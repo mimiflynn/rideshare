@@ -16,12 +16,9 @@ angular.module('mean').config(['$routeProvider',
         when('/articles/:articleId', {
             templateUrl: 'views/articles/view.html'
         }).
-        when('/', {
-            templateUrl: 'views/index.html'
-        }).
 
         // rideshare
-        when('/selectRole', {
+        when('/', {
             templateUrl: 'views/rideshare/select.html'
         }).
         when('/rider', {
@@ -33,7 +30,7 @@ angular.module('mean').config(['$routeProvider',
 
         // default
         otherwise({
-            redirectTo: '/selectRole'
+            redirectTo: '/'
         });
     }
 ]);
