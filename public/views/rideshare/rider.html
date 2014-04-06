@@ -1,4 +1,4 @@
-<h1><span class="glyphicon glyphicon-briefcase"></span> I need a ride</h1>
+<h1><span class="glyphicon glyphicon-briefcase"></span> Sign Up</h1>
 
 <div class="container-fluid" data-ng-controller="CreateRideshare">
 	<div class="row">
@@ -7,7 +7,6 @@
 			<form name="form" class="css-form" novalidate data-ng-submit="createRideshare()">
 			    <input type="text" data-ng-model="name" name="uNameNew" required class="form-control" placeholder="Name"/><br/>
 			    <input type="text" data-ng-model="partyNumber" name="uNameNew" required class="form-control" placeholder="Number in party"/><br/>
-                <input type="hidden" data-ng-model="type" value="rider">
 			    <div class="input-group">
 			      <input type="text" class="form-control" datepicker-popup="fullDate" ng-model="arrivalDate" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" placeholder="Date" />
 			      <span class="input-group-btn">
@@ -39,7 +38,6 @@
 		<div class="col-md-4 summary">
 			<h2>Summary</h2>
 			<p><span class="text-muted">Name:</span> {{name}}</p>
-            <p><span class="text-muted">Type:</span> {{type}}</p>
             <p><span class="text-muted">Number in party:</span> {{partyNumber}}</p>
 			<p><span class="text-muted">Arrival date and time:</span>{{arrivalDate}} {{arrivalTime}}</p>
 			<p><span class="text-muted">Arrival Location:</span> {{arrivalLocation}}</p>

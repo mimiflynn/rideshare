@@ -8,11 +8,6 @@ angular.module('rideshare.controllers', []).
             $location.path('/rider');
 
         };
-        $scope.driver = function () {
-
-            $location.path('/driver');
-
-        };
         $scope.list = function () {
 
             $location.path('/list');

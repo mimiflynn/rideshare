@@ -24,9 +24,6 @@ angular.module('mean').config(['$routeProvider',
         when('/rider', {
             templateUrl: 'views/rideshare/rider.html'
         }).
-        when('/driver', {
-            templateUrl: 'views/rideshare/driver.html'
-        }).
         when('/list', {
             templateUrl: 'views/rideshare/list.html'
         }).
