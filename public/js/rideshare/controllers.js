@@ -21,7 +21,6 @@ angular.module('rideshare.controllers', []).
         $scope.find = function () {
             Rideshare.query(function (rideshare) {
                 $scope.rideshares = rideshare;
-                console.log(rideshare);
             });
         };
 
