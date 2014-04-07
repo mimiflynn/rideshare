@@ -4,6 +4,7 @@ angular.module('mean', [
     'ngCookies',
     'ngResource',
     'ngRoute',
+    'ngGrid',
     'ui.bootstrap',
     'ui.route',
     'mean.system',

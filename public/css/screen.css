@@ -44,3 +44,10 @@ ul.articles li:not(:last-child) {
   -moz-border-radius: 5px / 5px;
   border-radius: 5px / 5px;
 }
+
+/* line 6, ../../sass/_rideshare.scss */
+.gridStyle {
+  border: 1px solid #d4d4d4;
+  width: 100%;
+  height: 100%;
+}

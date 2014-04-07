@@ -1,13 +1,3 @@
 <section data-ng-controller="Display" data-ng-init="find()">
-    <ul class="articles unstyled">
-        <li data-ng-repeat="rideshare in rideshares">
-            <h2>{{rideshare.name}}</h2>
-            <p><span class="text-muted">Email:</span> {{rideshare.email}}</p>
-            <p><span class="text-muted">Type:</span> {{rideshare.type}}</p>
-            <p><span class="text-muted">Number in party:</span> {{rideshare.partyNumber}}</p>
-            <p><span class="text-muted">Arrival date and time:</span>{{rideshare.arrivalDate}} {{rideshare.arrivalTime}}</p>
-            <p><span class="text-muted">Arrival Location:</span> {{rideshare.arrivalLocation}}</p>
-            <p><span class="text-muted">Notes:</span> {{rideshare.notes}}</p>
-        </li>
-    </ul>
+    <div class="gridStyle" data-ng-grid="gridOptions"></div>
 </section>

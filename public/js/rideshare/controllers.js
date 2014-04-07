@@ -18,16 +18,29 @@ angular.module('rideshare.controllers', []).
     controller('Display', ['$scope', '$location', '$routeParams', 'Global', 'Rideshare', function ($scope, $location, $routeParams, Global, Rideshare) {
         $scope.global = Global;
 
-        $scope.find = function() {
-            Rideshare.query(function(rideshare) {
+        $scope.find = function () {
+            Rideshare.query(function (rideshare) {
                 $scope.rideshares = rideshare;
+                console.log(rideshare);
             });
         };
 
-        $scope.findOne = function() {
+        $scope.gridOptions = {
+            data: 'rideshares',
+            showGroupPanel: true,
+            columnDefs: [
+                {field: 'name', displayName: 'Name'},
+                {field: 'partyNumber', displayName: '# in party'},
+                {field: 'arrivalDate', displayName: 'Arrival Date'},
+                {field: 'arrivalTime', displayName: 'Arrival Time'},
+                {field: 'arrivalLocation', displayName: 'Arrival Location'}
+            ]
+        };
+
+        $scope.findOne = function () {
             Rideshare.get({
                 RideshareId: $routeParams.rideshareId
-            }, function(rideshare) {
+            }, function (rideshare) {
                 $scope.rideshare = rideshare;
             });
         };
@@ -36,7 +49,7 @@ angular.module('rideshare.controllers', []).
     controller('Administer', ['$scope', '$location', '$routeParams', 'Global', 'Rideshare', function ($scope, $location, $routeParams, Global, Rideshare) {
         $scope.global = Global;
 
-        $scope.remove = function(rideshare) {
+        $scope.remove = function (rideshare) {
             if (rideshare) {
                 rideshare.$remove();
 
@@ -52,14 +65,14 @@ angular.module('rideshare.controllers', []).
             }
         };
 
-        $scope.update = function() {
+        $scope.update = function () {
             var rideshare = $scope.rideshare;
             if (!rideshare.updated) {
                 rideshare.updated = [];
             }
             rideshare.updated.push(new Date().getTime());
 
-            rideshare.$update(function() {
+            rideshare.$update(function () {
                 $location.path('rideshares/' + rideshare._id);
             });
         };
@@ -77,7 +90,7 @@ angular.module('rideshare.controllers', []).
                 notes: this.notes,
                 email: this.email
             });
-            rideshare.$save(function(response) {
+            rideshare.$save(function (response) {
                 $location.path('rideshare/' + response._id);
             });
 
@@ -91,14 +104,14 @@ angular.module('rideshare.controllers', []).
             this.email = '';
         };
 
-        $scope.update = function() {
+        $scope.update = function () {
             var rideshare = $scope.rideshare;
             if (!rideshare.updated) {
                 rideshare.updated = [];
             }
             rideshare.updated.push(new Date().getTime());
 
-            rideshare.$update(function() {
+            rideshare.$update(function () {
                 $location.path('rideshare/' + rideshare._id);
             });
         };
@@ -135,7 +148,7 @@ angular.module('rideshare.controllers', []).
         };
 
         $scope.dateOptions = {
-            'year-format': "'yy'",
+            'year-format': 'yy',
             'starting-day': 1
         };
 

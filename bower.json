@@ -10,7 +10,8 @@
     "bootstrap": "3.0.3",
     "angular-bootstrap": "0.10.0",
     "angular-ui-utils": "0.1.0",
-    "angular-strap": "~2.0.0"
+    "angular-strap": "~2.0.0",
+    "ng-grid": "~2.0.7"
   },
   "resolutions": {
     "bootstrap": "3.0.3"
