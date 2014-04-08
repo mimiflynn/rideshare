@@ -30,8 +30,8 @@ angular.module('rideshare.controllers', []).
             columnDefs: [
                 {field: 'name', displayName: 'Name'},
                 {field: 'partyNumber', displayName: '# in party'},
-                {field: 'arrivalDate', displayName: 'Arrival Date'},
-                {field: 'arrivalTime', displayName: 'Arrival Time'},
+                {field: 'arrivalDate', displayName: 'Arrival Date', cellFilter: 'date : \'MMMM dd\''},
+                {field: 'arrivalTime', displayName: 'Arrival Time', cellFilter: 'date : \'h:mm a\''},
                 {field: 'arrivalLocation', displayName: 'Arrival Location'}
             ]
         };
@@ -72,7 +72,7 @@ angular.module('rideshare.controllers', []).
             rideshare.updated.push(new Date().getTime());
 
             rideshare.$update(function () {
-                $location.path('rideshares/' + rideshare._id);
+                $location.path('/list');
             });
         };
     }]).
@@ -111,7 +111,7 @@ angular.module('rideshare.controllers', []).
             rideshare.updated.push(new Date().getTime());
 
             rideshare.$update(function () {
-                $location.path('rideshare/' + rideshare._id);
+                $location.path('/list');
             });
         };
 
