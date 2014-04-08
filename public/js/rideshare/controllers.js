@@ -4,14 +4,10 @@ angular.module('rideshare.controllers', []).
 
     controller('SelectRole', ['$scope', '$location', '$routeParams', function ($scope, $location, $routeParams) {
         $scope.rider = function () {
-
             $location.path('/rider');
-
         };
         $scope.list = function () {
-
             $location.path('/list');
-
         };
     }]).
 
@@ -93,10 +89,10 @@ angular.module('rideshare.controllers', []).
                 notes: this.notes,
                 email: this.email
             });
+            console.log(rideshare);
             rideshare.$save(function (response) {
-                $location.path('rideshare/' + response._id);
+                $location.path('/list');
             });
-
             this.name = '';
             this.type = '';
             this.partyNumber = '';
