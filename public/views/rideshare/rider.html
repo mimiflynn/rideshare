@@ -5,25 +5,47 @@
 			<h2>Details</h2>
 			<form name="form" class="css-form" novalidate>
 			    <input type="text" data-ng-model="rider.name" name="uNameNew" required class="form-control" placeholder="Name"/><br/>
+
+                <div class="alert alert-danger" data-ng-show="form.uNameNew.$dirty && form.uNameNew.$invalid">
+                    <span data-ng-show="form.uNameNew.$error.required">What is your name?</span>
+                </div>
+
 			    <input type="text" data-ng-model="rider.partyNumber" name="uPartyNumber" required class="form-control" placeholder="Number in party"/><br/>
-			    <div class="input-group">
-			      <input type="text" class="form-control" datepicker-popup="MMMM dd" data-ng-model="rider.arrivalDate" required is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" data-ng-required="true" close-text="Close" placeholder="Date" />
+
+                <div class="alert alert-danger" data-ng-show="form.uPartyNumber.$dirty && form.uPartyNumber.$invalid">
+                    <span data-ng-show="form.uPartyNumber.$error.required">How many in your party?</span>
+                </div>
+
+                <div class="input-group">
+			      <input type="text" class="form-control" datepicker-popup="MMMM dd" data-ng-model="rider.arrivalDate" name="uArrivalDate" required is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" data-ng-required="true" close-text="Close" placeholder="Date" />
 			      <span class="input-group-btn">
 			        <button class="btn btn-default" data-ng-click="open($event)"><span class="glyphicon glyphicon-calendar"></span></button>
 			      </span>
 			    </div>
+
+                <div class="alert alert-danger" data-ng-show="form.uArrivalDate.$dirty && form.uArrivalDate.$invalid">
+                    <span data-ng-show="form.uArrivalDate.$error.required">When will you arrive?</span>
+                </div>
 			    
 			    <div data-ng-model="rider.arrivalTime" data-ng-change="changed()" style="display:inline-block;">
-			        <timepicker hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
+			        <timepicker hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" name="uArrivalTime"></timepicker>
 				</div>
 
-			    <input type="text" data-ng-model="rider.arrivalLocation" name="uNameNew" required class="form-control" placeholder="City or Airport Code"/><br/>
+                <div class="alert alert-danger" data-ng-show="form.uArrivalTime.$dirty && form.uArrivalTime.$invalid">Invalid:
+                    <span data-ng-show="form.uArrivalTime.$error.required">What time will you arrive?</span>
+                </div>
 
-			    <textarea data-ng-model="rider.notes" name="uNameNew" class="form-control" placeholder="Notes (lots of bags, gets carsick, etc)"/></textarea><br/>
+			    <input type="text" data-ng-model="rider.arrivalLocation" name="uArrivalLocation" required class="form-control" placeholder="City or Airport Code"/><br/>
+
+                <div class="alert alert-danger" data-ng-show="form.uArrivalLocation.$dirty && form.uArrivalLocation.$invalid">
+                    <span data-ng-show="form.uArrivalLocation.$error.required">Where will you arrive?</span>
+                </div>
+
+			    <textarea data-ng-model="rider.notes" name="uNotes" class="form-control" placeholder="Notes (lots of bags, gets carsick, etc)"/></textarea><br/>
 
 			    <input type="email" data-ng-model="rider.email" name="uEmailNew" required class="form-control" placeholder="E-mail"/><br/>
 
-			    <div data-ng-show="form.uEmailNew.$dirty && form.uEmailNew.$invalid">Invalid:
+			    <div class="alert alert-danger" data-ng-show="form.uEmailNew.$dirty && form.uEmailNew.$invalid">
 			        <span data-ng-show="form.uEmailNew.$error.required">Tell us your email.</span>
 			        <span data-ng-show="form.uEmailNew.$error.email">This is not a valid email.</span>
 			    </div>
