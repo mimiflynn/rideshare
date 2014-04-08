@@ -78,29 +78,26 @@ angular.module('rideshare.controllers', []).
     }]).
 
     controller('CreateRideshare', ['$scope', '$location', '$routeParams', 'Global', 'Rideshare', function ($scope, $location, $routeParams, Global, Rideshare) {
-        $scope.createRideshare = function () {
+        $scope.createRideshare = function (rider) {
             var rideshare = new Rideshare({
-                name: this.name,
-                type: this.type,
-                partyNumber: this.partyNumber,
-                arrivalDate: this.arrivalDate,
-                arrivalTime: this.arrivalTime,
-                arrivalLocation: this.arrivalLocation,
-                notes: this.notes,
-                email: this.email
+                name: this.rider.name,
+                type: this.rider.type,
+                partyNumber: this.rider.partyNumber,
+                arrivalDate: this.rider.arrivalDate,
+                arrivalTime: this.rider.arrivalTime,
+                arrivalLocation: this.rider.arrivalLocation,
+                notes: this.rider.notes,
+                email: this.rider.email
             });
             console.log(rideshare);
             rideshare.$save(function (response) {
                 $location.path('/list');
             });
-            this.name = '';
-            this.type = '';
-            this.partyNumber = '';
-            this.arrivalDate = '';
-            this.arrivalTime = '';
-            this.arrivalLocation = '';
-            this.notes = '';
-            this.email = '';
+            this.rider = {};
+        };
+
+        $scope.reset = function() {
+            $scope.rider = {};
         };
 
         $scope.update = function () {
