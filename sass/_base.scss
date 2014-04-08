@@ -1,11 +1,41 @@
-.navbar .nav>li>a.brand {
-    padding-left:20px;
-    margin-left:0
+body {
+  background: url('/img/lax.jpg') no-repeat;
+  width: 100%;
+}
+
+.overlayColor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding-top: 100px;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: -1;
 }
 
 .content {
-    margin-top:70px;
-    width:100%
+  margin-top: 70px;
+}
+
+.interior,
+.container {
+  padding: 15px 30px;
+  @include border-radius(5px, 5px);
+}
+
+.interior {
+  background: #efefef;
+}
+
+.btn-primary {
+  background: #3498DB;
+  border-color: darken(#3498DB, 2);
+}
+
+.navbar .nav>li>a.brand {
+    padding-left:20px;
+    margin-left:0
 }
 
 footer {

@@ -1,6 +1,5 @@
-<h1><span class="glyphicon glyphicon-briefcase"></span> Sign Up</h1>
-
-<div class="container-fluid" data-ng-controller="CreateRideshare">
+<div class="container-fluid interior" data-ng-controller="CreateRideshare">
+    <h1><span class="glyphicon glyphicon-briefcase"></span> Sign Up</h1>
 	<div class="row">
 		<div class="col-md-8">
 			<h2>Details</h2>
@@ -8,13 +7,13 @@
 			    <input type="text" data-ng-model="name" name="uNameNew" required class="form-control" placeholder="Name"/><br/>
 			    <input type="text" data-ng-model="partyNumber" name="uNameNew" required class="form-control" placeholder="Number in party"/><br/>
 			    <div class="input-group">
-			      <input type="text" class="form-control" datepicker-popup="fullDate" ng-model="arrivalDate" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" placeholder="Date" />
+			      <input type="text" class="form-control" datepicker-popup="fullDate" data-ng-model="arrivalDate" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" data-ng-required="true" close-text="Close" placeholder="Date" />
 			      <span class="input-group-btn">
-			        <button class="btn btn-default" ng-click="open($event)"><span class="glyphicon glyphicon-calendar"></span></button>
+			        <button class="btn btn-default" data-ng-click="open($event)"><span class="glyphicon glyphicon-calendar"></span></button>
 			      </span>
 			    </div>
 			    
-			    <div ng-model="arrivalTime" ng-change="changed()" style="display:inline-block;">
+			    <div data-ng-model="arrivalTime" data-ng-change="changed()" style="display:inline-block;">
 			        <timepicker hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
 				</div>
 

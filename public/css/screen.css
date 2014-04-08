@@ -3,18 +3,55 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 /* line 1, ../../sass/_base.scss */
+body {
+  background: url("/img/lax.jpg") no-repeat;
+  width: 100%;
+}
+
+/* line 6, ../../sass/_base.scss */
+.overlayColor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  padding-top: 100px;
+  background: rgba(0, 0, 0, 0.75);
+  z-index: -1;
+}
+
+/* line 17, ../../sass/_base.scss */
+.content {
+  margin-top: 70px;
+}
+
+/* line 22, ../../sass/_base.scss */
+.interior,
+.container {
+  padding: 15px 30px;
+  -webkit-border-radius: 5px 5px;
+  -moz-border-radius: 5px / 5px;
+  border-radius: 5px / 5px;
+}
+
+/* line 27, ../../sass/_base.scss */
+.interior {
+  background: #efefef;
+}
+
+/* line 31, ../../sass/_base.scss */
+.btn-primary {
+  background: #3498DB;
+  border-color: #2b94d9;
+}
+
+/* line 36, ../../sass/_base.scss */
 .navbar .nav > li > a.brand {
   padding-left: 20px;
   margin-left: 0;
 }
 
-/* line 6, ../../sass/_base.scss */
-.content {
-  margin-top: 70px;
-  width: 100%;
-}
-
-/* line 11, ../../sass/_base.scss */
+/* line 41, ../../sass/_base.scss */
 footer {
   position: fixed;
   left: 0px;
@@ -27,7 +64,7 @@ footer {
   box-shadow: 0 8px 6px 6px black;
 }
 
-/* line 23, ../../sass/_base.scss */
+/* line 53, ../../sass/_base.scss */
 footer p {
   padding: 5px 0 12px 10px;
 }
