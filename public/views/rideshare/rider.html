@@ -27,12 +27,12 @@
                     <span data-ng-show="form.uArrivalDate.$error.required">When will you arrive?</span>
                 </div>
 			    
-			    <div data-ng-model="rider.arrivalTime" data-ng-change="changed()" style="display:inline-block;">
+			    <div data-ng-model="rider.arrivalTime" ng-change="changeTime()" style="display:inline-block;">
 			        <timepicker hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" name="uArrivalTime"></timepicker>
 				</div>
 
-                <div class="alert alert-danger" data-ng-show="form.uArrivalTime.$dirty && form.uArrivalTime.$invalid">Invalid:
-                    <span data-ng-show="form.uArrivalTime.$error.required">What time will you arrive?</span>
+                <div class="alert alert-danger" data-ng-show="timeError">
+                    <span data-ng-show="timeError">What time will you arrive?</span>
                 </div>
 
 			    <input type="text" data-ng-model="rider.arrivalLocation" name="uArrivalLocation" required class="form-control" placeholder="City or Airport Code"/><br/>

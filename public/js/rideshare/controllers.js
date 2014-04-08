@@ -79,21 +79,38 @@ angular.module('rideshare.controllers', []).
 
     controller('CreateRideshare', ['$scope', '$location', '$routeParams', 'Global', 'Rideshare', function ($scope, $location, $routeParams, Global, Rideshare) {
         $scope.createRideshare = function (rider) {
-            var rideshare = new Rideshare({
-                name: this.rider.name,
-                type: this.rider.type,
-                partyNumber: this.rider.partyNumber,
-                arrivalDate: this.rider.arrivalDate,
-                arrivalTime: this.rider.arrivalTime,
-                arrivalLocation: this.rider.arrivalLocation,
-                notes: this.rider.notes,
-                email: this.rider.email
-            });
-            console.log(rideshare);
-            rideshare.$save(function (response) {
-                $location.path('/list');
-            });
-            this.rider = {};
+
+            if ($scope.timeNotChanged) {
+                $scope.timeError = 'Please set time of arrival.';
+                $scope.rider = {
+                    name: this.rider.name,
+                    type: this.rider.type,
+                    partyNumber: this.rider.partyNumber,
+                    arrivalDate: this.rider.arrivalDate,
+                    arrivalTime: this.rider.arrivalTime,
+                    arrivalLocation: this.rider.arrivalLocation,
+                    notes: this.rider.notes,
+                    email: this.rider.email
+                }
+            } else {
+
+                var rideshare = new Rideshare({
+                    name: this.rider.name,
+                    type: this.rider.type,
+                    partyNumber: this.rider.partyNumber,
+                    arrivalDate: this.rider.arrivalDate,
+                    arrivalTime: this.rider.arrivalTime,
+                    arrivalLocation: this.rider.arrivalLocation,
+                    notes: this.rider.notes,
+                    email: this.rider.email
+                });
+
+                rideshare.$save(function (response) {
+                    $location.path('/list');
+                });
+                this.rider = {};
+            }
+
         };
 
         $scope.reset = function() {
@@ -171,6 +188,12 @@ angular.module('rideshare.controllers', []).
             d.setHours(14);
             d.setMinutes(0);
             $scope.mytime = d;
+        };
+
+        $scope.timeNotChanged = true;
+
+        $scope.changeTime = function () {
+            $scope.timeNotChanged = false;
         };
 
         $scope.clear = function () {
