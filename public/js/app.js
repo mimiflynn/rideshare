@@ -5,6 +5,7 @@ angular.module('mean', [
     'ngResource',
     'ngRoute',
     'ngGrid',
+    'angularMoment',
     'ui.bootstrap',
     'ui.route',
     'mean.system',

@@ -24,9 +24,13 @@ angular.module('rideshare.controllers', []).
             });
         };
 
+        $scope.selectedPeople = [];
+
         $scope.gridOptions = {
             data: 'rideshares',
-            showGroupPanel: true,
+//            showGroupPanel: true,
+//            jqueryUIDraggable: true,
+            selectedItems: $scope.selectedPeople,
             columnDefs: [
                 {field: 'name', displayName: 'Name'},
                 {field: 'partyNumber', displayName: '# in party'},

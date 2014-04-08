@@ -41,3 +41,7 @@ angular.module('mean').config(['$locationProvider',
         $locationProvider.hashPrefix('!');
     }
 ]);
+
+angular.module('mean').constant('angularMomentConfig', {
+    timezone: 'America/Denver' // e.g. 'Europe/London'
+});

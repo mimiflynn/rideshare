@@ -5,9 +5,9 @@
 			<h2>Details</h2>
 			<form name="form" class="css-form" novalidate data-ng-submit="createRideshare()">
 			    <input type="text" data-ng-model="name" name="uNameNew" required class="form-control" placeholder="Name"/><br/>
-			    <input type="text" data-ng-model="partyNumber" name="uNameNew" required class="form-control" placeholder="Number in party"/><br/>
+			    <input type="text" data-ng-model="partyNumber" name="uPartyNumber" required class="form-control" placeholder="Number in party"/><br/>
 			    <div class="input-group">
-			      <input type="text" class="form-control" datepicker-popup="fullDate" data-ng-model="arrivalDate" is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" data-ng-required="true" close-text="Close" placeholder="Date" />
+			      <input type="text" class="form-control" datepicker-popup="MMMM dd" data-ng-model="arrivalDate" required is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" data-ng-required="true" close-text="Close" placeholder="Date" />
 			      <span class="input-group-btn">
 			        <button class="btn btn-default" data-ng-click="open($event)"><span class="glyphicon glyphicon-calendar"></span></button>
 			      </span>
@@ -19,9 +19,9 @@
 
 			    <input type="text" data-ng-model="arrivalLocation" name="uNameNew" required class="form-control" placeholder="Arrival Location"/><br/>
 
-			    <textarea data-ng-model="notes" name="uNameNew" required class="form-control" placeholder="Notes"/></textarea><br/>
+			    <textarea data-ng-model="notes" name="uNameNew" class="form-control" placeholder="Notes"/></textarea><br/>
 
-			    <input type="email" data-ng-model="email" name="uEmailNew" required  class="form-control" placeholder="E-mail"/><br/>
+			    <input type="email" data-ng-model="email" name="uEmailNew" required class="form-control" placeholder="E-mail"/><br/>
 
 			    <div data-ng-show="form.uEmailNew.$dirty && form.uEmailNew.$invalid">Invalid:
 			        <span data-ng-show="form.uEmailNew.$error.required">Tell us your email.</span>
@@ -38,7 +38,7 @@
 			<h2>Summary</h2>
 			<p><span class="text-muted">Name:</span> {{name}}</p>
             <p><span class="text-muted">Number in party:</span> {{partyNumber}}</p>
-			<p><span class="text-muted">Arrival date and time:</span>{{arrivalDate}} {{arrivalTime}}</p>
+			<p><span class="text-muted">Arrival date and time:</span> {{arrivalDate | date : 'MMMM dd'}} {{arrivalTime | date : 'h:mm a'}}</p>
 			<p><span class="text-muted">Arrival Location:</span> {{arrivalLocation}}</p>
             <p><span class="text-muted">Notes:</span> {{notes}}</p>
             <p><span class="text-muted">Email:</span> {{email}}</p>

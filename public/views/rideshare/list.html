@@ -1,4 +1,12 @@
 <section class="interior" data-ng-controller="Display" data-ng-init="find()">
     <h1><span class="glyphicon glyphicon-briefcase"></span> List of Attendees</h1>
     <div class="gridStyle" data-ng-grid="gridOptions"></div>
+    <div class="details" data-ng-repeat="people in selectedPeople">
+        <h2><span class="text-muted">Name:</span> {{people.name}}</h2>
+        <p><span class="text-muted">Number in party:</span> {{people.partyNumber}}</p>
+        <p><span class="text-muted">Arrival date and time:</span> {{people.arrivalDate | date : 'MMMM dd'}} {{people.arrivalTime | date : 'h:mm a'}}</p>
+        <p><span class="text-muted">Arrival Location:</span> {{people.arrivalLocation}}</p>
+        <p><span class="text-muted">Notes:</span> {{people.notes}}</p>
+        <p><span class="text-muted">Email:</span> {{people.email}}</p>
+    </div>
 </section>
