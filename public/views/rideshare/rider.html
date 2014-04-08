@@ -17,9 +17,9 @@
 			        <timepicker hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
 				</div>
 
-			    <input type="text" data-ng-model="arrivalLocation" name="uNameNew" required class="form-control" placeholder="Arrival Location"/><br/>
+			    <input type="text" data-ng-model="arrivalLocation" name="uNameNew" required class="form-control" placeholder="City or Airport Code"/><br/>
 
-			    <textarea data-ng-model="notes" name="uNameNew" class="form-control" placeholder="Notes"/></textarea><br/>
+			    <textarea data-ng-model="notes" name="uNameNew" class="form-control" placeholder="Notes (lots of bags, gets carsick, etc)"/></textarea><br/>
 
 			    <input type="email" data-ng-model="email" name="uEmailNew" required class="form-control" placeholder="E-mail"/><br/>
 
@@ -39,7 +39,7 @@
 			<p><span class="text-muted">Name:</span> {{name}}</p>
             <p><span class="text-muted">Number in party:</span> {{partyNumber}}</p>
 			<p><span class="text-muted">Arrival date and time:</span> {{arrivalDate | date : 'MMMM dd'}} {{arrivalTime | date : 'h:mm a'}}</p>
-			<p><span class="text-muted">Arrival Location:</span> {{arrivalLocation}}</p>
+			<p><span class="text-muted">City or Airport Code:</span> {{arrivalLocation}}</p>
             <p><span class="text-muted">Notes:</span> {{notes}}</p>
             <p><span class="text-muted">Email:</span> {{email}}</p>
 		</div>

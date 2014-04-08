@@ -92,9 +92,10 @@ ul.articles li:not(:last-child) {
   -webkit-border-radius: 5px 5px;
   -moz-border-radius: 5px / 5px;
   border-radius: 5px / 5px;
+  background: #fefefe;
 }
 
-/* line 6, ../../sass/_rideshare.scss */
+/* line 7, ../../sass/_rideshare.scss */
 .gridStyle {
   border: 1px solid #d4d4d4;
   width: 100%;

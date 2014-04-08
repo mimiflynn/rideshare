@@ -1,5 +1,6 @@
 <section class="interior" data-ng-controller="Display" data-ng-init="find()">
     <h1><span class="glyphicon glyphicon-briefcase"></span> List of Attendees</h1>
+    <p>Select an attendee to view details.</p>
     <div class="gridStyle" data-ng-grid="gridOptions"></div>
     <div class="details" data-ng-repeat="people in selectedPeople">
         <h2><span class="text-muted">Name:</span> {{people.name}}</h2>

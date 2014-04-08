@@ -1,6 +1,7 @@
 .summary {
   border: solid 1px #dddddd;
   @include border-radius(5px, 5px);
+  background: #fefefe;
 }
 
 .gridStyle {
