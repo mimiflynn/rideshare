@@ -3,6 +3,16 @@ body {
   width: 100%;
 }
 
+h1 {
+  white-space: nowrap;
+}
+
+.navbar-form {
+  border-top: none;
+  border-bottom: none;
+  padding-right: 25px;
+}
+
 .overlayColor {
   position: fixed;
   top: 0;
