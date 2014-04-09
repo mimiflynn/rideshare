@@ -90,6 +90,11 @@ angular.module('rideshare.controllers', []).
                         $scope.rideshares.splice(i, 1);
                     }
                 }
+                for (var i in $scope.selectedPeople) {
+                    if ($scope.selectedPeople[i] === rideshare) {
+                        $scope.selectedPeople.splice(i, 1);
+                    }
+                }
                 $location.path('/huzzah');
             }
             else {
