@@ -1,5 +1,5 @@
-<section class="interior" data-ng-controller="Display" data-ng-init="find()">
-    <h1><span class="glyphicon glyphicon-briefcase"></span> List of Attendees</h1>
+<section class="interior" data-ng-controller="Administer" data-ng-init="find()">
+    <h1><span class="glyphicon glyphicon-briefcase"></span> Administer Attendees</h1>
 
     <p>Select an attendee to view details.</p>
 
@@ -18,9 +18,8 @@
             <p><span class="text-muted">Notes:</span> {{people.notes}}</p>
 
             <p><span class="text-muted">Email:</span> {{people.email}}</p>
-            <a class="btn" data-ng-click="remove();">
-                <i class="glyphicon glyphicon-trash"></i>
-            </a>
+            <button class="btn glyphicon glyphicon-trash" data-ng-click="remove(people);">
+            </button>
         </div>
     </div>
 </section>

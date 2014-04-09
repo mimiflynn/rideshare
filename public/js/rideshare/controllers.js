@@ -48,7 +48,40 @@ angular.module('rideshare.controllers', []).
     controller('Administer', ['$scope', '$location', '$routeParams', 'Global', 'Rideshare', function ($scope, $location, $routeParams, Global, Rideshare) {
         $scope.global = Global;
 
+        $scope.find = function () {
+            Rideshare.query(function (rideshare) {
+                $scope.rideshares = rideshare;
+            });
+        };
+
+        $scope.selectedPeople = [];
+
+        $scope.gridOptions = {
+            data: 'rideshares',
+//            showGroupPanel: true,
+//            jqueryUIDraggable: true,
+            selectedItems: $scope.selectedPeople,
+            columnDefs: [
+                {field: 'name', displayName: 'Name'},
+                {field: 'partyNumber', displayName: '# in party'},
+                {field: 'arrivalDate', displayName: 'Arrival Date', cellFilter: 'date : \'MMMM dd\''},
+                {field: 'arrivalTime', displayName: 'Arrival Time', cellFilter: 'date : \'h:mm a\''},
+                {field: 'arrivalLocation', displayName: 'Arrival Location'}
+            ]
+        };
+
+        $scope.findOne = function () {
+            Rideshare.get({
+                RideshareId: $routeParams.rideshareId
+            }, function (rideshare) {
+                $scope.rideshare = rideshare;
+            });
+        };
+
         $scope.remove = function (rideshare) {
+
+            $scope.rideshare = rideshare;
+
             if (rideshare) {
                 rideshare.$remove();
 
@@ -57,10 +90,11 @@ angular.module('rideshare.controllers', []).
                         $scope.rideshares.splice(i, 1);
                     }
                 }
+                $location.path('/admin');
             }
             else {
                 $scope.rideshare.$remove();
-                $location.path('rideshares');
+                $location.path('/admin');
             }
         };
 
@@ -113,7 +147,7 @@ angular.module('rideshare.controllers', []).
 
         };
 
-        $scope.reset = function() {
+        $scope.reset = function () {
             $scope.rider = {};
         };
 
