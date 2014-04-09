@@ -10,7 +10,7 @@
 
             <p><span class="text-muted">Number in party:</span> {{people.partyNumber}}</p>
 
-            <p><span class="text-muted">Arrival date and time:</span> {{people.arrivalDate | date : 'MMMM dd'}}
+            <p><span class="text-muted">Date and time:</span> {{people.arrivalDate | date : 'MMMM dd'}}
                 {{people.arrivalTime | date : 'h:mm a'}}</p>
 
             <p><span class="text-muted">Arrival Location:</span> {{people.arrivalLocation}}</p>
@@ -18,7 +18,7 @@
             <p><span class="text-muted">Notes:</span> {{people.notes}}</p>
 
             <p><span class="text-muted">Email:</span> {{people.email}}</p>
-            <button class="btn glyphicon glyphicon-trash" data-ng-click="remove(people);">
+            <button class="btn btn-danger glyphicon glyphicon-trash" data-ng-click="remove(people);">
             </button>
         </div>
     </div>

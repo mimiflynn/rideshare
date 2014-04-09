@@ -3,8 +3,12 @@ body {
   width: 100%;
 }
 
-h1 {
-  white-space: nowrap;
+
+
+@media (min-width: 768px) {
+  h1 {
+    white-space: nowrap;
+  }
 }
 
 .navbar-form {
@@ -32,6 +36,7 @@ h1 {
 .container {
   padding: 15px 30px;
   @include border-radius(5px, 5px);
+  overflow: auto;
 }
 
 .interior {

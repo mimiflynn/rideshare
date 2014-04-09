@@ -9,3 +9,27 @@
   width: 100%;
   height: 300px;
 }
+
+.details {
+  margin: 1.5%;
+  padding: 1.5%;
+  background: #fefefe;
+  @include border-radius(5px, 5px);
+
+  h2 {
+    margin-top: 0.25em;
+  }
+  p {
+    margin-bottom: 0.5em;
+  }
+  span {
+    font-size: 0.80em;
+  }
+}
+
+@media (min-width: 768px) {
+  .details {
+    width: 30%;
+    float: left;
+  }
+}
