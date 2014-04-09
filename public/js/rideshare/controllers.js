@@ -90,11 +90,11 @@ angular.module('rideshare.controllers', []).
                         $scope.rideshares.splice(i, 1);
                     }
                 }
-                $location.path('/admin');
+                $location.path('/huzzah');
             }
             else {
                 $scope.rideshare.$remove();
-                $location.path('/admin');
+                $location.path('/huzzah');
             }
         };
 
