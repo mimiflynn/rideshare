@@ -1,7 +1,17 @@
-.summary {
-  border: solid 1px #dddddd;
-  @include border-radius(5px, 5px);
-  background: #fefefe;
+@media (min-width: 768px) {
+  .details {
+    width: 30%;
+    float: left;
+  }
+}
+
+@media (max-width: 768px) {
+  .summary {
+    margin-top: 1.5em;
+    span {
+      display: block;
+    }
+  }
 }
 
 .gridStyle {
@@ -27,9 +37,12 @@
   }
 }
 
-@media (min-width: 768px) {
-  .details {
-    width: 30%;
-    float: left;
-  }
+.form-control {
+  width: 100%;
+}
+.datepicker .form-control {
+  width: 100%;
+}
+.timepicker .form-control {
+  width: 50px;
 }

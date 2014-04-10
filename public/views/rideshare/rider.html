@@ -20,7 +20,7 @@
                     <span data-ng-show="form.uPartyNumber.$error.required">How many in your party?</span>
                 </div>
 
-                <div class="input-group">
+                <div class="input-group datepicker">
                     <input type="text" class="form-control" datepicker-popup="MMMM dd" data-ng-model="rider.arrivalDate"
                            name="uArrivalDate" required is-open="opened" min="minDate" max="'2015-06-22'"
                            datepicker-options="dateOptions" date-disabled="disabled(date, mode)" data-ng-required="true"
@@ -35,9 +35,8 @@
                     <span data-ng-show="form.uArrivalDate.$error.required">When will you arrive?</span>
                 </div>
 
-                <div data-ng-model="rider.arrivalTime" ng-change="changeTime()" style="display:inline-block;">
-                    <timepicker hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"
-                                name="uArrivalTime"></timepicker>
+                <div class="timepicker" data-ng-model="rider.arrivalTime" ng-change="changeTime()" style="display:inline-block;">
+                    <timepicker hour-step="hstep" minute-step="mstep" show-meridian="ismeridian" name="uArrivalTime"></timepicker>
                 </div>
 
                 <div class="alert alert-danger" data-ng-show="timeError">
@@ -71,20 +70,25 @@
             </form>
         </div>
         <div class="col-md-4 summary">
-            <h2>Summary</h2>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2>Summary</h2>
+                </div>
+                <div class="panel-body">
+                    <p><span class="text-muted">Name:</span> {{rider.name}}</p>
 
-            <p><span class="text-muted">Name:</span> {{rider.name}}</p>
+                    <p><span class="text-muted">Number in party:</span> {{rider.partyNumber}}</p>
 
-            <p><span class="text-muted">Number in party:</span> {{rider.partyNumber}}</p>
+                    <p><span class="text-muted">Arrival date and time:</span> {{rider.arrivalDate | date : 'MMMM dd'}}
+                        {{rider.arrivalTime | date : 'h:mm a'}}</p>
 
-            <p><span class="text-muted">Arrival date and time:</span> {{rider.arrivalDate | date : 'MMMM dd'}}
-                {{rider.arrivalTime | date : 'h:mm a'}}</p>
+                    <p><span class="text-muted">City or Airport Code:</span> {{rider.arrivalLocation}}</p>
 
-            <p><span class="text-muted">City or Airport Code:</span> {{rider.arrivalLocation}}</p>
+                    <p><span class="text-muted">Notes:</span> {{rider.notes}}</p>
 
-            <p><span class="text-muted">Notes:</span> {{rider.notes}}</p>
-
-            <p><span class="text-muted">Email:</span> {{rider.email}}</p>
+                    <p><span class="text-muted">Email:</span> {{rider.email}}</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>

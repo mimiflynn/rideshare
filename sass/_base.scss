@@ -3,11 +3,22 @@ body {
   width: 100%;
 }
 
-
-
 @media (min-width: 768px) {
   h1 {
     white-space: nowrap;
+  }
+  .navbar-form {
+    border-top: none;
+    border-bottom: none;
+    padding-right: 25px;
+    .navbar-right, .navbar-right:last-child {
+      margin-right: 15px;
+    }
+  }
+  .interior,
+  .container {
+    padding: 15px 30px;
+    overflow: auto;
   }
 }
 
@@ -15,6 +26,9 @@ body {
   border-top: none;
   border-bottom: none;
   padding-right: 25px;
+  &.navbar-right, &.navbar-right:last-child {
+    margin-right: 15px;
+  }
 }
 
 .overlayColor {
