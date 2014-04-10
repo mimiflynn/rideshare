@@ -9,4 +9,11 @@ angular.module('rideshare.services', []).
                 method: 'PUT'
             }
         });
-    }]);
+    }]).
+    factory('checkWidth', function ($location, $window) {
+        return function () {
+            if ($window.document.width < 700) {
+                console.log('this is a small window size');
+            }
+        };
+    });

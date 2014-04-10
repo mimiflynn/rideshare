@@ -1,8 +1,3 @@
-body {
-  background: url('/img/lax.jpg') no-repeat;
-  width: 100%;
-}
-
 @media (min-width: 768px) {
   h1 {
     white-space: nowrap;
@@ -20,6 +15,11 @@ body {
     padding: 15px 30px;
     overflow: auto;
   }
+}
+
+body {
+  background: url('/img/lax.jpg') no-repeat;
+  width: 100%;
 }
 
 .navbar-form {

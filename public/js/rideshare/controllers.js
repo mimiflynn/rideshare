@@ -2,7 +2,7 @@
 
 angular.module('rideshare.controllers', []).
 
-    controller('SelectRole', ['$scope', '$location', '$routeParams', function ($scope, $location, $routeParams) {
+    controller('SelectRole', ['$scope', '$location', function ($scope, $location) {
         $scope.rider = function () {
             $location.path('/rider');
         };
@@ -117,7 +117,7 @@ angular.module('rideshare.controllers', []).
     }]).
 
     controller('CreateRideshare', ['$scope', '$location', '$routeParams', 'Global', 'Rideshare', function ($scope, $location, $routeParams, Global, Rideshare) {
-        $scope.createRideshare = function (rider) {
+        $scope.createRideshare = function () {
 
             if ($scope.timeNotChanged) {
                 $scope.timeError = 'Please set time of arrival.';
@@ -130,7 +130,7 @@ angular.module('rideshare.controllers', []).
                     arrivalLocation: this.rider.arrivalLocation,
                     notes: this.rider.notes,
                     email: this.rider.email
-                }
+                };
             } else {
 
                 var rideshare = new Rideshare({

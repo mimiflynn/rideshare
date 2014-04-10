@@ -2,36 +2,36 @@
  * In this file you should write your main styles. (or centralize your imports)
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
-/* line 1, ../../sass/_base.scss */
-body {
-  background: url("/img/lax.jpg") no-repeat;
-  width: 100%;
-}
-
 @media (min-width: 768px) {
-  /* line 7, ../../sass/_base.scss */
+  /* line 2, ../../sass/_base.scss */
   h1 {
     white-space: nowrap;
   }
 
-  /* line 10, ../../sass/_base.scss */
+  /* line 5, ../../sass/_base.scss */
   .navbar-form {
     border-top: none;
     border-bottom: none;
     padding-right: 25px;
   }
-  /* line 14, ../../sass/_base.scss */
+  /* line 9, ../../sass/_base.scss */
   .navbar-form .navbar-right, .navbar-form .navbar-right:last-child {
     margin-right: 15px;
   }
 
-  /* line 19, ../../sass/_base.scss */
+  /* line 14, ../../sass/_base.scss */
   .interior,
   .container {
     padding: 15px 30px;
     overflow: auto;
   }
 }
+/* line 20, ../../sass/_base.scss */
+body {
+  background: url("/img/lax.jpg") no-repeat;
+  width: 100%;
+}
+
 /* line 25, ../../sass/_base.scss */
 .navbar-form {
   border-top: none;
