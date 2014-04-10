@@ -10,8 +10,9 @@
 
             <p><span class="text-muted">Number in party:</span> {{people.partyNumber}}</p>
 
-            <p><span class="text-muted">Date and time:</span> {{people.arrivalDate | date : 'MMMM dd'}}
-                {{people.arrivalTime | date : 'h:mm a'}}</p>
+            <p><span class="text-muted">Date:</span> {{people.arrivalDate | date : 'MMMM dd'}}</p>
+
+            <p><span class="text-muted">Time:</span>{{people.arrivalTime | date : 'h:mm a'}}</p>
 
             <p><span class="text-muted">Arrival Location:</span> {{people.arrivalLocation}}</p>
 

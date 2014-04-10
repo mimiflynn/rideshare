@@ -138,35 +138,30 @@ ul.articles li:not(:last-child) {
 .details {
   margin: 1.5%;
   padding: 1.5%;
-  background: #fefefe;
   -webkit-border-radius: 5px 5px;
   -moz-border-radius: 5px / 5px;
   border-radius: 5px / 5px;
 }
-/* line 29, ../../sass/_rideshare.scss */
-.details h2 {
-  margin-top: 0.25em;
-}
-/* line 32, ../../sass/_rideshare.scss */
+/* line 28, ../../sass/_rideshare.scss */
 .details p {
   margin-bottom: 0.5em;
 }
-/* line 35, ../../sass/_rideshare.scss */
+/* line 31, ../../sass/_rideshare.scss */
 .details span {
   font-size: 0.80em;
 }
 
-/* line 40, ../../sass/_rideshare.scss */
+/* line 36, ../../sass/_rideshare.scss */
 .form-control {
   width: 100%;
 }
 
-/* line 43, ../../sass/_rideshare.scss */
+/* line 39, ../../sass/_rideshare.scss */
 .datepicker .form-control {
   width: 100%;
 }
 
-/* line 46, ../../sass/_rideshare.scss */
+/* line 42, ../../sass/_rideshare.scss */
 .timepicker .form-control {
   width: 50px;
 }

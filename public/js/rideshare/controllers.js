@@ -1,5 +1,9 @@
 'use strict';
 
+/*
+ * Must refactor this controller. Its insane.
+ */
+
 angular.module('rideshare.controllers', []).
 
     controller('SelectRole', ['$scope', '$location', function ($scope, $location) {
