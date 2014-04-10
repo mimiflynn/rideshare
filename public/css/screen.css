@@ -26,24 +26,30 @@
     overflow: auto;
   }
 }
-/* line 20, ../../sass/_base.scss */
+@media (max-width: 768px) {
+  /* line 21, ../../sass/_base.scss */
+  h1 {
+    text-align: center;
+  }
+}
+/* line 25, ../../sass/_base.scss */
 body {
   background: url("/img/lax.jpg") no-repeat;
   width: 100%;
 }
 
-/* line 25, ../../sass/_base.scss */
+/* line 30, ../../sass/_base.scss */
 .navbar-form {
   border-top: none;
   border-bottom: none;
   padding-right: 25px;
 }
-/* line 29, ../../sass/_base.scss */
+/* line 34, ../../sass/_base.scss */
 .navbar-form.navbar-right, .navbar-form.navbar-right:last-child {
   margin-right: 15px;
 }
 
-/* line 34, ../../sass/_base.scss */
+/* line 39, ../../sass/_base.scss */
 .overlayColor {
   position: fixed;
   top: 0;
@@ -55,12 +61,12 @@ body {
   z-index: -1;
 }
 
-/* line 45, ../../sass/_base.scss */
+/* line 50, ../../sass/_base.scss */
 .content {
   margin-top: 70px;
 }
 
-/* line 50, ../../sass/_base.scss */
+/* line 55, ../../sass/_base.scss */
 .interior,
 .container {
   padding: 15px 30px;
@@ -70,24 +76,24 @@ body {
   overflow: auto;
 }
 
-/* line 56, ../../sass/_base.scss */
+/* line 61, ../../sass/_base.scss */
 .interior {
   background: #efefef;
 }
 
-/* line 60, ../../sass/_base.scss */
+/* line 65, ../../sass/_base.scss */
 .btn-primary {
   background: #3498DB;
   border-color: #2b94d9;
 }
 
-/* line 65, ../../sass/_base.scss */
+/* line 70, ../../sass/_base.scss */
 .navbar .nav > li > a.brand {
   padding-left: 20px;
   margin-left: 0;
 }
 
-/* line 70, ../../sass/_base.scss */
+/* line 75, ../../sass/_base.scss */
 footer {
   position: fixed;
   left: 0px;
@@ -100,7 +106,7 @@ footer {
   box-shadow: 0 8px 6px 6px black;
 }
 
-/* line 82, ../../sass/_base.scss */
+/* line 87, ../../sass/_base.scss */
 footer p {
   padding: 5px 0 12px 10px;
 }

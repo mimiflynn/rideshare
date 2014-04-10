@@ -17,6 +17,11 @@
   }
 }
 
+@media (max-width: 768px) {
+  h1 {
+    text-align: center;
+  }
+}
 body {
   background: url('/img/lax.jpg') no-repeat;
   width: 100%;
