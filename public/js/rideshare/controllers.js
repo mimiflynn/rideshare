@@ -15,8 +15,10 @@ angular.module('rideshare.controllers', []).
         };
     }]).
 
-    controller('Display', ['$scope', '$location', '$routeParams', 'Global', 'Rideshare', function ($scope, $location, $routeParams, Global, Rideshare) {
+    controller('List', ['$scope', '$location', '$routeParams', '$window', 'Global', 'Rideshare', 'checkWidth', function ($scope, $location, $routeParams, $window, Global, Rideshare, checkWidth) {
         $scope.global = Global;
+
+        $scope.desktop = checkWidth();
 
         $scope.find = function () {
             Rideshare.query(function (rideshare) {
@@ -28,42 +30,6 @@ angular.module('rideshare.controllers', []).
 
         $scope.gridOptions = {
             data: 'rideshares',
-//            showGroupPanel: true,
-//            jqueryUIDraggable: true,
-            selectedItems: $scope.selectedPeople,
-            columnDefs: [
-                {field: 'name', displayName: 'Name'},
-                {field: 'partyNumber', displayName: '# in party'},
-                {field: 'arrivalDate', displayName: 'Arrival Date', cellFilter: 'date : \'MMMM dd\''},
-                {field: 'arrivalTime', displayName: 'Arrival Time', cellFilter: 'date : \'h:mm a\''},
-                {field: 'arrivalLocation', displayName: 'Arrival Location'}
-            ]
-        };
-
-        $scope.findOne = function () {
-            Rideshare.get({
-                RideshareId: $routeParams.rideshareId
-            }, function (rideshare) {
-                $scope.rideshare = rideshare;
-            });
-        };
-    }]).
-
-    controller('Administer', ['$scope', '$location', '$routeParams', 'Global', 'Rideshare', function ($scope, $location, $routeParams, Global, Rideshare) {
-        $scope.global = Global;
-
-        $scope.find = function () {
-            Rideshare.query(function (rideshare) {
-                $scope.rideshares = rideshare;
-            });
-        };
-
-        $scope.selectedPeople = [];
-
-        $scope.gridOptions = {
-            data: 'rideshares',
-//            showGroupPanel: true,
-//            jqueryUIDraggable: true,
             selectedItems: $scope.selectedPeople,
             columnDefs: [
                 {field: 'name', displayName: 'Name'},
@@ -89,11 +55,14 @@ angular.module('rideshare.controllers', []).
             if (rideshare) {
                 rideshare.$remove();
 
+                // remove selected from the main collection
                 for (var i in $scope.rideshares) {
                     if ($scope.rideshares[i] === rideshare) {
                         $scope.rideshares.splice(i, 1);
                     }
                 }
+
+                // remove selected from the group of displayed people
                 for (var i in $scope.selectedPeople) {
                     if ($scope.selectedPeople[i] === rideshare) {
                         $scope.selectedPeople.splice(i, 1);
@@ -123,31 +92,22 @@ angular.module('rideshare.controllers', []).
     controller('CreateRideshare', ['$scope', '$location', '$routeParams', 'Global', 'Rideshare', function ($scope, $location, $routeParams, Global, Rideshare) {
         $scope.createRideshare = function () {
 
+            var rideshare = {
+                name: this.rider.name,
+                type: this.rider.type,
+                partyNumber: this.rider.partyNumber,
+                arrivalDate: this.rider.arrivalDate,
+                arrivalTime: this.rider.arrivalTime,
+                arrivalLocation: this.rider.arrivalLocation,
+                notes: this.rider.notes,
+                email: this.rider.email
+            }
+
             if ($scope.timeNotChanged) {
                 $scope.timeError = 'Please set time of arrival.';
-                $scope.rider = {
-                    name: this.rider.name,
-                    type: this.rider.type,
-                    partyNumber: this.rider.partyNumber,
-                    arrivalDate: this.rider.arrivalDate,
-                    arrivalTime: this.rider.arrivalTime,
-                    arrivalLocation: this.rider.arrivalLocation,
-                    notes: this.rider.notes,
-                    email: this.rider.email
-                };
+                $scope.rider = rideshare;
+
             } else {
-
-                var rideshare = new Rideshare({
-                    name: this.rider.name,
-                    type: this.rider.type,
-                    partyNumber: this.rider.partyNumber,
-                    arrivalDate: this.rider.arrivalDate,
-                    arrivalTime: this.rider.arrivalTime,
-                    arrivalLocation: this.rider.arrivalLocation,
-                    notes: this.rider.notes,
-                    email: this.rider.email
-                });
-
                 rideshare.$save(function (response) {
                     $location.path('/list');
                 });
@@ -171,6 +131,11 @@ angular.module('rideshare.controllers', []).
                 $location.path('/list');
             });
         };
+
+
+        /*
+         * @ToDo: refactor calendar and date vars into an object for each
+         * */
 
         $scope.today = function () {
             $scope.dt = new Date();
@@ -210,6 +175,11 @@ angular.module('rideshare.controllers', []).
 
         $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
         $scope.format = $scope.formats[0];
+
+
+        /*
+         * @ToDo: refactor calendar and date vars into an object for each
+         * */
 
         $scope.mytime = new Date();
 

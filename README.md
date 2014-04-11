@@ -1,3 +1,20 @@
+# RideShare
+
+Organizing a large destination vacation with a bunch of friends and family? Need to organize transportation after everyone arrives?
+
+This app is focused on organizing ride sharing easily.
+
+## Future Features
+
+- user log in and edit their info
+- select role between rider and driver
+- allow drivers to drag and drop riders into their car
+- allow drivers and riders to send reqests to each other
+- option automatically fill in cars
+- allow users to view grid of all riders and drivers
+
+-----
+
 # MEAN Stack
 
 MEAN is a boilerplate that provides a nice starting point for [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. It is designed to give you quick and organized way to start developing of MEAN based web apps with useful modules like mongoose and passport pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.  

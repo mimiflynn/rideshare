@@ -12,8 +12,10 @@ angular.module('rideshare.services', []).
     }]).
     factory('checkWidth', function ($location, $window) {
         return function () {
-            if ($window.document.width < 700) {
-                console.log('this is a small window size');
+            if ($window.document.width < 768) {
+                return false;
+            } else {
+                return true;
             }
         };
     });

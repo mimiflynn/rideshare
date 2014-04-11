@@ -44,12 +44,12 @@ body {
   border-bottom: none;
   padding-right: 25px;
 }
-/* line 34, ../../sass/_base.scss */
+/* line 36, ../../sass/_base.scss */
 .navbar-form.navbar-right, .navbar-form.navbar-right:last-child {
   margin-right: 15px;
 }
 
-/* line 39, ../../sass/_base.scss */
+/* line 41, ../../sass/_base.scss */
 .overlayColor {
   position: fixed;
   top: 0;
@@ -61,12 +61,12 @@ body {
   z-index: -1;
 }
 
-/* line 50, ../../sass/_base.scss */
+/* line 52, ../../sass/_base.scss */
 .content {
   margin-top: 70px;
 }
 
-/* line 55, ../../sass/_base.scss */
+/* line 57, ../../sass/_base.scss */
 .interior,
 .container {
   padding: 15px 30px;
@@ -76,24 +76,24 @@ body {
   overflow: auto;
 }
 
-/* line 61, ../../sass/_base.scss */
+/* line 63, ../../sass/_base.scss */
 .interior {
   background: #efefef;
 }
 
-/* line 65, ../../sass/_base.scss */
+/* line 67, ../../sass/_base.scss */
 .btn-primary {
   background: #3498DB;
   border-color: #2b94d9;
 }
 
-/* line 70, ../../sass/_base.scss */
+/* line 72, ../../sass/_base.scss */
 .navbar .nav > li > a.brand {
   padding-left: 20px;
   margin-left: 0;
 }
 
-/* line 75, ../../sass/_base.scss */
+/* line 77, ../../sass/_base.scss */
 footer {
   position: fixed;
   left: 0px;
@@ -106,7 +106,7 @@ footer {
   box-shadow: 0 8px 6px 6px black;
 }
 
-/* line 87, ../../sass/_base.scss */
+/* line 89, ../../sass/_base.scss */
 footer p {
   padding: 5px 0 12px 10px;
 }

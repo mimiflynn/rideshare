@@ -31,7 +31,9 @@ body {
   border-top: none;
   border-bottom: none;
   padding-right: 25px;
-  &.navbar-right, &.navbar-right:last-child {
+
+  &.navbar-right,
+  &.navbar-right:last-child {
     margin-right: 15px;
   }
 }
