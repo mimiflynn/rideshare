@@ -15,10 +15,16 @@ angular.module('rideshare.controllers', []).
         };
     }]).
 
-    controller('List', ['$scope', '$location', '$routeParams', '$window', 'Global', 'Rideshare', 'checkWidth', function ($scope, $location, $routeParams, $window, Global, Rideshare, checkWidth) {
+    controller('List', ['$scope', '$location', '$routeParams', '$window', 'Global', 'Rideshare', 'BrowserDetect', function ($scope, $location, $routeParams, $window, Global, Rideshare, BrowserDetect) {
         $scope.global = Global;
 
-        $scope.desktop = checkWidth();
+        if (BrowserDetect.OS) {
+            console.log(BrowserDetect);
+        }
+
+        $scope.desktop = function () {
+            return BrowserDetect.width >= 768;
+        };
 
         $scope.find = function () {
             Rideshare.query(function (rideshare) {
@@ -92,22 +98,31 @@ angular.module('rideshare.controllers', []).
     controller('CreateRideshare', ['$scope', '$location', '$routeParams', 'Global', 'Rideshare', function ($scope, $location, $routeParams, Global, Rideshare) {
         $scope.createRideshare = function () {
 
-            var rideshare = {
-                name: this.rider.name,
-                type: this.rider.type,
-                partyNumber: this.rider.partyNumber,
-                arrivalDate: this.rider.arrivalDate,
-                arrivalTime: this.rider.arrivalTime,
-                arrivalLocation: this.rider.arrivalLocation,
-                notes: this.rider.notes,
-                email: this.rider.email
-            }
-
             if ($scope.timeNotChanged) {
                 $scope.timeError = 'Please set time of arrival.';
-                $scope.rider = rideshare;
-
+                $scope.rider = {
+                    name: this.rider.name,
+                    type: this.rider.type,
+                    partyNumber: this.rider.partyNumber,
+                    arrivalDate: this.rider.arrivalDate,
+                    arrivalTime: this.rider.arrivalTime,
+                    arrivalLocation: this.rider.arrivalLocation,
+                    notes: this.rider.notes,
+                    email: this.rider.email
+                };
             } else {
+
+                var rideshare = new Rideshare({
+                    name: this.rider.name,
+                    type: this.rider.type,
+                    partyNumber: this.rider.partyNumber,
+                    arrivalDate: this.rider.arrivalDate,
+                    arrivalTime: this.rider.arrivalTime,
+                    arrivalLocation: this.rider.arrivalLocation,
+                    notes: this.rider.notes,
+                    email: this.rider.email
+                });
+
                 rideshare.$save(function (response) {
                     $location.path('/list');
                 });

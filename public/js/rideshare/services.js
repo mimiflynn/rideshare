@@ -10,12 +10,9 @@ angular.module('rideshare.services', []).
             }
         });
     }]).
-    factory('checkWidth', function ($location, $window) {
-        return function () {
-            if ($window.document.width < 768) {
-                return false;
-            } else {
-                return true;
-            }
-        };
-    });
+    factory('BrowserDetect', ['$window', function (win) {
+
+        BrowserDetect.width = $(window).width();
+
+        return BrowserDetect;
+    }]);

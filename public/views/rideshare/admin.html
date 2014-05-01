@@ -5,6 +5,10 @@
 
     <div class="gridStyle" data-ng-grid="gridOptions" data-ng-show="desktop()"></div>
 
+    <div class="cardStyle" data-ng-hide="desktop()">
+        This is the mobile view
+    </div>
+
     <div class="details" data-ng-repeat="people in selectedPeople">
         <div class="attendee panel panel-default">
             <div class="panel-heading">
