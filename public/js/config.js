@@ -17,20 +17,6 @@ angular.module('mean').config(['$routeProvider',
             templateUrl: 'views/articles/view.html'
         }).
 
-        // rideshare
-        when('/', {
-            templateUrl: 'views/rideshare/select.html'
-        }).
-        when('/rider', {
-            templateUrl: 'views/rideshare/rider.html'
-        }).
-        when('/list', {
-            templateUrl: 'views/rideshare/list.html'
-        }).
-        when('/huzzah', {
-            templateUrl: 'views/rideshare/admin.html'
-        }).
-
         // default
         otherwise({
             redirectTo: '/'
