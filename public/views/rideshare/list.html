@@ -6,6 +6,9 @@
     <div class="gridStyle" data-ng-grid="gridOptions" data-ng-show="desktop()"></div>
 
     <div class="details" data-ng-repeat="people in selectedPeople">
+        <div class="filterButtons">
+            <a href="" data-ng-click="">Filter</a>
+        </div>
         <div class="attendee panel panel-default">
             <div class="panel-heading">
                 <h2>{{people.name}}</h2>

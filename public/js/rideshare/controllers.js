@@ -18,10 +18,6 @@ angular.module('rideshare.controllers', []).
     controller('List', ['$scope', '$location', '$routeParams', '$window', 'Global', 'Rideshare', 'BrowserDetect', function ($scope, $location, $routeParams, $window, Global, Rideshare, BrowserDetect) {
         $scope.global = Global;
 
-        if (BrowserDetect.OS) {
-            console.log(BrowserDetect);
-        }
-
         $scope.desktop = function () {
             return BrowserDetect.width >= 768;
         };
@@ -34,6 +30,9 @@ angular.module('rideshare.controllers', []).
 
         $scope.selectedPeople = [];
 
+        $scope.selectedFilter = '';
+
+        // grid view of all participants
         $scope.gridOptions = {
             data: 'rideshares',
             selectedItems: $scope.selectedPeople,

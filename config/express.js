@@ -41,7 +41,7 @@ module.exports = function(app, passport, db) {
     app.set('view engine', 'html');
 
     // Set views path, template engine and default layout
-    app.set('views', config.root + '/app/views');
+    app.set('views', config.root + '/server/views');
 
     // Enable jsonp
     app.enable('jsonp callback');
