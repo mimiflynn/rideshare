@@ -24,7 +24,9 @@ angular.module('rideshare.controllers').
             data: 'rideshares',
             selectedItems: $scope.selectedPeople,
             columnDefs: [
+                {field: 'car', displayName: 'Car'},
                 {field: 'name', displayName: 'Name'},
+                {field: 'role', displayName: 'Role'},
                 {field: 'partyNumber', displayName: '# in party'},
                 {field: 'arrivalDate', displayName: 'Arrival Date', cellFilter: 'date : \'MMMM dd\''},
                 {field: 'arrivalTime', displayName: 'Arrival Time', cellFilter: 'date : \'h:mm a\''},
@@ -40,6 +42,19 @@ angular.module('rideshare.controllers').
             });
         };
 
+        $scope.update = function () {
+            var rideshare = $scope.rideshare;
+            if (!rideshare.updated) {
+                rideshare.updated = [];
+            }
+            rideshare.updated.push(new Date().getTime());
+
+            rideshare.$update(function () {
+                $location.path('/list');
+            });
+        };
+
+        // admin huzzah stuff
         $scope.remove = function (rideshare) {
 
             $scope.rideshare = rideshare;
@@ -66,17 +81,5 @@ angular.module('rideshare.controllers').
                 $scope.rideshare.$remove();
                 $location.path('/huzzah');
             }
-        };
-
-        $scope.update = function () {
-            var rideshare = $scope.rideshare;
-            if (!rideshare.updated) {
-                rideshare.updated = [];
-            }
-            rideshare.updated.push(new Date().getTime());
-
-            rideshare.$update(function () {
-                $location.path('/list');
-            });
         };
     }]);
