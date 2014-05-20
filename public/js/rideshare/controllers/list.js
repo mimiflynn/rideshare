@@ -5,7 +5,9 @@ angular.module('rideshare.controllers').
     controller('List', ['$scope', '$location', '$routeParams', '$window', 'Global', 'Rideshare', 'BrowserDetect', function ($scope, $location, $routeParams, $window, Global, Rideshare, BrowserDetect) {
         $scope.global = Global;
 
-        $scope.desktop = function () {
+        $scope.isDesktop = function () {
+            console.log('isDesktop run');
+            console.log(BrowserDetect);
             return BrowserDetect.width >= 768;
         };
 

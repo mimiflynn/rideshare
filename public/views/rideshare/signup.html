@@ -13,6 +13,16 @@
                     <span data-ng-show="form.uNameNew.$error.required">What is your name?</span>
                 </div>
 
+                <div class="btn-group" dropdown on-toggle="roleSelect(open)">
+                    <button type="button" class="btn dropdown-toggle">
+                        Role <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="">Rider</a></li>
+                        <li><a href="">Driver</a></li>
+                    </ul>
+                </div>
+
                 <input type="text" data-ng-model="rider.partyNumber" name="uPartyNumber" required class="form-control"
                        placeholder="Number in party"/><br/>
 
@@ -21,10 +31,10 @@
                 </div>
 
                 <div class="input-group datepicker">
-                    <input type="text" class="form-control" datepicker-popup="MMMM dd" data-ng-model="rider.arrivalDate"
-                           name="uArrivalDate" required is-open="opened" min="minDate" max="'2015-06-22'"
-                           datepicker-options="dateOptions" date-disabled="disabled(date, mode)" data-ng-required="true"
-                           close-text="Close" placeholder="Date"/>
+                  <input type="text" class="form-control" datepicker-popup="MMMM dd" data-ng-model="rider.arrivalDate"
+                         name="uArrivalDate" required is-open="opened" min="minDate" max="'2015-06-22'"
+                         datepicker-options="dateOptions" date-disabled="disabled(date, mode)" data-ng-required="true"
+                         close-text="Close" placeholder="Date"/>
 			      <span class="input-group-btn">
 			        <button class="btn btn-default" data-ng-click="open($event)"><span
                             class="glyphicon glyphicon-calendar"></span></button>

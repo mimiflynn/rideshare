@@ -1,5 +1,7 @@
 'use strict';
 
+// TODO: clean up this badboy
+
 angular.module('rideshare.controllers').
 
     controller('CreateRideshare', ['$scope', '$location', '$routeParams', 'Global', 'Rideshare', function ($scope, $location, $routeParams, Global, Rideshare) {
@@ -55,6 +57,12 @@ angular.module('rideshare.controllers').
         };
 
 
+        $scope.roleSelect = function(open) {
+            $event.preventDefault();
+            $event.stopPropagation();
+            console.log(open);
+        };
+
         /*
          * @ToDo: refactor calendar and date vars into an object for each
          * */
@@ -100,7 +108,7 @@ angular.module('rideshare.controllers').
 
 
         /*
-         * @ToDo: refactor calendar and date vars into an object for each
+         * @ToDo: refactor calendar and date vars into an object for each - does this need to be a service?
          * */
 
         $scope.mytime = new Date();

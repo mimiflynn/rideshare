@@ -8,7 +8,7 @@ angular.module('rideshare').config(['$routeProvider',
                 templateUrl: 'views/rideshare/select.html'
             }).
             when('/rider', {
-                templateUrl: 'views/rideshare/rider.html'
+                templateUrl: 'views/rideshare/signup.html'
             }).
             when('/list', {
                 templateUrl: 'views/rideshare/list.html'

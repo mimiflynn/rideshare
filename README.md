@@ -12,6 +12,8 @@ This app is focused on organizing ride sharing easily.
 - allow drivers and riders to send reqests to each other
 - option automatically fill in cars
 - allow users to view grid of all riders and drivers
+- Arrival location to include airport codes and cities like ticketing sites use
+- Timezone select
 
 -----
 
