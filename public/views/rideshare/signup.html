@@ -13,14 +13,19 @@
                     <span data-ng-show="form.uNameNew.$error.required">What is your name?</span>
                 </div>
 
-                <div class="btn-group" dropdown on-toggle="roleSelect(open)">
-                    <button type="button" class="btn dropdown-toggle">
-                        Role <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="">Rider</a></li>
-                        <li><a href="">Driver</a></li>
-                    </ul>
+                <div class="role-selector">
+                    You will be:
+                    <div class="btn-group">
+                        <button class="btn btn-primary" name="uRole" data-ng-model="rider.role" value="Rider" btn-radio="'Rider'">Riding</button>
+                        <button class="btn btn-primary" name="uRole" data-ng-model="rider.role" value="Driver" btn-radio="'Driver'">Driving</button>
+                    </div>
+
+                </div>
+                
+                <br/>
+
+                <div class="alert alert-danger" data-ng-show="form.uRole.$dirty && form.role.$invalid">
+                    <span data-ng-show="form.uRole.$error.required">Will you be riding or driving?</span>
                 </div>
 
                 <input type="text" data-ng-model="rider.partyNumber" name="uPartyNumber" required class="form-control"
@@ -31,10 +36,10 @@
                 </div>
 
                 <div class="input-group datepicker">
-                  <input type="text" class="form-control" datepicker-popup="MMMM dd" data-ng-model="rider.arrivalDate"
-                         name="uArrivalDate" required is-open="opened" min="minDate" max="'2015-06-22'"
-                         datepicker-options="dateOptions" date-disabled="disabled(date, mode)" data-ng-required="true"
-                         close-text="Close" placeholder="Date"/>
+                    <input type="text" class="form-control" datepicker-popup="MMMM dd" data-ng-model="rider.arrivalDate"
+                           name="uArrivalDate" required is-open="opened" min="minDate" max="'2015-06-22'"
+                           datepicker-options="dateOptions" date-disabled="disabled(date, mode)" data-ng-required="true"
+                           close-text="Close" placeholder="Date"/>
 			      <span class="input-group-btn">
 			        <button class="btn btn-default" data-ng-click="open($event)"><span
                             class="glyphicon glyphicon-calendar"></span></button>
@@ -77,7 +82,8 @@
                 <button data-ng-click="reset()" data-ng-disabled="isUnchanged(rider)" class="btn btn-default">
                     Reset
                 </button>
-                <button data-ng-click="createRideshare(rider)" data-ng-disabled="form.$invalid || isUnchanged(rider)" class="btn btn-default">
+                <button data-ng-click="createRideshare(rider)" data-ng-disabled="form.$invalid || isUnchanged(rider)"
+                        class="btn btn-default">
                     Submit
                 </button>
             </form>
@@ -89,6 +95,8 @@
                 </div>
                 <div class="panel-body">
                     <p><span class="text-muted">Name:</span> {{rider.name}}</p>
+
+                    <p><span class="text-muted">Role:</span> {{rider.role}}</p>
 
                     <p><span class="text-muted">Number in party:</span> {{rider.partyNumber}}</p>
 

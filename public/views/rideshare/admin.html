@@ -3,9 +3,9 @@
 
     <p>Select an attendee to view details.</p>
 
-    <div class="gridStyle" data-ng-grid="gridOptions" data-ng-show="desktop()"></div>
+    <div class="gridStyle" data-ng-grid="gridOptions" data-ng-show="isDesktop"></div>
 
-    <div class="cardStyle" data-ng-hide="desktop()">
+    <div class="cardStyle" data-ng-hide="isDesktop">
         This is the mobile view
     </div>
 

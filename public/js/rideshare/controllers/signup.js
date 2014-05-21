@@ -11,7 +11,7 @@ angular.module('rideshare.controllers').
                 $scope.timeError = 'Please set time of arrival.';
                 $scope.rider = {
                     name: this.rider.name,
-                    type: this.rider.type,
+                    role: this.rider.role,
                     partyNumber: this.rider.partyNumber,
                     arrivalDate: this.rider.arrivalDate,
                     arrivalTime: this.rider.arrivalTime,
@@ -23,7 +23,7 @@ angular.module('rideshare.controllers').
 
                 var rideshare = new Rideshare({
                     name: this.rider.name,
-                    type: this.rider.type,
+                    role: this.rider.role,
                     partyNumber: this.rider.partyNumber,
                     arrivalDate: this.rider.arrivalDate,
                     arrivalTime: this.rider.arrivalTime,
@@ -56,8 +56,11 @@ angular.module('rideshare.controllers').
             });
         };
 
+        $scope.roleToggled = function(open){
+            console.log('Dropdown is now: ', open);
+        };
 
-        $scope.roleSelect = function(open) {
+        $scope.roleSelect = function($event) {
             $event.preventDefault();
             $event.stopPropagation();
             console.log(open);
@@ -77,7 +80,7 @@ angular.module('rideshare.controllers').
             $scope.showWeeks = !$scope.showWeeks;
         };
 
-        $scope.clear = function () {
+        $scope.clearDate = function () {
             $scope.dt = null;
         };
 
@@ -139,7 +142,7 @@ angular.module('rideshare.controllers').
             $scope.timeNotChanged = false;
         };
 
-        $scope.clear = function () {
+        $scope.clearTime = function () {
             $scope.mytime = null;
         };
 

@@ -45,7 +45,7 @@ var RideshareSchema = new Schema({
     },
     role: {
         type: String,
-        default: 'Rider',
+        default: '',
         trim: true
     },
     car: {

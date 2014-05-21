@@ -43,9 +43,8 @@ angular.module('rideshare.services').
                 return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
             },
 
-            // TODO: Refactor to not be jQuery
             getWidth : function(){
-                return $(window).width();
+                return window.innerWidth;
             },
 
             dataBrowser: [
@@ -138,6 +137,7 @@ angular.module('rideshare.services').
             ]
 
         };
+
         BrowserDetect.init();
 
         return BrowserDetect;
