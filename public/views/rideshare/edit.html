@@ -1,4 +1,4 @@
-<div class="container-fluid interior" data-ng-controller="CreateRideshare">
+<div class="container-fluid interior" data-ng-controller="CreateRideshare" data-ng-init="findOne()">
     <h1><span class="glyphicon glyphicon-briefcase"></span> Sign Up</h1>
 
     <div class="row">
@@ -16,8 +16,8 @@
                 <div class="role-selector">
                     You will be:
                     <div class="btn-group">
-                        <button class="btn btn-primary" name="uRole" data-ng-model="rider.role" value="Rider" data-btn-radio="'Rider'">Riding</button>
-                        <button class="btn btn-primary" name="uRole" data-ng-model="rider.role" value="Driver" data-btn-radio="'Driver'">Driving</button>
+                        <button class="btn btn-primary" name="uRole" data-ng-model="rider.role" value="Rider" btn-radio="'Rider'">Riding</button>
+                        <button class="btn btn-primary" name="uRole" data-ng-model="rider.role" value="Driver" btn-radio="'Driver'">Driving</button>
                     </div>
 
                 </div>
@@ -82,7 +82,7 @@
                 <button data-ng-click="reset()" data-ng-disabled="isUnchanged(rider)" class="btn btn-default">
                     Reset
                 </button>
-                <button data-ng-click="createRideshare(rider)" data-ng-disabled="form.$invalid || isUnchanged(rider)"
+                <button data-ng-click="updateRideshare(rider)" data-ng-disabled="form.$invalid || isUnchanged(rider)"
                         class="btn btn-default">
                     Submit
                 </button>

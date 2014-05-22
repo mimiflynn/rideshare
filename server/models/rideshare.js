@@ -50,7 +50,7 @@ var RideshareSchema = new Schema({
     },
     car: {
         type: String,
-        default: 'Unsorted',
+        default: '',
         trim: true
     }
 });

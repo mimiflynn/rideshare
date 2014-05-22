@@ -55,6 +55,12 @@ angular.module('rideshare.controllers').
         };
 
         // admin huzzah stuff
+
+
+        $scope.edit = function (rideshare) {
+
+        };
+
         $scope.remove = function (rideshare) {
 
             $scope.rideshare = rideshare;

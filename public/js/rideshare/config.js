@@ -13,6 +13,9 @@ angular.module('rideshare').config(['$routeProvider',
             when('/list', {
                 templateUrl: 'views/rideshare/list.html'
             }).
+            when('/rideshare/:rideshareId/edit', {
+                templateUrl: 'views/rideshare/edit.html'
+            }).
             when('/huzzah', {
                 templateUrl: 'views/rideshare/admin.html'
             }).

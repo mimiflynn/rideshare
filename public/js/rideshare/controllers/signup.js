@@ -5,37 +5,26 @@
 angular.module('rideshare.controllers').
 
     controller('CreateRideshare', ['$scope', '$location', '$routeParams', 'Global', 'Rideshare', function ($scope, $location, $routeParams, Global, Rideshare) {
-        $scope.createRideshare = function () {
+
+        $scope.createRideshare = function (rider) {
+
+            rider.car = (rider.role === "Driver") ? rider.name : "Unsorted";
+
+            console.log(rider.car);
 
             if ($scope.timeNotChanged) {
                 $scope.timeError = 'Please set time of arrival.';
-                $scope.rider = {
-                    name: this.rider.name,
-                    role: this.rider.role,
-                    partyNumber: this.rider.partyNumber,
-                    arrivalDate: this.rider.arrivalDate,
-                    arrivalTime: this.rider.arrivalTime,
-                    arrivalLocation: this.rider.arrivalLocation,
-                    notes: this.rider.notes,
-                    email: this.rider.email
-                };
+                $scope.rider = rider;
             } else {
 
-                var rideshare = new Rideshare({
-                    name: this.rider.name,
-                    role: this.rider.role,
-                    partyNumber: this.rider.partyNumber,
-                    arrivalDate: this.rider.arrivalDate,
-                    arrivalTime: this.rider.arrivalTime,
-                    arrivalLocation: this.rider.arrivalLocation,
-                    notes: this.rider.notes,
-                    email: this.rider.email
-                });
+                var rideshare = new Rideshare(rider);
 
                 rideshare.$save(function (response) {
                     $location.path('/list');
                 });
-                this.rider = {};
+
+                // is this needed? don't remember why I did this.
+                rider = {};
             }
 
         };
@@ -44,7 +33,15 @@ angular.module('rideshare.controllers').
             $scope.rider = {};
         };
 
-        $scope.update = function () {
+        $scope.findOne = function () {
+            Rideshare.get({
+                RideshareId: $routeParams.rideshareId
+            }, function (rideshare) {
+                $scope.rideshare = rideshare;
+            });
+        };
+
+        $scope.updateRideshare = function () {
             var rideshare = $scope.rideshare;
             if (!rideshare.updated) {
                 rideshare.updated = [];
@@ -54,16 +51,6 @@ angular.module('rideshare.controllers').
             rideshare.$update(function () {
                 $location.path('/list');
             });
-        };
-
-        $scope.roleToggled = function(open){
-            console.log('Dropdown is now: ', open);
-        };
-
-        $scope.roleSelect = function($event) {
-            $event.preventDefault();
-            $event.stopPropagation();
-            console.log(open);
         };
 
         /*
