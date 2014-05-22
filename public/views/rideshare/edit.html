@@ -1,9 +1,13 @@
 <div class="container-fluid interior" data-ng-controller="CreateRideshare" data-ng-init="findOne()">
-    <h1><span class="glyphicon glyphicon-briefcase"></span> Sign Up</h1>
+    <h1><span class="glyphicon glyphicon-pencil"></span> Edit</h1>
 
     <div class="row">
         <div class="col-md-8">
             <h2>Details</h2>
+
+            <div class="alert alert-success" data-ng-show="riderUpdated">
+                <span data-ng-show="riderUpdated">{{rider.name}} has been updated.</span>
+            </div>
 
             <form name="form" class="css-form" novalidate>
                 <input type="text" data-ng-model="rider.name" name="uNameNew" required class="form-control"

@@ -35,21 +35,23 @@ angular.module('rideshare.controllers').
 
         $scope.findOne = function () {
             Rideshare.get({
-                RideshareId: $routeParams.rideshareId
+                rideshareId: $routeParams.rideshareId
             }, function (rideshare) {
-                $scope.rideshare = rideshare;
+                $scope.rider = rideshare;
             });
         };
 
         $scope.updateRideshare = function () {
-            var rideshare = $scope.rideshare;
-            if (!rideshare.updated) {
-                rideshare.updated = [];
-            }
-            rideshare.updated.push(new Date().getTime());
+            var rider = $scope.rider;
 
-            rideshare.$update(function () {
-                $location.path('/list');
+            if (!rider.updated) {
+                rider.updated = [];
+            }
+            rider.updated.push(new Date().getTime());
+
+            rider.$update(function () {
+                $location.path('/rideshare/' + $routeParams.rideshareId + '/edit');
+                $scope.riderUpdated = "Update Success!";
             });
         };
 
