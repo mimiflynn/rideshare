@@ -43,6 +43,11 @@
   width: 50px;
 }
 
-.role-selector {
-
+.panel-primary {
+  .panel-heading {
+    h1, h2, h3, h4 {
+      color: #ffffff;
+      margin: 5px 0;
+    }
+  }
 }

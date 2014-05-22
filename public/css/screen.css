@@ -171,3 +171,9 @@ ul.articles li:not(:last-child) {
 .timepicker .form-control {
   width: 50px;
 }
+
+/* line 48, ../../sass/_rideshare.scss */
+.panel-primary .panel-heading h1, .panel-primary .panel-heading h2, .panel-primary .panel-heading h3, .panel-primary .panel-heading h4 {
+  color: #ffffff;
+  margin: 5px 0;
+}
