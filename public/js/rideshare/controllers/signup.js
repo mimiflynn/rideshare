@@ -22,11 +22,7 @@ angular.module('rideshare.controllers').
                 rideshare.$save(function (response) {
                     $location.path('/list');
                 });
-
-                // is this needed? don't remember why I did this.
-                rider = {};
             }
-
         };
 
         $scope.reset = function () {

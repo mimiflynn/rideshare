@@ -79,6 +79,7 @@
     "karma": "~0.10.4",
     "grunt-karma": "~0.6.2",
     "karma-coverage": "~0.1.0",
-    "grunt-contrib-compass": "~0.7.2"
+    "grunt-contrib-compass": "~0.7.2",
+    "grunt-ngmin": "0.0.3"
   }
 }
