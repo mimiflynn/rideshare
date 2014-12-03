@@ -6,7 +6,7 @@ npm-debug.log
 .idea/
 node_modules/
 public/system/lib
-public/lib
+public/lib/*
 mean.iml
 test/coverage/
 modules/public/
