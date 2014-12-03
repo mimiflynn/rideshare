@@ -63,6 +63,8 @@ angular.module('rideshare.controllers').
             if (rideshare) {
                 rideshare.$remove();
 
+// @Todo refactor with lodash
+
                 // remove selected from the main collection
                 for (var i in $scope.rideshares) {
                     if ($scope.rideshares[i] === rideshare) {

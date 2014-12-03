@@ -122,7 +122,7 @@ angular.module('rideshare.controllers', []).
                     email: this.rider.email
                 });
 
-                rideshare.$save(function (response) {
+                rideshare.$save(function () {
                     $location.path('/list');
                 });
                 this.rider = {};

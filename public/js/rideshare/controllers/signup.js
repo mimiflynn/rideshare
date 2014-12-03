@@ -8,7 +8,7 @@ angular.module('rideshare.controllers').
 
         $scope.createRideshare = function (rider) {
 
-            rider.car = (rider.role === "Driver") ? rider.name : "Unsorted";
+            rider.car = (rider.role === 'Driver') ? rider.name : 'Unsorted';
 
             console.log(rider.car);
 
@@ -19,7 +19,7 @@ angular.module('rideshare.controllers').
 
                 var rideshare = new Rideshare(rider);
 
-                rideshare.$save(function (response) {
+                rideshare.$save(function () {
                     $location.path('/list');
                 });
             }
@@ -47,7 +47,7 @@ angular.module('rideshare.controllers').
 
             rider.$update(function () {
                 $location.path('/rideshare/' + $routeParams.rideshareId + '/edit');
-                $scope.riderUpdated = "Update Success!";
+                $scope.riderUpdated = 'Update Success!';
             });
         };
 

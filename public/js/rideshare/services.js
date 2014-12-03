@@ -10,15 +10,13 @@ angular.module('rideshare.services').
             }
         });
     }]).
-    factory('BrowserDetect', ['$window', function (win) {
+    factory('BrowserDetect', ['$window', function () {
 
         var BrowserDetect = {
 
             init: function () {
                 this.browser = this.searchString(this.dataBrowser) || 'An unknown browser';
-                this.version = this.searchVersion(navigator.userAgent)
-                    || this.searchVersion(navigator.appVersion)
-                    || 'an unknown version';
+                this.version = this.searchVersion(navigator.userAgent) || this.searchVersion(navigator.appVersion) || 'an unknown version';
                 this.OS = this.searchString(this.dataOS) || 'an unknown OS';
                 this.width = this.getWidth();
             },
@@ -29,7 +27,7 @@ angular.module('rideshare.services').
                     var dataProp = data[i].prop;
                     this.versionSearchString = data[i].versionSearch || data[i].identity;
                     if (dataString) {
-                        if (dataString.indexOf(data[i].subString) != -1)
+                        if (dataString.indexOf(data[i].subString) !== -1)
                             return data[i].identity;
                     }
                     else if (dataProp)
@@ -39,7 +37,7 @@ angular.module('rideshare.services').
 
             searchVersion: function (dataString) {
                 var index = dataString.indexOf(this.versionSearchString);
-                if (index == -1) return;
+                if (index === -1) return;
                 return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
             },
 
