@@ -1,110 +1,129 @@
 'use strict';
 
-module.exports = function (grunt) {
-    // Project Configuration
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        compass: {
-            dist: {
-                options: {
-                    sassDir: 'sass',
-                    cssDir: 'public/css'
-                }
-            }
-        },
-        watch: {
-            jade: {
-                files: ['server/views/**'],
-                options: {
-                    livereload: true
-                }
-            },
-            js: {
-                files: ['gruntfile.js', 'server.js', 'server/**/*.js', 'public/js/**', 'test/**/*.js'],
-                tasks: ['jshint'],
-                options: {
-                    livereload: true
-                }
-            },
-            html: {
-                files: ['public/views/**'],
-                options: {
-                    livereload: true
-                }
-            },
-            css: {
-                files: '**/*.scss',
-                tasks: ['compass'],
-                options: {
-                    livereload: true
-                }
-            }
-        },
-        jshint: {
-            all: {
-                src: ['gruntfile.js', 'server.js', 'server/**/*.js', 'public/js/**', 'test/**/*.js'],
-                options: {
-                    jshintrc: true
-                }
-            }
-        },
-        nodemon: {
-            dev: {
-                options: {
-                    file: 'server.js',
-                    args: [],
-                    ignoredFiles: ['public/**'],
-                    watchedExtensions: ['js'],
-                    nodeArgs: ['--debug'],
-                    delayTime: 1,
-                    env: {
-                        PORT: 3000
-                    },
-                    cwd: __dirname
-                }
-            }
-        },
-        concurrent: {
-            tasks: ['nodemon', 'watch'],
-            options: {
-                logConcurrentOutput: true
-            }
-        },
-        mochaTest: {
-            options: {
-                reporter: 'spec',
-                require: 'server.js'
-            },
-            src: ['test/mocha/**/*.js']
-        },
-        env: {
-            test: {
-                NODE_ENV: 'test'
-            }
-        },
-        karma: {
-            unit: {
-                configFile: 'test/karma/karma.conf.js'
-            }
+var paths = {
+  js: ['*.js', 'test/**/*.js', '!test/coverage/**', '!bower_components/**', 'packages/**/*.js', '!packages/**/node_modules/**', '!packages/contrib/**/*.js', '!packages/contrib/**/node_modules/**'],
+  html: ['packages/**/public/**/views/**', 'packages/**/server/views/**'],
+  css: ['!bower_components/**', 'packages/**/public/**/css/*.css', '!packages/contrib/**/public/**/css/*.css']
+};
+
+module.exports = function(grunt) {
+
+  if (process.env.NODE_ENV !== 'production') {
+    require('time-grunt')(grunt);
+  }
+
+  // Project Configuration
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+    assets: grunt.file.readJSON('config/assets.json'),
+    clean: ['bower_components/build'],
+    watch: {
+      js: {
+        files: paths.js,
+        tasks: ['jshint'],
+        options: {
+          livereload: true
         }
-    });
+      },
+      html: {
+        files: paths.html,
+        options: {
+          livereload: true,
+          interval: 500
+        }
+      },
+      css: {
+        files: paths.css,
+        tasks: ['csslint'],
+        options: {
+          livereload: true
+        }
+      }
+    },
+    jshint: {
+      all: {
+        src: paths.js,
+        options: {
+          jshintrc: true
+        }
+      }
+    },
+    uglify: {
+      core: {
+        options: {
+          mangle: false
+        },
+        files: '<%= assets.core.js %>'
+      }
+    },
+    csslint: {
+      options: {
+        csslintrc: '.csslintrc'
+      },
+      src: paths.css
+    },
+    cssmin: {
+      core: {
+        files: '<%= assets.core.css %>'
+      }
+    },
+    nodemon: {
+      dev: {
+        script: 'server.js',
+        options: {
+          args: [],
+          ignore: ['node_modules/**'],
+          ext: 'js,html',
+          nodeArgs: ['--debug'],
+          delayTime: 1,
+          cwd: __dirname
+        }
+      }
+    },
+    concurrent: {
+      tasks: ['nodemon', 'watch'],
+      options: {
+        logConcurrentOutput: true
+      }
+    },
+    mochaTest: {
+      options: {
+        reporter: 'spec',
+        require: [
+          'server.js',
+          function() {
+            require('meanio/lib/util').preload(__dirname + '/packages/**/server', 'model');
+          }
+        ]
+      },
+      src: ['packages/**/server/tests/**/*.js']
+    },
+    env: {
+      test: {
+        NODE_ENV: 'test'
+      }
+    },
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js'
+      }
+    }
+  });
 
-    //Load NPM tasks
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-mocha-test');
-    grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('grunt-nodemon');
-    grunt.loadNpmTasks('grunt-concurrent');
-    grunt.loadNpmTasks('grunt-env');
-    grunt.loadNpmTasks('grunt-contrib-compass');
+  //Load NPM tasks
+  require('load-grunt-tasks')(grunt);
 
-    //Making grunt default to force in order not to break the project.
-    grunt.option('force', true);
+  //Default task(s).
+  if (process.env.NODE_ENV === 'production') {
+    grunt.registerTask('default', ['clean', 'cssmin', 'uglify', 'concurrent']);
+  } else {
+    grunt.registerTask('default', ['clean', 'jshint', 'csslint', 'concurrent']);
+  }
 
-    //Default task(s).
-    grunt.registerTask('default', ['jshint', 'concurrent', 'watch']);
+  //Test task.
+  grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
 
-    //Test task.
-    grunt.registerTask('test', ['env:test', 'mochaTest', 'karma:unit']);
+  // For Heroku users only.
+  // Docs: https://github.com/linnovate/mean/wiki/Deploying-on-Heroku
+  grunt.registerTask('heroku:production', ['cssmin', 'uglify']);
 };
