@@ -66,18 +66,30 @@ angular.module('rideshare.controllers').
 // @Todo refactor with lodash
 
                 // remove selected from the main collection
-                for (var i in $scope.rideshares) {
+                $scope.rideshares.forEach(function(person, i){
+                    if (person === rideshare) {
+                        $scope.rideshares.splice(i, 1);
+                    }
+                }); 
+
+                /*for (var i in $scope.rideshares) {
                     if ($scope.rideshares[i] === rideshare) {
                         $scope.rideshares.splice(i, 1);
                     }
-                }
+                }*/
 
                 // remove selected from the group of displayed people
-                for (var i in $scope.selectedPeople) {
+                $scope.selectedPeople.forEach(function(person, i){
+                    if (person === rideshare) {
+                        $scope.selectedPeople.splice(i, 1);
+                    }
+                });              
+
+                /*for (var i in $scope.selectedPeople) {
                     if ($scope.selectedPeople[i] === rideshare) {
                         $scope.selectedPeople.splice(i, 1);
                     }
-                }
+                }*/
                 $location.path('/huzzah');
             }
             else {

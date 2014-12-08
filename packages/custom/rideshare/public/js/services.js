@@ -22,7 +22,9 @@ angular.module('rideshare.services').
             },
 
             searchString: function (data) {
-                for (var i=0;i<data.length;i++)    {
+
+                // refactor as forEach
+                for (var i in data) {
                     var dataString = data[i].string;
                     var dataProp = data[i].prop;
                     this.versionSearchString = data[i].versionSearch || data[i].identity;

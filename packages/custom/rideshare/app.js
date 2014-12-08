@@ -26,7 +26,10 @@ Rideshare.register(function(app, auth, passport, database) {
   //     menu: 'main'
   // });
 
+  Rideshare.angularDependencies(['ngGrid']);
+
   Rideshare.aggregateAsset('js', 'rideshare.js');
+
 
   return Rideshare;
 });
