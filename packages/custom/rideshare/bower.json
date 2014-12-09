@@ -1,6 +1,6 @@
 {
-  "name": "mean-rideshare",
-  "version": "0.1",
+  "name": "rideshare",
+  "version": "0.0.1",
   "dependencies": {
     "angular-ui-utils": "0.1.0",
     "ng-grid": "2.0.7",

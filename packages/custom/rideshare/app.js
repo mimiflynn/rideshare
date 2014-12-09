@@ -1,7 +1,5 @@
 'use strict';
 
-// Used users package as template
-
 /*
  * Defining the Package
  */
@@ -13,23 +11,44 @@ var Rideshare = new Module('rideshare');
  * All MEAN packages require registration
  * Dependency injection is used to define required modules
  */
-Rideshare.register(function(app, auth, passport, database) {
+Rideshare.register(function(app, auth, database) {
 
   //We enable routing. By default the Package Object is passed to the routes
-  Rideshare.routes(app, auth, database, passport);
+  Rideshare.routes(app, auth, database);
 
   //We are adding a link to the main menu for all authenticated users
-  // Rideshare.menus.add({
-  //     title: 'meanUser example page',
-  //     link: 'meanUser example page',
-  //     roles: ['authenticated'],
-  //     menu: 'main'
-  // });
-
+  Rideshare.menus.add({
+    title: 'Rideshare',
+    link: 'rideshares',
+    roles: ['authenticated'],
+    menu: 'main'
+  });
+  
   Rideshare.angularDependencies(['ngGrid']);
 
-  Rideshare.aggregateAsset('js', 'rideshare.js');
+  Rideshare.aggregateAsset('css', 'screen.css');
 
+  /**
+    //Uncomment to use. Requires meanio@0.3.7 or above
+    // Save settings with callback
+    // Use this for saving data from administration pages
+    Rideshare.settings({
+        'someSetting': 'some value'
+    }, function(err, settings) {
+        //you now have the settings object
+    });
+
+    // Another save settings example this time with no callback
+    // This writes over the last settings.
+    Rideshare.settings({
+        'anotherSettings': 'some value'
+    });
+
+    // Get settings. Retrieves latest saved settigns
+    Rideshare.settings(function(err, settings) {
+        //you now have the settings object
+    });
+    */
 
   return Rideshare;
 });

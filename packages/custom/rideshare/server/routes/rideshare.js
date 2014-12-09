@@ -1,17 +1,26 @@
 'use strict';
 
-// rideshares routes use rideshare controller
-var rideshares = require('../controllers/rideshare');
+// The Package is past automatically as first parameter
+module.exports = function(Rideshare, app, auth, database) {
 
-module.exports = function(app) {
+  app.get('/rideshare/example/anyone', function(req, res, next) {
+    res.send('Anyone can access this');
+  });
 
-    app.get('/rideshare', rideshares.all);
-    app.post('/rideshare', rideshares.create);
-    app.get('/rideshare/:rideshareId', rideshares.show);
-    app.put('/rideshare/:rideshareId', rideshares.update);
-    app.del('/rideshare/:rideshareId', rideshares.destroy);
+  app.get('/rideshare/example/auth', auth.requiresLogin, function(req, res, next) {
+    res.send('Only authenticated users can access this');
+  });
 
-    // Finish with setting up the rideshareId param
-    app.param('rideshareId', rideshares.rideshare);
+  app.get('/rideshare/example/admin', auth.requiresAdmin, function(req, res, next) {
+    res.send('Only users with Admin role can access this');
+  });
 
+  app.get('/rideshare/example/render', function(req, res, next) {
+    Rideshare.render('index', {
+      package: 'rideshare'
+    }, function(err, html) {
+      //Rendering a view from the Package server/views
+      res.send(html);
+    });
+  });
 };
