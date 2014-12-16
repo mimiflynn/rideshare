@@ -9,15 +9,6 @@ angular.module('mean.rideshare')
       };
     }
   ])
-  .controller('Menu', ['$scope', '$location', function ($scope, $location) {
-      $scope.rider = function () {
-          $location.path('/rider');
-      };
-      $scope.list = function () {
-          $location.path('/list');
-      };
-  }])
-
   .controller('List', ['$scope', '$location', '$routeParams', '$window', 'Global', 'Rideshare', 'BrowserDetect', function ($scope, $location, $routeParams, $window, Global, Rideshare, BrowserDetect) {
       $scope.global = Global;
 
