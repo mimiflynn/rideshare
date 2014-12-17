@@ -47,7 +47,8 @@ angular.module('mean.rideshare').config(['$stateProvider',
           templateUrl: 'rideshare/views/admin.html',
           resolve: {
             loggedin: checkLoggedin
-          }
+          },
+          controller: 'RideshareList'
         })
         .state('edit rideshare', {
           url: '/rideshare/:rideshareId/edit',
