@@ -9,7 +9,9 @@ angular.module('mean.rideshare')
       };
     }
   ])
-  .controller('List', ['$scope', '$location', '$routeParams', '$window', 'Global', 'Rideshare', 'BrowserDetect', function ($scope, $location, $routeParams, $window, Global, Rideshare, BrowserDetect) {
+  
+  .controller('RideshareList', ['$scope', '$location', '$stateParams', '$window', 'Global', 'Rideshare', 'BrowserDetect',
+    function ($scope, $location, $stateParams, $window, Global, Rideshare, BrowserDetect) {
       $scope.global = Global;
 
       $scope.desktop = function () {
@@ -41,7 +43,7 @@ angular.module('mean.rideshare')
 
       $scope.findOne = function () {
           Rideshare.get({
-              RideshareId: $routeParams.rideshareId
+              RideshareId: $stateParams.rideshareId
           }, function (rideshare) {
               $scope.rideshare = rideshare;
           });
@@ -61,24 +63,12 @@ angular.module('mean.rideshare')
                   }
               }); 
 
-              /*for (var i in $scope.rideshares) {
-                  if ($scope.rideshares[i] === rideshare) {
-                      $scope.rideshares.splice(i, 1);
-                  }
-              }*/
-
               // remove selected from the group of displayed people
               $scope.selectedPeople.forEach(function(person, i){
                   if (person === rideshare) {
                       $scope.selectedPeople.splice(i, 1);
                   }
-              });              
-
-              /*for (var i in $scope.selectedPeople) {
-                  if ($scope.selectedPeople[i] === rideshare) {
-                      $scope.selectedPeople.splice(i, 1);
-                  }
-              }*/
+              });
 
               $location.path('/huzzah');
           }
@@ -99,9 +89,10 @@ angular.module('mean.rideshare')
               $location.path('/list');
           });
       };
-  }]).
+  }])
 
-  controller('CreateRideshare', ['$scope', '$location', '$routeParams', 'Global', 'Rideshare', function ($scope, $location, $routeParams, Global, Rideshare) {
+  .controller('CreateRideshare', ['$scope', '$location', '$stateParams', 'Global', 'Rideshare',
+    function ($scope, $location, $stateParams, Global, Rideshare) {
       $scope.createRideshare = function () {
 
           if ($scope.timeNotChanged) {
@@ -155,7 +146,7 @@ angular.module('mean.rideshare')
 
 
       /*
-       * @ToDo: refactor calendar and date vars into an object for each
+       * @ToDo: refactor calendar and date whatnot into components
        * */
 
       $scope.today = function () {

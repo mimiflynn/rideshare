@@ -34,11 +34,13 @@ angular.module('mean.rideshare').config(['$stateProvider',
           templateUrl: 'rideshare/views/list.html',
           resolve: {
             loggedin: checkLoggedin
-          }
+          },
+          controller: 'RideshareList'
         })
         .state('rideshare signup', {
           url: '/rideshare/signup',
-          templateUrl: 'rideshare/views/signup.html'
+          templateUrl: 'rideshare/views/signup.html',
+          controller: 'CreateRideshare'
         })
         .state('rideshare admin', {
           url: '/rideshare/admin',
@@ -52,7 +54,8 @@ angular.module('mean.rideshare').config(['$stateProvider',
           templateUrl: 'rideshare/views/edit.html',
           resolve: {
             loggedin: checkLoggedin
-          }
+          },
+          controller: 'CreateRideshare'
         });
   }
 ]);
