@@ -34,7 +34,6 @@ Rideshare.register(function(app, auth, database) {
   });
 
   Rideshare.aggregateAsset('css', '../lib/ng-grid/ng-grid.min.css');
-
   Rideshare.aggregateAsset('js', '../lib/ng-grid/ng-grid-2.0.7.min.js', {
     absolute: false,
     global: true

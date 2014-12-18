@@ -25,15 +25,17 @@ angular.module('mean.rideshare')
 
       // grid view of all participants
       $scope.gridOptions = {
-          data: 'rideshares',
-          selectedItems: $scope.selectedPeople,
-          columnDefs: [
-              {field: 'name', displayName: 'Name'},
-              {field: 'partyNumber', displayName: '# in party'},
-              {field: 'arrivalDate', displayName: 'Arrival Date', cellFilter: 'date : \'MMMM dd\''},
-              {field: 'arrivalTime', displayName: 'Arrival Time', cellFilter: 'date : \'h:mm a\''},
-              {field: 'arrivalLocation', displayName: 'Arrival Location'}
-          ]
+        data: 'rideshares',
+        selectedItems: $scope.selectedPeople,
+        columnDefs: [
+          {field: 'car', displayName: 'Car'},
+          {field: 'name', displayName: 'Name'},
+          {field: 'role', displayName: 'Role'},
+          {field: 'partyNumber', displayName: '# in party'},
+          {field: 'arrivalDate', displayName: 'Arrival Date', cellFilter: 'date : \'MMMM dd\''},
+          {field: 'arrivalTime', displayName: 'Arrival Time', cellFilter: 'date : \'h:mm a\''},
+          {field: 'arrivalLocation', displayName: 'Arrival Location'}
+        ]
       };
 
       $scope.findOne = function () {
@@ -42,6 +44,18 @@ angular.module('mean.rideshare')
           }, function (rideshare) {
               $scope.rideshare = rideshare;
           });
+      };
+
+      $scope.update = function () {
+        var rideshare = $scope.rideshare;
+        if (!rideshare.updated) {
+          rideshare.updated = [];
+        }
+        rideshare.updated.push(new Date().getTime());
+
+        rideshare.$update(function () {
+          $location.path('/list');
+        });
       };
 
       $scope.remove = function (rideshare) {
