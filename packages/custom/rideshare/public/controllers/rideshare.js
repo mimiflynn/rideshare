@@ -6,10 +6,10 @@ angular.module('mean.rideshare')
       $scope.global = Global;
       $scope.package = {
         name: 'rideshare',
-        assets: 'packages/custom/rideshare/assets'
+        assets: 'packages/custom/rideshare/public/assets'
       };
 
-      $scope.desktop = function () {
+      $scope.isDesktop = function () {
           return BrowserDetect.width >= 768;
       };
 
@@ -91,7 +91,7 @@ angular.module('mean.rideshare')
       $scope.global = Global;
       $scope.package = {
         name: 'rideshare',
-        assets: 'packages/custom/rideshare/assets'
+        assets: 'packages/custom/rideshare/public/assets'
       };
 
       $scope.createRideshare = function () {

@@ -3,23 +3,23 @@
  * Import this file using the following HTML or equivalent:
  * <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css" /> */
 @media (min-width: 768px) {
-  /* line 2, ../../sass/_base.scss */
+  /* line 2, ../../../sass/_base.scss */
   h1 {
     white-space: nowrap;
   }
 
-  /* line 5, ../../sass/_base.scss */
+  /* line 5, ../../../sass/_base.scss */
   .navbar-form {
     border-top: none;
     border-bottom: none;
     padding-right: 25px;
   }
-  /* line 9, ../../sass/_base.scss */
+  /* line 9, ../../../sass/_base.scss */
   .navbar-form .navbar-right, .navbar-form .navbar-right:last-child {
     margin-right: 15px;
   }
 
-  /* line 14, ../../sass/_base.scss */
+  /* line 13, ../../../sass/_base.scss */
   .interior,
   .container {
     padding: 15px 30px;
@@ -27,30 +27,30 @@
   }
 }
 @media (max-width: 768px) {
-  /* line 21, ../../sass/_base.scss */
+  /* line 21, ../../../sass/_base.scss */
   h1 {
     text-align: center;
   }
 }
-/* line 25, ../../sass/_base.scss */
+/* line 26, ../../../sass/_base.scss */
 body {
-  background: url("/img/lax.jpg") no-repeat;
+  background: url("/packages/custom/rideshare/public/assets/img/lax.jpg") no-repeat;
   width: 100%;
 }
 
-/* line 30, ../../sass/_base.scss */
+/* line 31, ../../../sass/_base.scss */
 .navbar-form {
   border-top: none;
   border-bottom: none;
   padding-right: 25px;
 }
-/* line 36, ../../sass/_base.scss */
+/* line 36, ../../../sass/_base.scss */
 .navbar-form.navbar-right, .navbar-form.navbar-right:last-child {
   margin-right: 15px;
 }
 
-/* line 41, ../../sass/_base.scss */
-.overlayColor {
+/* line 42, ../../../sass/_base.scss */
+.overlay-color {
   position: fixed;
   top: 0;
   left: 0;
@@ -61,12 +61,12 @@ body {
   z-index: -1;
 }
 
-/* line 52, ../../sass/_base.scss */
+/* line 53, ../../../sass/_base.scss */
 .content {
   margin-top: 70px;
 }
 
-/* line 57, ../../sass/_base.scss */
+/* line 57, ../../../sass/_base.scss */
 .interior,
 .container {
   padding: 15px 30px;
@@ -76,24 +76,24 @@ body {
   overflow: auto;
 }
 
-/* line 63, ../../sass/_base.scss */
+/* line 64, ../../../sass/_base.scss */
 .interior {
   background: #efefef;
 }
 
-/* line 67, ../../sass/_base.scss */
+/* line 68, ../../../sass/_base.scss */
 .btn-primary {
   background: #3498DB;
   border-color: #2b94d9;
 }
 
-/* line 72, ../../sass/_base.scss */
+/* line 73, ../../../sass/_base.scss */
 .navbar .nav > li > a.brand {
   padding-left: 20px;
   margin-left: 0;
 }
 
-/* line 77, ../../sass/_base.scss */
+/* line 78, ../../../sass/_base.scss */
 footer {
   position: fixed;
   left: 0px;
@@ -106,41 +106,41 @@ footer {
   box-shadow: 0 8px 6px 6px black;
 }
 
-/* line 89, ../../sass/_base.scss */
+/* line 90, ../../../sass/_base.scss */
 footer p {
   padding: 5px 0 12px 10px;
 }
 
-/* line 1, ../../sass/_articles.scss */
+/* line 1, ../../../sass/_articles.scss */
 ul.articles li:not(:last-child) {
   border-bottom: 1px solid #cccccc;
 }
 
 @media (min-width: 768px) {
-  /* line 2, ../../sass/_rideshare.scss */
+  /* line 2, ../../../sass/_rideshare.scss */
   .details {
     width: 30%;
     float: left;
   }
 }
 @media (max-width: 768px) {
-  /* line 9, ../../sass/_rideshare.scss */
+  /* line 9, ../../../sass/_rideshare.scss */
   .summary {
     margin-top: 1.5em;
   }
-  /* line 11, ../../sass/_rideshare.scss */
+  /* line 11, ../../../sass/_rideshare.scss */
   .summary span {
     display: block;
   }
 }
-/* line 17, ../../sass/_rideshare.scss */
+/* line 17, ../../../sass/_rideshare.scss */
 .gridStyle {
   border: 1px solid #d4d4d4;
   width: 100%;
   height: 300px;
 }
 
-/* line 23, ../../sass/_rideshare.scss */
+/* line 23, ../../../sass/_rideshare.scss */
 .details {
   margin: 1.5%;
   padding: 1.5%;
@@ -148,31 +148,31 @@ ul.articles li:not(:last-child) {
   -moz-border-radius: 5px / 5px;
   border-radius: 5px / 5px;
 }
-/* line 28, ../../sass/_rideshare.scss */
+/* line 28, ../../../sass/_rideshare.scss */
 .details p {
   margin-bottom: 0.5em;
 }
-/* line 31, ../../sass/_rideshare.scss */
+/* line 31, ../../../sass/_rideshare.scss */
 .details span {
   font-size: 0.80em;
 }
 
-/* line 36, ../../sass/_rideshare.scss */
+/* line 36, ../../../sass/_rideshare.scss */
 .form-control {
   width: 100%;
 }
 
-/* line 39, ../../sass/_rideshare.scss */
+/* line 39, ../../../sass/_rideshare.scss */
 .datepicker .form-control {
   width: 100%;
 }
 
-/* line 42, ../../sass/_rideshare.scss */
+/* line 42, ../../../sass/_rideshare.scss */
 .timepicker .form-control {
   width: 50px;
 }
 
-/* line 48, ../../sass/_rideshare.scss */
+/* line 48, ../../../sass/_rideshare.scss */
 .panel-primary .panel-heading h1, .panel-primary .panel-heading h2, .panel-primary .panel-heading h3, .panel-primary .panel-heading h4 {
   color: #ffffff;
   margin: 5px 0;

@@ -24,9 +24,25 @@ Rideshare.register(function(app, auth, database) {
     menu: 'main'
   });
   
-  Rideshare.angularDependencies(['ngGrid']);
+  Rideshare.aggregateAsset('js', '../lib/angular-moment/angular-moment.min.js', {
+    absolute: false,
+    global: true
+  });
+  Rideshare.aggregateAsset('js', '../lib/momentjs/moment.js', {
+    absolute: false,
+    global: true
+  });
+
+  Rideshare.aggregateAsset('css', '../lib/ng-grid/ng-grid.min.css');
+
+  Rideshare.aggregateAsset('js', '../lib/ng-grid/ng-grid-2.0.7.min.js', {
+    absolute: false,
+    global: true
+  });
 
   Rideshare.aggregateAsset('css', 'screen.css');
+
+  Rideshare.angularDependencies(['ngGrid', 'angularMoment']);
 
   /**
     //Uncomment to use. Requires meanio@0.3.7 or above

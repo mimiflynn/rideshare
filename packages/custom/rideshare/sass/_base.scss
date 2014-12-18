@@ -22,8 +22,9 @@
     text-align: center;
   }
 }
+
 body {
-  background: url('/img/lax.jpg') no-repeat;
+  background: url('/packages/custom/rideshare/public/assets/img/lax.jpg') no-repeat;
   width: 100%;
 }
 
@@ -38,7 +39,7 @@ body {
   }
 }
 
-.overlayColor {
+.overlay-color {
   position: fixed;
   top: 0;
   left: 0;
