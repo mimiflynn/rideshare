@@ -1,18 +1,13 @@
 'use strict';
 
 angular.module('mean.rideshare')
-  .controller('RideshareController', ['$scope', 'Global', 'Rideshare',
-    function($scope, Global, Rideshare) {
-      $scope.global = Global;
-      $scope.package = {
-        name: 'rideshare'
-      };
-    }
-  ])
-  
   .controller('RideshareList', ['$scope', '$location', '$stateParams', '$window', 'Global', 'Rideshare', 'BrowserDetect',
     function ($scope, $location, $stateParams, $window, Global, Rideshare, BrowserDetect) {
       $scope.global = Global;
+      $scope.package = {
+        name: 'rideshare',
+        assets: 'packages/custom/rideshare/assets'
+      };
 
       $scope.desktop = function () {
           return BrowserDetect.width >= 768;
@@ -93,6 +88,12 @@ angular.module('mean.rideshare')
 
   .controller('CreateRideshare', ['$scope', '$location', '$stateParams', 'Global', 'Rideshare',
     function ($scope, $location, $stateParams, Global, Rideshare) {
+      $scope.global = Global;
+      $scope.package = {
+        name: 'rideshare',
+        assets: 'packages/custom/rideshare/assets'
+      };
+
       $scope.createRideshare = function () {
 
           if ($scope.timeNotChanged) {
@@ -121,6 +122,7 @@ angular.module('mean.rideshare')
               });
 
               rideshare.$save(function () {
+                // @todo refactor to use state name
                   $location.path('/list');
               });
               this.rider = {};
@@ -140,6 +142,7 @@ angular.module('mean.rideshare')
           rideshare.updated.push(new Date().getTime());
 
           rideshare.$update(function () {
+            // @todo refactor to use state name
               $location.path('/list');
           });
       };
