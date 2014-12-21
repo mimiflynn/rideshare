@@ -3,98 +3,109 @@
 /**
  * Module dependencies.
  */
-var mongoose = require('mongoose'),
-    Rideshare = mongoose.model('Rideshare'),
-    _ = require('lodash');
+ var mongoose = require('mongoose'),
+ Rideshare = mongoose.model('Rideshare'),
+ _ = require('lodash');
 
 
 /**
  * Find rideshare by id
  */
-exports.rideshare = function(req, res, next, id) {
-    Rideshare.load(id, function(err, rideshare) {
-        if (err) return next(err);
-        if (!rideshare) return next(new Error('Failed to load rideshare ' + id));
-        req.rideshare = rideshare;
-        next();
-    });
+ exports.rideshare = function(req, res, next, id) {
+  Rideshare.load(id, function(err, rideshare) {
+    if (err) return next(err);
+    if (!rideshare) return next(new Error('Failed to load rideshare ' + id));
+    req.rideshare = rideshare;
+    next();
+  });
 };
 
 /**
  * Create a rideshare
  */
-exports.create = function(req, res) {
-    var rideshare = new Rideshare(req.body);
-    rideshare.user = req.user;
+ exports.create = function(req, res) {
+  var rideshare = new Rideshare(req.body);
+  rideshare.user = req.user;
 
-    rideshare.save(function(err) {
-        if (err) {
-            return res.send('users/signup', {
-                errors: err.errors,
-                rideshare: rideshare
-            });
-        } else {
-            res.jsonp(rideshare);
-        }
-    });
+  rideshare.save(function(err) {
+    if (err) {
+      return res.send('users/signup', {
+        errors: err.errors,
+        rideshare: rideshare
+      });
+    } else {
+      res.jsonp(rideshare);
+    }
+  });
 };
 
 /**
  * Update a rideshare
  */
-exports.update = function(req, res) {
-    var rideshare = req.rideshare;
+ exports.update = function(req, res) {
+  var rideshare = req.rideshare;
 
-    rideshare = _.extend(rideshare, req.body);
+  rideshare = _.extend(rideshare, req.body);
 
-    rideshare.save(function(err) {
-        if (err) {
-            return res.send('users/signup', {
-                errors: err.errors,
-                rideshare: rideshare
-            });
-        } else {
-            res.jsonp(rideshare);
-        }
-    });
+  rideshare.save(function(err) {
+    if (err) {
+      return res.send('users/signup', {
+        errors: err.errors,
+        rideshare: rideshare
+      });
+    } else {
+      res.jsonp(rideshare);
+    }
+  });
 };
 
 /**
  * Delete an rideshare
  */
 exports.destroy = function(req, res) {
-    var rideshare = req.rideshare;
+  var rideshare = req.rideshare;
 
-    rideshare.remove(function(err) {
-        if (err) {
-            return res.send('users/signup', {
-                errors: err.errors,
-                rideshare: rideshare
-            });
-        } else {
-            res.jsonp(rideshare);
-        }
-    });
+  rideshare.remove(function(err) {
+    if (err) {
+      return res.status(500).json({
+        error: 'Cannot delete rider'
+      });
+    }
+    res.json(rideshare);
+
+  });
+
+/*  rideshare.remove(function(err) {
+    if (err) {
+      return res.send('users/signup', {
+        errors: err.errors,
+        rideshare: rideshare
+      });
+    } else {
+      res.jsonp(rideshare);
+    }
+  });*/
+
 };
 
 /**
  * Show an rideshare
  */
-exports.show = function(req, res) {
-    res.jsonp(req.rideshare);
+ exports.show = function(req, res) {
+  res.jsonp(req.rideshare);
 };
 
 /**
  * List of rideshare
  */
-exports.all = function(req, res) {
-    Rideshare.find().sort('-created').populate('user', 'name username').exec(function(err, rideshare) {
-        if (err) {
-            res.render('error', {
-                status: 500
-            });
-        } else {
-            res.jsonp(rideshare);
-        }
-    });
+ exports.all = function(req, res) {
+  Rideshare.find().sort('-created').populate('user', 'name username').exec(function(err, rideshare) {
+    if (err) {
+      res.render('error', {
+        status: 500
+      });
+    } else {
+      res.jsonp(rideshare);
+    }
+  });
 };

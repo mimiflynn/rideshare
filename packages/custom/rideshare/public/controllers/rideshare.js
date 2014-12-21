@@ -39,55 +39,42 @@ angular.module('mean.rideshare')
       };
 
       $scope.findOne = function () {
-          Rideshare.get({
-              RideshareId: $stateParams.rideshareId
-          }, function (rideshare) {
-              $scope.rideshare = rideshare;
-          });
-      };
-
-      $scope.update = function () {
-        var rideshare = $scope.rideshare;
-        if (!rideshare.updated) {
-          rideshare.updated = [];
-        }
-        rideshare.updated.push(new Date().getTime());
-
-        rideshare.$update(function () {
-          $location.path('/list');
+        Rideshare.get({
+          RideshareId: $stateParams.rideshareId
+        }, function (rideshare) {
+          $scope.rideshare = rideshare;
         });
       };
 
       $scope.remove = function (rideshare) {
 
-          $scope.rideshare = rideshare;
+        $scope.rideshare = rideshare;
 
-          if (rideshare) {
-              rideshare.$remove();
+        if (rideshare) {
+          rideshare.$remove(function(response) {
 
-              // remove selected from the main collection
-              $scope.rideshares.forEach(function(person, i){
-                  if (person === rideshare) {
-                      $scope.rideshares.splice(i, 1);
-                  }
-              }); 
+            // remove selected from the main collection displayed in grid
+            $scope.rideshares.forEach(function(person, i) {
+              if (person === rideshare) {
+                $scope.rideshares.splice(i, 1);
+              }
+            });
 
-              // remove selected from the group of displayed people
-              $scope.selectedPeople.forEach(function(person, i){
-                  if (person === rideshare) {
-                      $scope.selectedPeople.splice(i, 1);
-                  }
-              });
+            // remove selected from the group of displayed people
+            $scope.selectedPeople.forEach(function(person, i) {
+              if (person === rideshare) {
+                $scope.selectedPeople.splice(i, 1);
+              }
+            });
 
-              $location.path('/huzzah');
-          }
-          else {
-              $scope.rideshare.$remove();
-              $location.path('/huzzah');
-          }
+          });
+        } else {
+          $scope.rideshare.$remove();
+        }
       };
 
-      $scope.update = function () {
+      $scope.update = function (isValid) {
+        if (isValid) {
           var rideshare = $scope.rideshare;
           if (!rideshare.updated) {
               rideshare.updated = [];
@@ -95,8 +82,11 @@ angular.module('mean.rideshare')
           rideshare.updated.push(new Date().getTime());
 
           rideshare.$update(function () {
-              $location.path('/list');
+            $location.path('rideshare/' + rideshare._id);
           });
+        } else {
+          $scope.submitted = true;
+        }
       };
   }])
 
@@ -108,39 +98,46 @@ angular.module('mean.rideshare')
         assets: 'packages/custom/rideshare/public/assets'
       };
 
+      $scope.findOne = function () {
+        Rideshare.get({
+          RideshareId: $stateParams.rideshareId
+        }, function (rideshare) {
+          $scope.rideshare = rideshare;
+        });
+      };
+
       $scope.createRideshare = function () {
 
-          if ($scope.timeNotChanged) {
-              $scope.timeError = 'Please set time of arrival.';
-              $scope.rider = {
-                  name: this.rider.name,
-                  type: this.rider.type,
-                  partyNumber: this.rider.partyNumber,
-                  arrivalDate: this.rider.arrivalDate,
-                  arrivalTime: this.rider.arrivalTime,
-                  arrivalLocation: this.rider.arrivalLocation,
-                  notes: this.rider.notes,
-                  email: this.rider.email
-              };
-          } else {
+        if ($scope.timeNotChanged) {
+          $scope.timeError = 'Please set time of arrival.';
+          $scope.rider = {
+            name: this.rider.name,
+            type: this.rider.type,
+            partyNumber: this.rider.partyNumber,
+            arrivalDate: this.rider.arrivalDate,
+            arrivalTime: this.rider.arrivalTime,
+            arrivalLocation: this.rider.arrivalLocation,
+            notes: this.rider.notes,
+            email: this.rider.email
+          };
+        } else {
+          var rideshare = new Rideshare({
+            name: this.rider.name,
+            type: this.rider.type,
+            partyNumber: this.rider.partyNumber,
+            arrivalDate: this.rider.arrivalDate,
+            arrivalTime: this.rider.arrivalTime,
+            arrivalLocation: this.rider.arrivalLocation,
+            notes: this.rider.notes,
+            email: this.rider.email
+          });
+          
+          rideshare.$save(function () {
 
-              var rideshare = new Rideshare({
-                  name: this.rider.name,
-                  type: this.rider.type,
-                  partyNumber: this.rider.partyNumber,
-                  arrivalDate: this.rider.arrivalDate,
-                  arrivalTime: this.rider.arrivalTime,
-                  arrivalLocation: this.rider.arrivalLocation,
-                  notes: this.rider.notes,
-                  email: this.rider.email
-              });
-
-              rideshare.$save(function () {
-                // @todo refactor to use state name
-                  $location.path('/list');
-              });
-              this.rider = {};
-          }
+          });
+          
+          this.rider = {};
+        }
 
       };
 
