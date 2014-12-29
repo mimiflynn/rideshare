@@ -133,7 +133,8 @@ angular.module('mean.rideshare')
           });
           
           rideshare.$save(function () {
-
+            // send to list after saving
+            $location.path('/rideshare/list');
           });
           
           this.rider = {};

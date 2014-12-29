@@ -3,15 +3,15 @@
 /**
  * Module dependencies.
  */
- var mongoose = require('mongoose'),
- Rideshare = mongoose.model('Rideshare'),
- _ = require('lodash');
+var mongoose = require('mongoose'),
+  Rideshare = mongoose.model('Rideshare'),
+  _ = require('lodash');
 
 
 /**
  * Find rideshare by id
  */
- exports.rideshare = function(req, res, next, id) {
+exports.rideshare = function(req, res, next, id) {
   Rideshare.load(id, function(err, rideshare) {
     if (err) return next(err);
     if (!rideshare) return next(new Error('Failed to load rideshare ' + id));
@@ -23,39 +23,35 @@
 /**
  * Create a rideshare
  */
- exports.create = function(req, res) {
+exports.create = function(req, res) {
   var rideshare = new Rideshare(req.body);
   rideshare.user = req.user;
 
   rideshare.save(function(err) {
     if (err) {
-      return res.send('users/signup', {
-        errors: err.errors,
-        rideshare: rideshare
+      return res.status(500).json({
+        error: 'Cannot save the rideshare'
       });
-    } else {
-      res.jsonp(rideshare);
     }
+    res.jsonp(rideshare);  
   });
 };
 
 /**
  * Update a rideshare
  */
- exports.update = function(req, res) {
+exports.update = function(req, res) {
   var rideshare = req.rideshare;
 
   rideshare = _.extend(rideshare, req.body);
 
   rideshare.save(function(err) {
     if (err) {
-      return res.send('users/signup', {
-        errors: err.errors,
-        rideshare: rideshare
+      return res.status(500).json({
+        error: 'Cannot update the rideshare'
       });
-    } else {
-      res.jsonp(rideshare);
     }
+    res.jsonp(rideshare);
   });
 };
 
@@ -89,23 +85,22 @@ exports.destroy = function(req, res) {
 };
 
 /**
- * Show an rideshare
+ * Show a rideshare
  */
- exports.show = function(req, res) {
+exports.show = function(req, res) {
   res.jsonp(req.rideshare);
 };
 
 /**
  * List of rideshare
  */
- exports.all = function(req, res) {
+exports.all = function(req, res) {
   Rideshare.find().sort('-created').populate('user', 'name username').exec(function(err, rideshare) {
     if (err) {
-      res.render('error', {
-        status: 500
+      return res.status(500).json({
+        error: 'Cannot list the rideshares'
       });
-    } else {
-      res.jsonp(rideshare);
     }
+    res.jsonp(rideshare);
   });
 };
