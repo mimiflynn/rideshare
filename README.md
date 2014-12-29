@@ -8,7 +8,7 @@
 MEAN is a framework for an easy starting point with [MongoDB](http://www.mongodb.org/), [Node.js](http://www.nodejs.org/), [Express](http://expressjs.com/), and [AngularJS](http://angularjs.org/) based applications. It is designed to give you a quick and organized way to start developing MEAN based web apps with useful modules like Mongoose and Passport pre-bundled and configured. We mainly try to take care of the connection points between existing popular frameworks and solve common integration problems.
 ## Prerequisites
 * *MongoDB* - <a href="http://www.mongodb.org/downloads">Download</a> and Install mongodb - <a href="http://docs.mongodb.org/manual">Checkout their manual</a> if you're just starting.
-* *Node.js* - <a href="http://nodejs.org/download/">Download</a> and Install Node.js, codeschool has free <a href="https://www.codeschool.com/courses/real-time-web-with-node-js">node</a> and <a href="https://www.codeschool.com/courses/shaping-up-with-angular-js">angular</a> tutorials.
+* *Node.js* - <a href="http://nodejs.org/download/">Download</a> and Install Node.js, nodeschool has free <a href=" http://nodeschool.io/#workshoppers">node tutorials</a> to get you started.
 * *Git* - Get git using a package manager or <a href="http://git-scm.com/downloads">download</a> it.
 * Grunt - Download and Install [Grunt](http://gruntjs.com).
 ```
@@ -22,7 +22,7 @@ This will add the *mean* command which lets you interact (install, manage, updat
 ### Install the MEAN CLI
 
 ```bash
-  $ sudo npm install -g mean-cli
+  $ npm install -g mean-cli
   $ mean init <myApp>
   $ cd <myApp> && npm install
 ```
@@ -192,7 +192,7 @@ There are two types of packages:
 
 ### Core Packages
 
-All `Core` packages can be overridden by other packages allowing you to extend and adapt it to fit your specific needs. See `overriding core packages` for detailed examples
+All `Core` packages can be overridden by other packages allowing you to extend and adapt it to fit your specific needs. See `Overriding views` for detailed examples.
 
 
 #### System
@@ -352,13 +352,13 @@ The settings object is a persistance object that is stored in the packages colle
 
 
 ###Express Routes
-All routing to server side controllers is handled by express routes. The package system uses the typical express approach. The package system has a route function that passes along the package object to the main routing file typically `server/routes/index.js`
+All routing to server side controllers is handled by express routes. The package system uses the typical express approach. The package system has a route function that passes along the package object to the main routing file typically `server/routes/myPackage.js`
 
   By default the Package Object is passed to the routes along withe the other arguments
   MyPackage.routes(app, auth, database);
 
 
-Example from the `server/routes/index.js`
+Example from the `server/routes/myPackage.js`
 
       // The Package is past automatically as first parameter
       module.exports = function(MyPackage, app, auth, database) {
@@ -371,7 +371,7 @@ Example from the `server/routes/index.js`
     };
 
 ###Angular Routes
-The angular routes are defined in `public/config/routes`. Just like the latest version of mean, the packages  use the `$stateProvider`
+The angular routes are defined in `public/routes/myPackage.js`. Just like the latest version of mean, the packages  use the `$stateProvider`
 
       $stateProvider
         .state('myPackage example page', {
@@ -406,14 +406,16 @@ Below is an example how to add a link to the main menu from `app.js`
 ###Html View Rendering
 The packages come built in with a rendering function allowing packages to render static html. The default templating engine is *swig*. The views are found in `server/views` of the package and should end with the .html suffix
 
-Below is an example rendering some simple html>
+Below is an example rendering some simple html
 
+```
   app.get('/myPackage/example/render', function (req,res,next) {
     MyPackage.render('index', {packageName:'myPackage'}, function (err, html) {
       //Rendering a view from the Package server/views
       res.send(html);
     });
   });
+```
 
 ###Overriding the default layouts
 One is able to override the default layout of the application through a custom package.
@@ -444,6 +446,15 @@ To create your own package and scaffold it's initial code - run
 mean package <packageName>
 ```
 This will create a package under */packages/custom/pkgName*
+
+### Deleting a package
+To delete your package, and remove its files:
+
+```
+mean uninstall myPackage
+```
+Where "myPackage" is the name of your package.
+
 
 ### Contributing your package
 Once your package is in good shape and you want to share it with the world you can start the process of contributing it and submiting it so it can be included in the package repository.
@@ -529,6 +540,14 @@ git push -u origin master
 
 
 ## Hosting MEAN
+Since version 0.4.2 MEAN provides a command to easily upload your app to the *mean cloud*.
+To do so all you need to do is the following steps.
+
+1. make sure you have a unique name for your app (not the default mean) and that the name is in the package.json
+1. Run ```mean deploy```
+1. It will create the meanio remote which can be used to update your remote app by ```git push meanio master```
+1. You can add remote command using the --remote flag for instance to add a role to a user on the remote cloud instance run ```mean user -a RoleName emailAddress --remote```
+1. To get an idea of whats happening on the mean log (node.js based logging) run ```mean logs -n 100` to get the last 100 lines...
 
 ### Heroku
 Before you start make sure you have the [Heroku toolbelt](https://toolbelt.heroku.com/)
