@@ -84,13 +84,11 @@ angular.module('mean.rideshare')
       $scope.package = ridesharePackage;
 
       $scope.findOne = function () {
-        var query = Rideshare.query({
+        Rideshare.get({
           rideshareId: $stateParams.rideshareId
-        }).$promise.then(function (result) {
-          debugger;
-          $scope.rider = result;
-          console.log('rider is: ', result);
-        })
+        }, function(rideshare) {
+          $scope.rider = rideshare;
+        });
       };
 
       $scope.createRideshare = function () {
@@ -113,17 +111,21 @@ angular.module('mean.rideshare')
           $scope.rider = {};
       };
 
-      $scope.update = function () {
-          var rideshare = $scope.rideshare;
+      $scope.updateRideshare = function (isValid) {
+        console.log('update');
+        if (isValid) {
+          var rideshare = $scope.rider;
           if (!rideshare.updated) {
-              rideshare.updated = [];
+            rideshare.updated = [];
           }
           rideshare.updated.push(new Date().getTime());
 
-          rideshare.$update(function () {
-            // @todo refactor to use state name
-              $location.path('/rideshare/list');
+          rideshare.$update(function() {
+            $location.path('rideshare/list');
           });
+        } else {
+          $scope.submitted = true;
+        }
       };
 
 
