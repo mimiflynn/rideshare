@@ -1,13 +1,14 @@
 'use strict';
 
+var ridesharePackage = {
+  name: 'rideshare',
+  assets: 'packages/custom/rideshare/public/assets'
+};
+
 angular.module('mean.rideshare')
-  .controller('RideshareList', ['$scope', '$location', '$stateParams', '$window', 'Global', 'Rideshare', 'BrowserDetect',
-    function ($scope, $location, $stateParams, $window, Global, Rideshare, BrowserDetect) {
-      $scope.global = Global;
-      $scope.package = {
-        name: 'rideshare',
-        assets: 'packages/custom/rideshare/public/assets'
-      };
+  .controller('RideshareList', ['$scope', '$location', '$stateParams', '$window', 'Rideshare', 'BrowserDetect',
+    function ($scope, $location, $stateParams, $window, Rideshare, BrowserDetect) {
+      $scope.package = ridesharePackage;
 
       $scope.isDesktop = function () {
           return BrowserDetect.width >= 768;
@@ -38,35 +39,23 @@ angular.module('mean.rideshare')
         ]
       };
 
-      $scope.findOne = function () {
-        Rideshare.get({
-          RideshareId: $stateParams.rideshareId
-        }, function (rideshare) {
-          $scope.rideshare = rideshare;
-        });
-      };
-
       $scope.remove = function (rideshare) {
-
         $scope.rideshare = rideshare;
 
         if (rideshare) {
           rideshare.$remove(function(response) {
-
             // remove selected from the main collection displayed in grid
             $scope.rideshares.forEach(function(person, i) {
               if (person === rideshare) {
                 $scope.rideshares.splice(i, 1);
               }
             });
-
             // remove selected from the group of displayed people
             $scope.selectedPeople.forEach(function(person, i) {
               if (person === rideshare) {
                 $scope.selectedPeople.splice(i, 1);
               }
             });
-
           });
         } else {
           $scope.rideshare.$remove();
@@ -90,53 +79,31 @@ angular.module('mean.rideshare')
       };
   }])
 
-  .controller('CreateRideshare', ['$scope', '$location', '$stateParams', 'Global', 'Rideshare',
-    function ($scope, $location, $stateParams, Global, Rideshare) {
-      $scope.global = Global;
-      $scope.package = {
-        name: 'rideshare',
-        assets: 'packages/custom/rideshare/public/assets'
-      };
+  .controller('CreateRideshare', ['$scope', '$location', '$stateParams', 'Rideshare',
+    function ($scope, $location, $stateParams, Rideshare) {
+      $scope.package = ridesharePackage;
 
       $scope.findOne = function () {
-        Rideshare.get({
-          RideshareId: $stateParams.rideshareId
-        }, function (rideshare) {
-          $scope.rideshare = rideshare;
-        });
+        var query = Rideshare.query({
+          rideshareId: $stateParams.rideshareId
+        }).$promise.then(function (result) {
+          debugger;
+          $scope.rider = result;
+          console.log('rider is: ', result);
+        })
       };
 
       $scope.createRideshare = function () {
+        var rider = this.rider;
 
         if ($scope.timeNotChanged) {
           $scope.timeError = 'Please set time of arrival.';
-          $scope.rider = {
-            name: this.rider.name,
-            type: this.rider.type,
-            partyNumber: this.rider.partyNumber,
-            arrivalDate: this.rider.arrivalDate,
-            arrivalTime: this.rider.arrivalTime,
-            arrivalLocation: this.rider.arrivalLocation,
-            notes: this.rider.notes,
-            email: this.rider.email
-          };
+          $scope.rider = rider;
         } else {
-          var rideshare = new Rideshare({
-            name: this.rider.name,
-            type: this.rider.type,
-            partyNumber: this.rider.partyNumber,
-            arrivalDate: this.rider.arrivalDate,
-            arrivalTime: this.rider.arrivalTime,
-            arrivalLocation: this.rider.arrivalLocation,
-            notes: this.rider.notes,
-            email: this.rider.email
-          });
-          
+          var rideshare = new Rideshare(rider);
           rideshare.$save(function () {
-            // send to list after saving
             $location.path('/rideshare/list');
           });
-          
           this.rider = {};
         }
 
@@ -155,7 +122,7 @@ angular.module('mean.rideshare')
 
           rideshare.$update(function () {
             // @todo refactor to use state name
-              $location.path('/list');
+              $location.path('/rideshare/list');
           });
       };
 

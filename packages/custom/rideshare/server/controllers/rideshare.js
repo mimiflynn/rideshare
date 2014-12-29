@@ -70,18 +70,6 @@ exports.destroy = function(req, res) {
     res.json(rideshare);
 
   });
-
-/*  rideshare.remove(function(err) {
-    if (err) {
-      return res.send('users/signup', {
-        errors: err.errors,
-        rideshare: rideshare
-      });
-    } else {
-      res.jsonp(rideshare);
-    }
-  });*/
-
 };
 
 /**

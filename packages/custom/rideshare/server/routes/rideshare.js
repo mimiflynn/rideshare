@@ -3,7 +3,7 @@
 // rideshares routes use rideshare controller
 var rideshares = require('../controllers/rideshare');
 
-module.exports = function(Reideshares, app, auth) {
+module.exports = function(Rideshares, app, auth) {
 
     app.route('/rideshare')
       .get(rideshares.all)
