@@ -91,20 +91,18 @@ angular.module('mean.rideshare')
         });
       };
 
-      $scope.createRideshare = function () {
+      $scope.createRideshare = function (isValid) {
         var rider = this.rider;
 
-        if ($scope.timeNotChanged) {
-          $scope.timeError = 'Please set time of arrival.';
-          $scope.rider = rider;
-        } else {
+        if (isValid) {
           var rideshare = new Rideshare(rider);
           rideshare.$save(function () {
             $location.path('/rideshare/list');
           });
           this.rider = {};
+        } else {
+          $scope.submitted = true;
         }
-
       };
 
       $scope.reset = function () {
@@ -112,7 +110,6 @@ angular.module('mean.rideshare')
       };
 
       $scope.updateRideshare = function (isValid) {
-        console.log('update');
         if (isValid) {
           var rideshare = $scope.rider;
           if (!rideshare.updated) {
