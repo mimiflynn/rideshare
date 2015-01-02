@@ -47,7 +47,7 @@ Rideshare.register(function(app, auth, database) {
 
   Rideshare.aggregateAsset('css', 'screen.css');
 
-  Rideshare.angularDependencies(['ngGrid', 'angularMoment']);
+  Rideshare.angularDependencies(['mean.system', 'ngGrid', 'angularMoment']);
 
   /**
     //Uncomment to use. Requires meanio@0.3.7 or above

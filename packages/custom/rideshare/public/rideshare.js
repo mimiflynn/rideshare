@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('mean.rideshare', ['mean.system','ngGrid', 'angularMoment'])
+angular.module('mean.rideshare')
   .constant('angularMomentConfig', {
     timezone: 'America/Denver' // e.g. 'Europe/London'
   })
