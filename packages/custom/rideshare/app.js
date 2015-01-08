@@ -17,13 +17,13 @@ Rideshare.register(function(app, auth, database) {
   Rideshare.routes(app, auth, database);
 
   //We are adding a link to the main menu for all authenticated users
-  Rideshare.menus.add({
+  /*Rideshare.menus.add({
     title: 'Rideshare Signup',
     link: 'rideshare signup',
     roles: ['authenticated'],
     menu: 'main'
   });
-  /*Rideshare.menus.add({
+  Rideshare.menus.add({
     title: 'Rideshare Admin',
     link: 'rideshare admin',
     roles: ['authenticated'],
