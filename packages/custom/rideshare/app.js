@@ -23,12 +23,12 @@ Rideshare.register(function(app, auth, database) {
     roles: ['authenticated'],
     menu: 'main'
   });
-  Rideshare.menus.add({
+  /*Rideshare.menus.add({
     title: 'Rideshare Admin',
     link: 'rideshare admin',
     roles: ['authenticated'],
     menu: 'main'
-  });
+  });*/
   
   Rideshare.aggregateAsset('js', '../lib/angular-moment/angular-moment.min.js', {
     absolute: false,
@@ -45,6 +45,7 @@ Rideshare.register(function(app, auth, database) {
     global: true
   });
 
+  Rideshare.aggregateAsset('css', 'flatty.css');
   Rideshare.aggregateAsset('css', 'screen.css');
 
   Rideshare.angularDependencies(['mean.system', 'ngGrid', 'angularMoment']);

@@ -34,7 +34,7 @@
 }
 /* line 26, ../../../sass/_base.scss */
 body {
-  background: url("/packages/custom/rideshare/public/assets/img/lax.jpg") no-repeat;
+  background: url("/rideshare/assets/img/lax.jpg") no-repeat;
   width: 100%;
 }
 
@@ -70,8 +70,8 @@ body {
 .interior,
 .container {
   padding: 15px 30px;
-  -webkit-border-radius: 5px 5px;
   -moz-border-radius: 5px / 5px;
+  -webkit-border-radius: 5px 5px;
   border-radius: 5px / 5px;
   overflow: auto;
 }
@@ -113,7 +113,7 @@ footer p {
 
 /* line 1, ../../../sass/_articles.scss */
 ul.articles li:not(:last-child) {
-  border-bottom: 1px solid #cccccc;
+  border-bottom: 1px solid #ccc;
 }
 
 @media (min-width: 768px) {
@@ -144,8 +144,8 @@ ul.articles li:not(:last-child) {
 .details {
   margin: 1.5%;
   padding: 1.5%;
-  -webkit-border-radius: 5px 5px;
   -moz-border-radius: 5px / 5px;
+  -webkit-border-radius: 5px 5px;
   border-radius: 5px / 5px;
 }
 /* line 28, ../../../sass/_rideshare.scss */
