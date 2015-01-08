@@ -1,82 +1,43 @@
 'use strict';
 
-/**
- * Module dependencies.
- */
-var express = require('express'),
-    fs = require('fs'),
-    passport = require('passport'),
-    logger = require('mean-logger');
+// Requires meanio .
+var mean = require('meanio');
+var cluster = require('cluster');
 
-/**
- * Main application entry file.
- * Please note that the order of loading is important.
- */
 
-// Load configurations
-// Set the node enviornment variable if not set before
-process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+// Code to run if we're in the master process or if we are not in debug mode/ running tests
 
-// Initializing system variables 
-var config = require('./config/config'),
-    mongoose = require('mongoose');
+if ((cluster.isMaster) && (process.execArgv.indexOf('--debug') < 0) && (process.env.NODE_ENV!=='test') && (process.execArgv.indexOf('--singleProcess')<0)) {
+//if (cluster.isMaster) {
 
-// Bootstrap db connection
-var db = mongoose.connect(config.db);
+    // Count the machine's CPUs
+    var cpuCount = require('os').cpus().length;
 
-// Bootstrap models
-var models_path = __dirname + '/server/models';
-var walk = function(path) {
-    fs.readdirSync(path).forEach(function(file) {
-        var newPath = path + '/' + file;
-        var stat = fs.statSync(newPath);
-        if (stat.isFile()) {
-            if (/(.*)\.(js$|coffee$)/.test(file)) {
-                require(newPath);
-            }
-        } else if (stat.isDirectory()) {
-            walk(newPath);
-        }
+    // Create a worker for each CPU
+    for (var i = 0; i < cpuCount; i += 1) {
+        console.log ('forking ',i);
+        cluster.fork();
+    }
+
+    // Listen for dying workers
+    cluster.on('exit', function (worker) {
+        // Replace the dead worker, we're not sentimental
+        console.log('Worker ' + worker.id + ' died :(');
+        cluster.fork();
+
     });
-};
-walk(models_path);
 
-// Bootstrap passport config
-require('./config/passport')(passport);
+// Code to run if we're in a worker process
+} else {
 
-var app = express();
-
-// Express settings
-require('./config/express')(app, passport, db);
-
-// Bootstrap routes
-var routes_path = __dirname + '/server/routes';
-var walk = function(path) {
-    fs.readdirSync(path).forEach(function(file) {
-        var newPath = path + '/' + file;
-        var stat = fs.statSync(newPath);
-        if (stat.isFile()) {
-            if (/(.*)\.(js$|coffee$)/.test(file)) {
-                require(newPath)(app, passport);
-            }
-        // We skip the server/routes/middlewares directory as it is meant to be
-        // used and shared by routes as further middlewares and is not a 
-        // route by itself
-        } else if (stat.isDirectory() && file !== 'middlewares') {
-            walk(newPath);
-        }
+    var workerId = 0;
+    if (!cluster.isMaster)
+    {
+        workerId = cluster.worker.id;
+    }
+// Creates and serves mean application
+    mean.serve({ workerid: workerId /* more options placeholder*/ }, function (app, config) {
+        var port = config.https && config.https.port ? config.https.port : config.http.port;
+        console.log('Mean app started on port ' + port + ' (' + process.env.NODE_ENV + ') cluster.worker.id:', workerId);
     });
-};
-walk(routes_path);
-
-
-// Start the server by listening on <port>
-var port = process.env.PORT || config.port;
-app.listen(port);
-console.log('Express server started on port ' + port);
-
-// Initializing logger
-logger.init(app, passport, mongoose);
-
-// Expose server
-exports = module.exports = app;
+}

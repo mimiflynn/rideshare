@@ -1,0 +1,107 @@
+<div class="container-fluid interior" data-ng-init="findOne()">
+  <h1><span class="glyphicon glyphicon-pencil"></span> Edit</h1>
+
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Details</h2>
+
+      <div class="alert alert-success" data-ng-show="riderUpdated">
+        <span data-ng-show="riderUpdated">{{rider.name}} has been updated.</span>
+      </div>
+
+      <form name="signupForm" class="css-form" novalidate>
+        <input type="text" data-ng-model="rider.name" name="uNameNew" required class="form-control" placeholder="Name"/>
+        <br/>
+
+        <div class="alert alert-danger" data-ng-show="submitted && signupForm.uNameNew.$invalid">
+          <span ng-show="signupForm.uNameNew.$error.required">What is your name?</span>
+        </div>
+
+        <div class="role-selector">
+          You will be:
+          <div class="btn-group">
+            <button required class="btn btn-primary" name="uRole" data-ng-model="rider.role" value="Rider" data-btn-radio="'Rider'">Riding</button>
+            <button required class="btn btn-primary" name="uRole" data-ng-model="rider.role" value="Driver" data-btn-radio="'Driver'">Driving</button>
+          </div>
+        </div>
+        <br/>
+
+        <div class="alert alert-danger" data-ng-show="submitted && signupForm.role.$invalid">
+          Will you be riding or driving?
+        </div>
+
+        <input type="text" data-ng-model="rider.partyNumber" name="uPartyNumber" required class="form-control"
+        placeholder="Number in party"/>
+        <br/>
+
+        <div class="alert alert-danger" data-ng-show="submitted && signupForm.uPartyNumber.$invalid">
+          How many in your party?
+        </div>
+
+        <div class="input-group datepicker">
+          <input type="text" class="form-control" datepicker-popup="MMMM dd" data-ng-model="rider.arrivalDate" name="uArrivalDate" required is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" data-ng-required="true" close-text="Close" placeholder="Date"/>
+          <span class="input-group-btn">
+           <button class="btn btn-default" data-ng-click="open($event)"><span
+            class="glyphicon glyphicon-calendar"></span></button>
+          </span>
+        </div>
+        <br/>
+
+        <div class="alert alert-danger" data-ng-show="submitted && signupForm.uArrivalDate.$invalid">
+          When will you arrive?
+        </div>
+
+        <div class="timepicker" data-ng-model="rider.arrivalTime" ng-change="changeTime()"
+          style="display:inline-block;">
+          <timepicker hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"
+          name="uArrivalTime"></timepicker>
+        </div>
+
+        <div class="alert alert-danger" data-ng-show="timeError">
+          What time will you arrive?
+        </div>
+
+        <input type="text" data-ng-model="rider.arrivalLocation" name="uArrivalLocation" required class="form-control" placeholder="City or Airport Code"/><br/>
+
+        <div class="alert alert-danger" data-ng-show="submitted && signupForm.uArrivalLocation.$invalid">
+          Where will you arrive?
+        </div>
+
+        <textarea data-ng-model="rider.notes" name="uNotes" class="form-control" placeholder="Notes (lots of bags, gets carsick, etc)"/></textarea><br/>
+
+        <input type="email" data-ng-model="rider.email" name="uEmailNew" required class="form-control" placeholder="E-mail"/><br/>
+
+        <div class="alert alert-danger" data-ng-show="submitted && signupForm.uEmailNew.$invalid">
+          We need your email to keep in touch.
+        </div>
+
+        <button data-ng-click="reset()" data-ng-disabled="isUnchanged(rider)" class="btn btn-default">
+          Reset
+        </button>
+        <button data-ng-click="updateRideshare(rider)" data-ng-disabled="form.$invalid || isUnchanged(rider)"
+        class="btn btn-primary">
+        Submit
+      </button>
+    </form>
+    </div>
+    <div class="col-md-4 summary">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h2>Summary</h2>
+        </div>
+        <div class="panel-body">
+          <p><span class="text-muted">Name:</span> {{rider.name}}</p>
+          <p><span class="text-muted">Role:</span> {{rider.role}}</p>
+          <p><span class="text-muted">Number in party:</span> {{rider.partyNumber}}</p>
+          <p><span class="text-muted">Arrival date:</span> {{rider.arrivalDate | date : 'MMMM dd'}}</p>
+          <p><span class="text-muted">Arrival time:</span> {{rider.arrivalTime | date : 'h:mm a'}}</p>
+          <p><span class="text-muted">City or Airport Code:</span> {{rider.arrivalLocation}}</p>
+          <p><span class="text-muted">Notes:</span> {{rider.notes}}</p>
+          <p><span class="text-muted">Email:</span> {{rider.email}}</p>
+
+          <p><span class="text-muted">Form invalid:</span> {{signupForm.$invalid}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

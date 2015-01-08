@@ -1,0 +1,38 @@
+<section class="interior" data-ng-init="find()">
+  <h1><img src="/{{package.assets}}/img/thenounproject/car.svg">  Administer Attendees</h1>
+
+  <p>Select an attendee to view details.</p>
+
+  <div class="gridStyle" data-ng-grid="gridOptions" data-ng-show="isDesktop"></div>
+
+  <div class="cardStyle" data-ng-hide="isDesktop">
+    This is the mobile view
+  </div>
+
+  <div class="details" data-ng-repeat="people in selectedPeople">
+    <div class="attendee panel panel-default">
+      <div class="panel-heading">
+        <h2>{{people.name}}</h2>
+      </div>
+      <div class="panel-body">
+        <div class="attendee">
+          <p><span class="text-muted">Number in party:</span> {{people.partyNumber}}</p>
+
+          <p><span class="text-muted">Date:</span> {{people.arrivalDate | date : 'MMMM dd'}}</p>
+
+          <p><span class="text-muted">Time:</span> {{people.arrivalTime | date : 'h:mm a'}}</p>
+
+          <p><span class="text-muted">Arrival Location:</span> {{people.arrivalLocation}}</p>
+
+          <p><span class="text-muted">Notes:</span> {{people.notes}}</p>
+
+          <p><span class="text-muted">Email:</span> {{people.email}}</p>
+
+          <a class="btn btn-warning glyphicon glyphicon-pencil" href="/#!/rideshare/{{people._id}}/edit">
+          </a>
+          <button class="btn btn-danger glyphicon glyphicon-trash" data-ng-click="remove(people);"> </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

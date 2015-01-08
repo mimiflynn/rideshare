@@ -1,0 +1,15 @@
+{
+  "name": "rideshare",
+  "version": "0.0.1",
+  "description": "Some description of rideshare",
+  "author": {
+    "name": "Mimi Flynn"
+  },
+  "mean": "0.4.1",
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.4.x"
+  },
+  "dependencies": {},
+  "license": "MIT"
+}
