@@ -38,7 +38,7 @@
           How many in your party?
         </div>
 
-        <div class="input-group datepicker">
+        <div class="input-group datepicker" data-ng-controller="Date">
           <input type="text" class="form-control" datepicker-popup="MMMM dd" data-ng-model="rider.arrivalDate" name="uArrivalDate" required is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" data-ng-required="true" close-text="Close" placeholder="Date"/>
           <span class="input-group-btn">
            <button class="btn btn-default" data-ng-click="open($event)"><span
@@ -51,8 +51,7 @@
           When will you arrive?
         </div>
 
-        <div class="timepicker" data-ng-model="rider.arrivalTime" ng-change="changeTime()"
-          style="display:inline-block;">
+        <div class="timepicker" data-ng-controller="Date" data-ng-model="rider.arrivalTime" ng-change="changeTime()" style="display:inline-block;">
           <timepicker hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"
           name="uArrivalTime"></timepicker>
         </div>
