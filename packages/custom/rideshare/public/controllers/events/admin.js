@@ -1,14 +1,9 @@
 'use strict';
 
-var ridesharePackage = {
-  name: 'rideshare',
-  assets: 'packages/custom/rideshare/public/assets'
-};
-
 angular.module('mean.rideshare')
-  .controller('EventAdmin', ['$scope', '$location', '$stateParams', '$window', 'BrowserDetect', 'Event',
-    function ($scope, $location, $stateParams, $window, BrowserDetect, Event) {
-      $scope.package = ridesharePackage;
+  .controller('EventAdmin', ['$scope', '$location', '$stateParams', '$window', 'BrowserDetect', 'Event', 'Statics',
+    function ($scope, $location, $stateParams, $window, BrowserDetect, Event, Statics) {
+      $scope.package = Statics;
 
       $scope.isDesktop = function () {
           return BrowserDetect.width >= 768;

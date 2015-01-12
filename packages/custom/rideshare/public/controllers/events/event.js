@@ -1,14 +1,9 @@
 'use strict';
 
-var ridesharePackage = {
-  name: 'rideshare',
-  assets: 'packages/custom/rideshare/public/assets'
-};
-
 angular.module('mean.rideshare')
-  .controller('CreateEvent', ['$scope', '$location', '$stateParams', '$window', 'Event', 'UsersExtended',
-    function ($scope, $location, $stateParams, $window, Event, UsersExtended) {
-      $scope.package = ridesharePackage;
+  .controller('CreateEvent', ['$scope', '$location', '$stateParams', '$window', 'Event', 'UsersExtended', 'Statics',
+    function ($scope, $location, $stateParams, $window, Event, UsersExtended, Statics) {
+      $scope.package = Statics;
 
       // get user info assign as event creator
       $scope.getUser = function () {
