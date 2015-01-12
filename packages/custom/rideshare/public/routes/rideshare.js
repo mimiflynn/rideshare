@@ -47,8 +47,7 @@ angular.module('mean.rideshare')
             templateUrl: 'rideshare/views/admin.html',
             resolve: {
               loggedin: checkLoggedin
-            },
-            controller: 'RideshareList'
+            }
           })
           .state('create event', {
             url: '/rideshare/event/create',
