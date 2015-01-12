@@ -4,7 +4,7 @@
     <div class="col-md-8">
       <h2>Details</h2>
 
-      <form name="signupForm" class="css-form" novalidate>
+      <form name="signupForm" class="css-form" novalidate data-ng-init="getUser()">
         <input type="text" data-ng-model="rider.name" name="uNameNew" required class="form-control" placeholder="Name"/>
         <br/>
 
@@ -92,8 +92,6 @@
           <p><span class="text-muted">City or Airport Code:</span> {{rider.arrivalLocation}}</p>
           <p><span class="text-muted">Notes:</span> {{rider.notes}}</p>
           <p><span class="text-muted">Email:</span> {{rider.email}}</p>
-
-          <p><span class="text-muted">Form invalid:</span> {{signupForm.$invalid}}</p>
         </div>
       </div>
     </div>

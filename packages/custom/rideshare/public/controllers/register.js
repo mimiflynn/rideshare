@@ -6,9 +6,19 @@ var ridesharePackage = {
 };
 
 angular.module('mean.rideshare')
-  .controller('CreateRideshare', ['$scope', '$location', '$stateParams', 'Rideshare',
-    function ($scope, $location, $stateParams, Rideshare) {
+  .controller('CreateRideshare', ['$scope', '$location', '$stateParams', 'Rideshare', 'UsersExtended',
+    function ($scope, $location, $stateParams, Rideshare, UsersExtended) {
       $scope.package = ridesharePackage;
+
+      // get user info and fill in associated info for rider
+      $scope.getUser = function () {
+        UsersExtended.get(function (user) {
+          $scope.rider = {
+            name: user.name,
+            email: user.email
+          }
+        });
+      };
 
       $scope.findOne = function () {
         Rideshare.get({

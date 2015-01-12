@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('mean.users-extended').controller('UsersExtendedController', ['$scope', 'Global', 'UsersExtended', 'MeanUser',
-  function($scope, Global, UsersExtended, MeanUser) {
+angular.module('mean.users-extended').controller('UsersExtendedController', ['$scope', 'Global', 'UsersExtended',
+  function($scope, Global, UsersExtended) {
     $scope.global = Global;
     $scope.package = {
       name: 'users-extended'
@@ -10,8 +10,6 @@ angular.module('mean.users-extended').controller('UsersExtendedController', ['$s
     $scope.getUser = function () {
       UsersExtended.get(function (user) {
         $scope.user = user;
-
-        console.log('user: ', $scope.user);
       });
     };
 
