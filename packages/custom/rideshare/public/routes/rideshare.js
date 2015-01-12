@@ -30,7 +30,7 @@ angular.module('mean.rideshare')
             templateUrl: 'rideshare/views/index.html'
           })
           .state('list rideshares', {
-            url: '/rideshare/list',
+            url: '/rideshare/attendee/list',
             templateUrl: 'rideshare/views/list.html',
             resolve: {
               loggedin: checkLoggedin
@@ -38,8 +38,19 @@ angular.module('mean.rideshare')
             controller: 'RideshareList'
           })
           .state('rideshare signup', {
-            url: '/rideshare/signup',
+            url: '/rideshare/attendee/signup',
             templateUrl: 'rideshare/views/signup.html',
+            resolve: {
+              loggedin: checkLoggedin
+            },
+            controller: 'CreateRideshare'
+          })
+          .state('edit rideshare', {
+            url: '/rideshare/attendee/:rideshareId/edit',
+            templateUrl: 'rideshare/views/edit.html',
+            resolve: {
+              loggedin: checkLoggedin
+            },
             controller: 'CreateRideshare'
           })
           .state('rideshare admin', {
@@ -57,13 +68,13 @@ angular.module('mean.rideshare')
             },
             controller: 'CreateEvent'
           })
-          .state('edit rideshare', {
-            url: '/rideshare/:rideshareId/edit',
-            templateUrl: 'rideshare/views/edit.html',
+          .state('edit event', {
+            url: '/rideshare/event/edit',
+            templateUrl: 'rideshare/views/event.html',
             resolve: {
               loggedin: checkLoggedin
             },
-            controller: 'CreateRideshare'
+            controller: 'CreateEvent'
           });
     }
   ]);

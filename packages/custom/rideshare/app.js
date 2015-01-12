@@ -17,18 +17,24 @@ Rideshare.register(function(app, auth, database) {
   Rideshare.routes(app, auth, database);
 
   //We are adding a link to the main menu for all authenticated users
-  /*Rideshare.menus.add({
-    title: 'Rideshare Signup',
+  Rideshare.menus.add({
+    title: 'Signup for Event',
     link: 'rideshare signup',
     roles: ['authenticated'],
     menu: 'main'
   });
   Rideshare.menus.add({
-    title: 'Rideshare Admin',
+    title: 'Create Event',
+    link: 'create event',
+    roles: ['authenticated'],
+    menu: 'main'
+  });
+  Rideshare.menus.add({
+    title: 'Admin',
     link: 'rideshare admin',
     roles: ['authenticated'],
     menu: 'main'
-  });*/
+  });
   
   Rideshare.aggregateAsset('js', '../lib/angular-moment/angular-moment.min.js', {
     absolute: false,
