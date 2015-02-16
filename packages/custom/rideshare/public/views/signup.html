@@ -21,7 +21,7 @@
         </div>
         <br/>
 
-        <div class="alert alert-danger" data-ng-show="submitted && signupForm.role.$invalid">
+        <div class="alert alert-danger" data-ng-show="submitted && signupForm.uRole.$invalid">
           Will you be riding or driving?
         </div>
 
@@ -72,7 +72,7 @@
         <button data-ng-click="reset()" data-ng-disabled="isUnchanged(rider)" class="btn btn-default">
           Reset
         </button>
-        <button data-ng-click="createRideshare(rider)" data-ng-disabled="signupForm.$invalid || isUnchanged(rider)" class="btn btn-primary">
+        <button data-ng-click="createAttendee(rider)" data-ng-disabled="isUnchanged(rider)" class="btn btn-primary">
           Submit
         </button>
       </form>
@@ -91,6 +91,7 @@
           <p><span class="text-muted">City or Airport Code:</span> {{rider.arrivalLocation}}</p>
           <p><span class="text-muted">Notes:</span> {{rider.notes}}</p>
           <p><span class="text-muted">Email:</span> {{rider.email}}</p>
+
         </div>
       </div>
     </div>

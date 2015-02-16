@@ -6,8 +6,8 @@ var ridesharePackage = {
 };
 
 angular.module('mean.rideshare')
-  .controller('CreateRideshare', ['$scope', '$location', '$stateParams', 'Rideshare', 'UsersExtended',
-    function ($scope, $location, $stateParams, Rideshare, UsersExtended) {
+  .controller('RegisterAttendee', ['$scope', '$location', '$stateParams', 'Attendee', 'UsersExtended',
+    function ($scope, $location, $stateParams, Attendee, UsersExtended) {
       $scope.package = ridesharePackage;
 
       // get user info and fill in associated info for rider
@@ -21,20 +21,20 @@ angular.module('mean.rideshare')
       };
 
       $scope.findOne = function () {
-        Rideshare.get({
-          rideshareId: $stateParams.rideshareId
-        }, function(rideshare) {
-          $scope.rider = rideshare;
+        Attendee.get({
+          attendeeId: $stateParams.attendeeId
+        }, function(attendee) {
+          $scope.rider = attendee;
         });
       };
 
-      $scope.createRideshare = function (isValid) {
+      $scope.createAttendee = function (isValid) {
         var rider = this.rider;
 
         if (isValid) {
-          var rideshare = new Rideshare(rider);
-          rideshare.$save(function () {
-            $location.path('/rideshare/list');
+          var attendee = new Attendee(rider);
+          attendee.$save(function () {
+            $location.path('/attendee/list');
           });
           this.rider = {};
         } else {
@@ -46,16 +46,16 @@ angular.module('mean.rideshare')
           $scope.rider = {};
       };
 
-      $scope.updateRideshare = function (isValid) {
+      $scope.updateAttendee = function (isValid) {
         if (isValid) {
-          var rideshare = $scope.rider;
-          if (!rideshare.updated) {
-            rideshare.updated = [];
+          var attendee = $scope.rider;
+          if (!attendee.updated) {
+            attendee.updated = [];
           }
-          rideshare.updated.push(new Date().getTime());
+          attendee.updated.push(new Date().getTime());
 
-          rideshare.$update(function() {
-            $location.path('rideshare/list');
+          attendee.$update(function() {
+            $location.path('attendee/list');
           });
         } else {
           $scope.submitted = true;

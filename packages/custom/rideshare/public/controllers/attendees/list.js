@@ -6,8 +6,8 @@ var ridesharePackage = {
 };
 
 angular.module('mean.rideshare')
-  .controller('RideshareList', ['$scope', '$location', '$stateParams', '$window', 'Rideshare', 'BrowserDetect',
-    function ($scope, $location, $stateParams, $window, Rideshare, BrowserDetect) {
+  .controller('ListAttendees', ['$scope', '$location', '$stateParams', '$window', 'Attendee', 'BrowserDetect',
+    function ($scope, $location, $stateParams, $window, Attendee, BrowserDetect) {
       $scope.package = ridesharePackage;
 
       $scope.isDesktop = function () {
@@ -15,8 +15,8 @@ angular.module('mean.rideshare')
       };
 
       $scope.find = function () {
-          Rideshare.query(function (rideshare) {
-              $scope.rideshares = rideshare;
+          Attendee.query(function (attendee) {
+              $scope.attendees = attendee;
           });
       };
 
@@ -26,7 +26,7 @@ angular.module('mean.rideshare')
 
       // grid view of all participants
       $scope.gridOptions = {
-        data: 'rideshares',
+        data: 'attendees',
         selectedItems: $scope.selectedPeople,
         columnDefs: [
           {field: 'car', displayName: 'Car'},
@@ -39,39 +39,39 @@ angular.module('mean.rideshare')
         ]
       };
 
-      $scope.remove = function (rideshare) {
-        $scope.rideshare = rideshare;
+      $scope.remove = function (attendee) {
+        $scope.attendee = attendee;
 
-        if (rideshare) {
-          rideshare.$remove(function(response) {
+        if (attendee) {
+          attendee.$remove(function(response) {
             // remove selected from the main collection displayed in grid
-            $scope.rideshares.forEach(function(person, i) {
-              if (person === rideshare) {
-                $scope.rideshares.splice(i, 1);
+            $scope.attendees.forEach(function(person, i) {
+              if (person === attendee) {
+                $scope.attendees.splice(i, 1);
               }
             });
             // remove selected from the group of displayed people
             $scope.selectedPeople.forEach(function(person, i) {
-              if (person === rideshare) {
+              if (person === attendee) {
                 $scope.selectedPeople.splice(i, 1);
               }
             });
           });
         } else {
-          $scope.rideshare.$remove();
+          $scope.attendee.$remove();
         }
       };
 
       $scope.update = function (isValid) {
         if (isValid) {
-          var rideshare = $scope.rideshare;
-          if (!rideshare.updated) {
-              rideshare.updated = [];
+          var attendee = $scope.attendee;
+          if (!attendee.updated) {
+              attendee.updated = [];
           }
-          rideshare.updated.push(new Date().getTime());
+          attendee.updated.push(new Date().getTime());
 
-          rideshare.$update(function () {
-            $location.path('rideshare/' + rideshare._id);
+          attendee.$update(function () {
+            $location.path('attendee/' + attendee._id);
           });
         } else {
           $scope.submitted = true;

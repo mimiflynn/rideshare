@@ -35,7 +35,7 @@ angular.module('mean.rideshare')
             resolve: {
               loggedin: checkLoggedin
             },
-            controller: 'RideshareList'
+            controller: 'ListAttendees'
           })
           .state('rideshare signup', {
             url: '/rideshare/attendee/signup',
@@ -43,7 +43,7 @@ angular.module('mean.rideshare')
             resolve: {
               loggedin: checkLoggedin
             },
-            controller: 'CreateRideshare'
+            controller: 'RegisterAttendee'
           })
           .state('edit rideshare', {
             url: '/rideshare/attendee/:rideshareId/edit',
@@ -51,14 +51,15 @@ angular.module('mean.rideshare')
             resolve: {
               loggedin: checkLoggedin
             },
-            controller: 'CreateRideshare'
+            controller: 'RegisterAttendee'
           })
           .state('rideshare admin', {
             url: '/rideshare/admin',
             templateUrl: 'rideshare/views/admin.html',
             resolve: {
               loggedin: checkLoggedin
-            }
+            },
+            controller: 'ListAttendees'
           })
           .state('create event', {
             url: '/rideshare/event/create',
