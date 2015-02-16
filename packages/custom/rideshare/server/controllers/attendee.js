@@ -64,7 +64,7 @@ exports.destroy = function(req, res) {
   attendee.remove(function(err) {
     if (err) {
       return res.status(500).json({
-        error: 'Cannot delete rider'
+        error: 'Cannot delete an attendee'
       });
     }
     res.json(attendee);
@@ -73,14 +73,28 @@ exports.destroy = function(req, res) {
 };
 
 /**
- * Show a attendee
+ * Show an attendee
  */
 exports.show = function(req, res) {
   res.jsonp(req.attendee);
 };
 
 /**
- * List of attendee
+ * Return list of attendees by id
+ */
+
+exports.attendees = function(req, res) {
+  var attendees = [];
+
+  req.forEach(function(id) {
+    attendees.push(id.attendee);
+  });
+
+  res.jsonp(attendees);
+};
+
+/**
+ * List of attendees
  */
 exports.all = function(req, res) {
   Attendee.find().sort('-created').populate('user', 'name username').exec(function(err, attendee) {

@@ -14,7 +14,10 @@ var EventSchema = new Schema({
     trim: true
   },
   organizer: {
-    type: Object
+    type: String
+  },
+  invitees :{
+    type: Array
   },
   date: {
     type: String,

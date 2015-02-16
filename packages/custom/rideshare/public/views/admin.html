@@ -47,24 +47,22 @@
     This is the mobile view
   </div>
 
-  <div class="details" data-ng-repeat="people in selectedPeople">
+  <div class="details" data-ng-repeat="event in selectedEvents">
     <div class="attendee panel panel-default">
       <div class="panel-heading">
-        <h2>{{people.name}}</h2>
+        <h2>{{event.name}}</h2>
       </div>
       <div class="panel-body">
         <div class="attendee">
+          <p><span class="text-muted">Organizer Name:</span> {{event.organizerInfo.name}}</p>
+          
           <p><span class="text-muted">Number in party:</span> {{people.partyNumber}}</p>
 
-          <p><span class="text-muted">Date:</span> {{people.arrivalDate | date : 'MMMM dd'}}</p>
+          <p><span class="text-muted">Date:</span> {{event.date | date : 'MMMM dd'}}</p>
 
-          <p><span class="text-muted">Time:</span> {{people.arrivalTime | date : 'h:mm a'}}</p>
+          <p><span class="text-muted">Location:</span> {{event.location}}</p>
 
-          <p><span class="text-muted">Arrival Location:</span> {{people.arrivalLocation}}</p>
-
-          <p><span class="text-muted">Notes:</span> {{people.notes}}</p>
-
-          <p><span class="text-muted">Email:</span> {{people.email}}</p>
+          <p><span class="text-muted">Invitees:</span> {{event.invitees}}</p>
 
           <a class="btn btn-warning glyphicon glyphicon-pencil" href="/#!/rideshare/{{people._id}}/edit">
           </a>

@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('mean.rideshare')
-  .controller('EventAdmin', ['$scope', '$location', '$stateParams', '$window', 'BrowserDetect', 'Event', 'Statics',
-    function ($scope, $location, $stateParams, $window, BrowserDetect, Event, Statics) {
+  .controller('EventAdmin', ['$scope', '$location', '$stateParams', '$window', 'BrowserDetect', 'Event', 'UsersExtended', 'Statics',
+    function ($scope, $location, $stateParams, $window, BrowserDetect, Event, UsersExtended, Statics) {
       $scope.package = Statics;
 
       $scope.isDesktop = function () {
@@ -17,7 +17,31 @@ angular.module('mean.rideshare')
 
       $scope.selectedEvents = [];
 
+      // watch above collection and get organizer info
+      $scope.$watchCollection('selectedEvents', function(newEvents, oldEvents) {
+        newEvents.forEach(function(newEvent) {
+          console.log('Event Organizer: ', newEvent.organizer);
+          
+          UsersExtended.get({
+            userId: newEvent.organizer
+          }, function(organizer) {
+            console.log('Organizer info: ', organizer);
+            newEvent.organizerInfo = organizer;
+          });
+
+        });
+      });
+
       $scope.selectedFilter = '';
+
+      $scope.attendees = [];
+
+      // watch above collection and get attendee info
+      $scope.$watchCollection('attendees', function(newAttendees, oldAttendees) {
+        newAttendees.forEach(function(attendee) {
+
+        });
+      });
 
       // grid view of all participants
       $scope.gridOptions = {
@@ -42,7 +66,7 @@ angular.module('mean.rideshare')
               }
             });
             // remove selected from the group of displayed people
-            $scope.selectedPeople.forEach(function(item, i) {
+            $scope.attendees.forEach(function(item, i) {
               if (item === rsEvent) {
                 $scope.selectedEvents.splice(i, 1);
               }
