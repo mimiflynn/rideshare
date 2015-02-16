@@ -29,7 +29,7 @@ angular.module('mean.rideshare')
             url: '/rideshare',
             templateUrl: 'rideshare/views/index.html'
           })
-          .state('list rideshares', {
+          .state('list attendees', {
             url: '/rideshare/attendee/list',
             templateUrl: 'rideshare/views/list.html',
             resolve: {
@@ -37,7 +37,7 @@ angular.module('mean.rideshare')
             },
             controller: 'ListAttendees'
           })
-          .state('rideshare signup', {
+          .state('attendee signup', {
             url: '/rideshare/attendee/signup',
             templateUrl: 'rideshare/views/signup.html',
             resolve: {

@@ -19,7 +19,7 @@ Rideshare.register(function(app, auth, database) {
   //We are adding a link to the main menu for all authenticated users
   Rideshare.menus.add({
     title: 'Signup for Event',
-    link: 'rideshare signup',
+    link: 'attendee signup',
     roles: ['authenticated'],
     menu: 'main'
   });
