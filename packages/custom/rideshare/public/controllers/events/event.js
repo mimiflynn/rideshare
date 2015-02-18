@@ -5,18 +5,19 @@ angular.module('mean.rideshare')
     function ($scope, $location, $stateParams, $window, Event, UsersExtended, Statics) {
       $scope.package = Statics;
 
-      // get user info assign as event creator
+      $scope.submitted = false;
+
+      // get user info assign as event organizer
       $scope.getUser = function () {
         UsersExtended.get(function (user) {
-          console.log(user);
           $scope.rsEvent = {
-            organizer: user._id
+            organizerId: user._id
           };
         });
       };
 
-      $scope.createEvent = function (isValid) {
-        if (isValid) {
+      $scope.createEvent = function () {
+        if (this.eventForm.$isValid) {
           console.log('sent! and is valid');
           var rsEvent = new Event(this.rsEvent);
           rsEvent.$save(function () {
@@ -29,11 +30,11 @@ angular.module('mean.rideshare')
       };
 
       $scope.reset = function () {
-          $scope.rider = {};
+          $scope.getUser();
       };
 
-      $scope.updateEvent = function (isValid) {
-        if (isValid) {
+      $scope.updateEvent = function () {
+        if (this.eventForm.$isValid) {
           var rsEvent = $scope.rsEvent;
           if (!rsEvent.updated) {
             rsEvent.updated = [];

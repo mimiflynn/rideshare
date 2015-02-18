@@ -1,23 +1,18 @@
 'use strict';
 
-var ridesharePackage = {
-  name: 'rideshare',
-  assets: 'packages/custom/rideshare/public/assets'
-};
-
 angular.module('mean.rideshare')
-  .controller('ListAttendees', ['$scope', '$location', '$stateParams', '$window', 'Attendee', 'BrowserDetect',
-    function ($scope, $location, $stateParams, $window, Attendee, BrowserDetect) {
-      $scope.package = ridesharePackage;
+  .controller('ListAttendees', ['$scope', '$location', '$stateParams', '$window', 'Attendee', 'BrowserDetect', 'Statics',
+    function ($scope, $location, $stateParams, $window, Attendee, BrowserDetect, Statics) {
+      $scope.package = Statics;
 
       $scope.isDesktop = function () {
           return BrowserDetect.width >= 768;
       };
 
       $scope.find = function () {
-          Attendee.query(function (attendee) {
-              $scope.attendees = attendee;
-          });
+        Attendee.query(function (attendee) {
+            $scope.attendees = attendee;
+        });
       };
 
       $scope.selectedPeople = [];

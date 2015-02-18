@@ -8,6 +8,9 @@ var AttendeeSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    eventId: {
+        type: String
+    },
     name: {
         type: String,
         default: '',

@@ -1,23 +1,32 @@
 'use strict';
 
-var ridesharePackage = {
-  name: 'rideshare',
-  assets: 'packages/custom/rideshare/public/assets'
-};
-
 angular.module('mean.rideshare')
-  .controller('RegisterAttendee', ['$scope', '$location', '$stateParams', 'Attendee', 'UsersExtended',
-    function ($scope, $location, $stateParams, Attendee, UsersExtended) {
-      $scope.package = ridesharePackage;
+  .controller('RegisterAttendee', ['$scope', '$location', '$stateParams', 'Attendee', 'UsersExtended', 'Event', 'Statics',
+    function ($scope, $location, $stateParams, Attendee, UsersExtended, Event, Statics) {
+      $scope.package = Statics;
 
-      // get user info and fill in associated info for rider
-      $scope.getUser = function () {
+      var reset = function () {
+        // get user info and fill in associated info for rider
         UsersExtended.get(function (user) {
           $scope.rider = {
             name: user.name,
             email: user.email
           };
         });
+      };
+
+      var getEvents = function () {
+        Event.query(function (events) {
+            $scope.events = events;
+            console.log('events: ', events);
+        });
+      };
+
+      $scope.submitted = false;
+
+      $scope.init = function () {
+        reset();
+        getEvents();
       };
 
       $scope.findOne = function () {
@@ -28,10 +37,10 @@ angular.module('mean.rideshare')
         });
       };
 
-      $scope.createAttendee = function (isValid) {
+      $scope.createAttendee = function () {
         var rider = this.rider;
 
-        if (isValid) {
+        if (this.signupForm.$isValid) {
           var attendee = new Attendee(rider);
           attendee.$save(function () {
             $location.path('/attendee/list');
@@ -42,12 +51,8 @@ angular.module('mean.rideshare')
         }
       };
 
-      $scope.reset = function () {
-          $scope.rider = {};
-      };
-
-      $scope.updateAttendee = function (isValid) {
-        if (isValid) {
+      $scope.updateAttendee = function () {
+        if (this.signupForm.$isValid) {
           var attendee = $scope.rider;
           if (!attendee.updated) {
             attendee.updated = [];
@@ -55,7 +60,7 @@ angular.module('mean.rideshare')
           attendee.updated.push(new Date().getTime());
 
           attendee.$update(function() {
-            $location.path('attendee/list');
+            $location.path('/attendee/list');
           });
         } else {
           $scope.submitted = true;

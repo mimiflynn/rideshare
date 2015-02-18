@@ -10,9 +10,9 @@ angular.module('mean.rideshare')
       };
 
       $scope.find = function () {
-          Event.query(function (events) {
-              $scope.events = events;
-          });
+        Event.query(function (events) {
+            $scope.events = events;
+        });
       };
 
       $scope.selectedEvents = [];
@@ -20,10 +20,10 @@ angular.module('mean.rideshare')
       // watch above collection and get organizer info
       $scope.$watchCollection('selectedEvents', function(newEvents, oldEvents) {
         newEvents.forEach(function(newEvent) {
-          console.log('Event Organizer: ', newEvent.organizer);
+          console.log('Event Organizer: ', newEvent.organizerId);
           
           UsersExtended.get({
-            userId: newEvent.organizer
+            userId: newEvent.organizerId
           }, function(organizer) {
             console.log('Organizer info: ', organizer);
             newEvent.organizerInfo = organizer;
@@ -37,19 +37,19 @@ angular.module('mean.rideshare')
       $scope.attendees = [];
 
       // watch above collection and get attendee info
-      $scope.$watchCollection('attendees', function(newAttendees, oldAttendees) {
+/*      $scope.$watchCollection('attendees', function(newAttendees, oldAttendees) {
         newAttendees.forEach(function(attendee) {
 
         });
       });
-
+*/
       // grid view of all participants
       $scope.gridOptions = {
         data: 'events',
         selectedItems: $scope.selectedEvents,
         columnDefs: [
           {field: 'name', displayName: 'Name'},
-          {field: 'organizer', displayName: 'Organizer'},
+          {field: 'organizerId', displayName: 'Organizer ID'},
           {field: 'date', displayName: 'Date', cellFilter: 'date : \'MMMM dd\''}
         ]
       };
@@ -66,7 +66,7 @@ angular.module('mean.rideshare')
               }
             });
             // remove selected from the group of displayed people
-            $scope.attendees.forEach(function(item, i) {
+            $scope.selectedEvents.forEach(function(item, i) {
               if (item === rsEvent) {
                 $scope.selectedEvents.splice(i, 1);
               }

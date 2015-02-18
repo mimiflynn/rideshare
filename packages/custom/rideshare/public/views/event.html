@@ -5,30 +5,53 @@
       <h2>Details</h2>
 
       <form name="eventForm" class="css-form" novalidate data-ng-init="getUser()">
-        <input type="text" data-ng-model="rsEvent.name" name="uNameNew" required class="form-control" placeholder="Event Name"/>
-        <br/>
 
-        <div class="alert alert-danger" data-ng-show="submitted && signupForm.uNameNew.$invalid">
-          <span ng-show="signupForm.uNameNew.$error.required">What is your name?</span>
+        <div class="form-group">
+          <label for="eventName">Event Name</label>
+          <input id="eventName" type="text" data-ng-model="rsEvent.name" name="uNameNew" data-ng-required class="form-control" placeholder="Event Name"/>
+          <div class="alert alert-danger" data-ng-show="submitted &&eventForm.uNameNew.$invalid">
+            <span>What is your name?</span>
+          </div>
         </div>
 
-        <div class="input-group datepicker" data-ng-controller="Date">
-          <input type="text" class="form-control" datepicker-popup="MMMM dd" data-ng-model="rsEvent.date" name="uDate" required is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" data-ng-required="true" close-text="Close" placeholder="Date"/>
-          <span class="input-group-btn">
-           <button class="btn btn-default" data-ng-click="open($event)"><span
-            class="glyphicon glyphicon-calendar"></span></button>
-          </span>
+        <div class="form-group">
+          <label for="eventLocation">Location</label>
+          <input id="eventLocation" type="text" data-ng-model="rsEvent.location" name="uLocation" required class="form-control" placeholder="Location"/>
+          <div class="alert alert-danger" data-ng-show="submitted && eventForm.uLocation.$invalid">
+            <span data-ng-show="eventForm.uLocation.$error.required">Event location?</span>
+          </div>
         </div>
-        <br/>
 
-        <textarea data-ng-model="rsEvent.notes" name="uNotes" class="form-control" placeholder="Notes (lots of bags, gets carsick, etc)"/></textarea><br/>
+        <div class="form-group">
+          <label for="eventDate">Date</label>
+          <div class="input-group datepicker" data-ng-controller="Date">
+            <input type="text" class="form-control" datepicker-popup="MMMM dd" data-ng-model="rsEvent.date" name="uDate" required is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" data-ng-required="true" close-text="Close" placeholder="Date"/>
+            <span class="input-group-btn">
+             <button class="btn btn-default" data-ng-click="open($event)"><span
+              class="glyphicon glyphicon-calendar"></span></button>
+            </span>
+          </div>
+        </div>
 
-        <button data-ng-click="reset()" data-ng-disabled="isUnchanged(rider)" class="btn btn-default">
-          Reset
-        </button>
-        <button data-ng-click="createEvent(rsEvent)" data-ng-disabled="eventForm.$invalid || isUnchanged(rsEvent)" class="btn btn-primary">
-          Submit
-        </button>
+        <div class="form-group">
+          <label for="eventNotes">Description</label>
+          <textarea id="eventNotes" data-ng-model="rsEvent.description" name="uNotes" class="form-control" placeholder="Notes (lots of bags, gets carsick, etc)"/></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="inviteeEmail1">Invite Attendees</label>
+          <input type="email" class="form-control" id="inviteeEmail1" placeholder="jane.doe@example.com">
+        </div>
+
+        <div class="form-group">
+          <button data-ng-click="reset()" data-ng-disabled="isUnchanged(rider)" class="btn btn-default">
+            Reset
+          </button>
+          <button data-ng-click="createEvent(rsEvent)" data-ng-disabled="isUnchanged(rsEvent)" class="btn btn-primary">
+            Submit
+          </button>
+        </div>
+
       </form>
     </div>
     <div class="col-md-4 summary">
@@ -37,9 +60,11 @@
           <h2>Summary</h2>
         </div>
         <div class="panel-body">
+          <p><span class="text-muted">Organizer:</span> {{rsEvent.organizerId}}</p>
           <p><span class="text-muted">Name:</span> {{rsEvent.name}}</p>
+          <p><span class="text-muted">Location:</span> {{rsEvent.location}}</p>
           <p><span class="text-muted">Date:</span> {{rsEvent.date | date : 'MMMM dd'}}</p>
-          <p><span class="text-muted">Notes:</span> {{rsEvent.notes}}</p>
+          <p><span class="text-muted">Notes:</span> {{rsEvent.description}}</p>
           <p><span class="text-muted">Form invalid:</span> {{eventForm.$invalid}}</p>
         </div>
       </div>

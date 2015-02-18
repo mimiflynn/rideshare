@@ -55,8 +55,6 @@
       <div class="panel-body">
         <div class="attendee">
           <p><span class="text-muted">Organizer Name:</span> {{event.organizerInfo.name}}</p>
-          
-          <p><span class="text-muted">Number in party:</span> {{people.partyNumber}}</p>
 
           <p><span class="text-muted">Date:</span> {{event.date | date : 'MMMM dd'}}</p>
 
@@ -64,9 +62,9 @@
 
           <p><span class="text-muted">Invitees:</span> {{event.invitees}}</p>
 
-          <a class="btn btn-warning glyphicon glyphicon-pencil" href="/#!/rideshare/{{people._id}}/edit">
+          <a class="btn btn-warning glyphicon glyphicon-pencil" href="/#!/rideshare/event/{{event._id}}/edit">
           </a>
-          <button class="btn btn-danger glyphicon glyphicon-trash" data-ng-click="remove(people);"> </button>
+          <button class="btn btn-danger glyphicon glyphicon-trash" data-ng-click="remove(event);"> </button>
         </div>
       </div>
     </div>

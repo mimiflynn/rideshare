@@ -13,10 +13,13 @@ var EventSchema = new Schema({
     default: '',
     trim: true
   },
-  organizer: {
+  organizerId: {
     type: String
   },
-  invitees :{
+  invitees: {
+    type: Array
+  },
+  attendees: {
     type: Array
   },
   date: {
