@@ -18,7 +18,6 @@ angular.module('mean.rideshare')
       var getEvents = function () {
         Event.query(function (events) {
             $scope.events = events;
-            console.log('events: ', events);
         });
       };
 

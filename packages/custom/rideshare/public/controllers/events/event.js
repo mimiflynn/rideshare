@@ -18,7 +18,6 @@ angular.module('mean.rideshare')
 
       $scope.createEvent = function () {
         if (this.eventForm.$isValid) {
-          console.log('sent! and is valid');
           var rsEvent = new Event(this.rsEvent);
           rsEvent.$save(function () {
             $location.path('/rideshare/admin');

@@ -1,7 +1,7 @@
 {
   "name": "rideshare",
-  "version": "0.0.1",
-  "description": "Some description of rideshare",
+  "version": "0.0.2",
+  "description": "A tool for organizing rides for group destination vacations.",
   "author": {
     "name": "Mimi Flynn"
   },

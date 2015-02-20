@@ -20,12 +20,9 @@ angular.module('mean.rideshare')
       // watch above collection and get organizer info
       $scope.$watchCollection('selectedEvents', function(newEvents, oldEvents) {
         newEvents.forEach(function(newEvent) {
-          console.log('Event Organizer: ', newEvent.organizerId);
-          
           UsersExtended.get({
             userId: newEvent.organizerId
           }, function(organizer) {
-            console.log('Organizer info: ', organizer);
             newEvent.organizerInfo = organizer;
           });
 
