@@ -1,20 +1,33 @@
 'use strict';
 
 angular.module('mean.rideshare')
-  .controller('CreateEvent', ['$scope', '$location', '$stateParams', '$window', 'Event', 'UsersExtended', 'Statics',
-    function ($scope, $location, $stateParams, $window, Event, UsersExtended, Statics) {
-      $scope.package = Statics;
-
-      $scope.submitted = false;
-
+  .controller('CreateEvent', ['$scope', '$location', 'Event', 'UsersExtended', 'Statics',
+    function ($scope, $location, Event, UsersExtended, Statics) {
+      
       // get user info assign as event organizer
-      $scope.getUser = function () {
+      var getUser = function () {
         UsersExtended.get(function (user) {
           $scope.rsEvent = {
             organizerId: user._id
           };
         });
       };
+
+      $scope.package = Statics;
+
+      $scope.submitted = false;
+
+      $scope.wysiwygMenu = [
+        ['bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript'],
+        ['font'],
+        ['font-size'],
+        ['font-color', 'hilite-color'],
+        ['remove-format'],
+        ['ordered-list', 'unordered-list', 'outdent', 'indent'],
+        ['left-justify', 'center-justify', 'right-justify'],
+        ['code', 'quote', 'paragragh'],
+        ['link', 'image']
+      ];
 
       $scope.createEvent = function () {
         if (this.eventForm.$isValid) {
@@ -28,8 +41,8 @@ angular.module('mean.rideshare')
         }
       };
 
-      $scope.reset = function () {
-          $scope.getUser();
+      $scope.resetForm = function () {
+          getUser();
       };
 
       $scope.updateEvent = function () {
@@ -40,7 +53,7 @@ angular.module('mean.rideshare')
           }
           rsEvent.updated.push(new Date().getTime());
 
-          rsEvent.$update(function() {
+          rsEvent.$update(function () {
             $location.path('rideshare/admin');
           });
         } else {

@@ -51,10 +51,21 @@ Rideshare.register(function(app, auth, database) {
     global: true
   });
 
+  Rideshare.aggregateAsset('js', '../lib/angular-wysiwyg/angular-wysiwyg.js', {
+    absolute: false,
+    global: true
+  });
+
+  Rideshare.aggregateAsset('css', '../lib/angular-bootstrap-colorpicker/css/colorpicker.min.css');
+  Rideshare.aggregateAsset('js', '../lib/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js', {
+    absolute: false,
+    global: true
+  });
+
   Rideshare.aggregateAsset('css', 'flatty.css');
   Rideshare.aggregateAsset('css', 'screen.css');
 
-  Rideshare.angularDependencies(['mean.system', 'mean.users-extended', 'ngGrid', 'angularMoment']);
+  Rideshare.angularDependencies(['mean.system', 'mean.users-extended', 'ngGrid', 'angularMoment', 'wysiwyg.module', 'colorpicker.module']);
 
   /**
     //Uncomment to use. Requires meanio@0.3.7 or above

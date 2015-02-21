@@ -35,7 +35,8 @@
 
         <div class="form-group">
           <label for="eventNotes">Description</label>
-          <textarea id="eventNotes" data-ng-model="rsEvent.description" name="uNotes" class="form-control" placeholder="Notes (lots of bags, gets carsick, etc)"/></textarea>
+
+          <wysiwyg textarea-id="eventNotes" textarea-class="form-control"  textarea-height="80px" textarea-name="uNotes" textarea-required data-ng-model="rsEvent.description" enable-bootstrap-title="true" textarea-menu="{{wysiwygMenu}}"></wysiwyg>
         </div>
 
         <div class="form-group">
@@ -64,7 +65,7 @@
           <p><span class="text-muted">Name:</span> {{rsEvent.name}}</p>
           <p><span class="text-muted">Location:</span> {{rsEvent.location}}</p>
           <p><span class="text-muted">Date:</span> {{rsEvent.date | date : 'MMMM dd'}}</p>
-          <p><span class="text-muted">Notes:</span> {{rsEvent.description}}</p>
+          <p><span class="text-muted">Description:</span> {{rsEvent.description}}</p>
           <p><span class="text-muted">Form invalid:</span> {{eventForm.$invalid}}</p>
         </div>
       </div>
