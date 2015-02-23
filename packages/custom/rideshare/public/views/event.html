@@ -35,17 +35,32 @@
 
         <div class="form-group">
           <label for="eventNotes">Description</label>
+          <wysiwyg textarea-id="eventNotes" textarea-class="form-control"  textarea-height="200px" textarea-name="uNotes" textarea-required data-ng-model="rsEvent.description" enable-bootstrap-title="true" textarea-menu="{{wysiwygMenu}}"></wysiwyg>
+        </div>
 
-          <wysiwyg textarea-id="eventNotes" textarea-class="form-control"  textarea-height="80px" textarea-name="uNotes" textarea-required data-ng-model="rsEvent.description" enable-bootstrap-title="true" textarea-menu="{{wysiwygMenu}}"></wysiwyg>
+        <div class="form-inline">
+          <div class="form-group">
+            <label for="inviteeEmail">Invite Attendees</label>
+            <input type="email" name="invitee" id="inviteeEmail" class="form-control" placeholder="jane.doe@example.com" data-ng-model="invitee"">
+            <button data-ng-click="addInvitee()" data-ng-disabled="isUnchanged(invitee)" class="btn btn-default">
+              Add
+            </button>
+          </div>
+        </div>
+
+        <div data-ng-show="rsEvent.invitees.length > 0">
+          <h3>Invitees</h3>
+          <ul class="invitees" data-ng-repeat="invited in rsEvent.invitees">
+            <li>{{invited}}</li>
+          </ul>
+        </div>
+
+        <div class="alert alert-danger" data-ng-show="inviteeError">
+          <span>Person has already been invited.</span>
         </div>
 
         <div class="form-group">
-          <label for="inviteeEmail1">Invite Attendees</label>
-          <input type="email" class="form-control" id="inviteeEmail1" placeholder="jane.doe@example.com">
-        </div>
-
-        <div class="form-group">
-          <button data-ng-click="reset()" data-ng-disabled="isUnchanged(rider)" class="btn btn-default">
+          <button data-ng-click="reset()" data-ng-disabled="isUnchanged(rsEvent)" class="btn btn-default">
             Reset
           </button>
           <button data-ng-click="createEvent(rsEvent)" data-ng-disabled="isUnchanged(rsEvent)" class="btn btn-primary">
@@ -61,11 +76,14 @@
           <h2>Summary</h2>
         </div>
         <div class="panel-body">
+          <p><span class="text-muted">Current Invitee:</span> {{invitee}}</p>
+
           <p><span class="text-muted">Organizer:</span> {{rsEvent.organizerId}}</p>
           <p><span class="text-muted">Name:</span> {{rsEvent.name}}</p>
           <p><span class="text-muted">Location:</span> {{rsEvent.location}}</p>
           <p><span class="text-muted">Date:</span> {{rsEvent.date | date : 'MMMM dd'}}</p>
           <p><span class="text-muted">Description:</span> {{rsEvent.description}}</p>
+          <p><span class="text-muted">Invitees:</span> {{rsEvent.invitees}}</p>
           <p><span class="text-muted">Form invalid:</span> {{eventForm.$invalid}}</p>
         </div>
       </div>

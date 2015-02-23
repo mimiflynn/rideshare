@@ -3,14 +3,26 @@
 angular.module('mean.rideshare')
   .controller('CreateEvent', ['$scope', '$location', 'Event', 'UsersExtended', 'Statics',
     function ($scope, $location, Event, UsersExtended, Statics) {
-      
+
+      $scope.rsEvent = {};
+      $scope.rsEvent.invitees = [];
+      $scope.invitee = '';
+
       // get user info assign as event organizer
       var getUser = function () {
         UsersExtended.get(function (user) {
-          $scope.rsEvent = {
-            organizerId: user._id
-          };
+          $scope.rsEvent.organizerId = user._id;
         });
+      };
+
+      var isDuplicate = function (item, array) {
+        var l = array.length;
+        for (var i = 0; i < l; i++) {
+          if (array[i] === item) {
+            return true;
+          }
+        }
+        return false;
       };
 
       $scope.package = Statics;
@@ -18,16 +30,46 @@ angular.module('mean.rideshare')
       $scope.submitted = false;
 
       $scope.wysiwygMenu = [
-        ['bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript'],
-        ['font'],
+        ['bold', 'italic'],
         ['font-size'],
-        ['font-color', 'hilite-color'],
         ['remove-format'],
-        ['ordered-list', 'unordered-list', 'outdent', 'indent'],
+        ['ordered-list', 'unordered-list'],
         ['left-justify', 'center-justify', 'right-justify'],
-        ['code', 'quote', 'paragragh'],
+        ['quote'],
         ['link', 'image']
       ];
+
+/*      $scope.invitee = '';
+
+      // watch invitee and see if they are already signed up for rideshare
+      $scope.$watch('invitee', function (invitee, oldInvitee) {
+        console.log('old invitee: ', oldInvitee);
+        console.log('new invitee: ', invitee);
+        if (invitee !== oldInvitee) {
+          UsersExtended.get({
+            email: invitee
+          }, function (user) {
+            console.log('invited user is: ', user);
+            $scope.rsEvent.invitees.push(user._id);
+          });
+        }
+      });
+*/
+
+      $scope.addInvitee = function () {
+        var invitee = $scope.invitee.slice(0);
+        // check to be sure email is not already in the array
+        if (this.eventForm.invitee.$valid) {
+          if (!isDuplicate(invitee, $scope.rsEvent.invitees)) {
+            $scope.rsEvent.invitees.push(invitee);
+            $scope.invitee = '';
+          } else {
+            $scope.inviteeError = 'This person has already been invited.';
+          }
+        } else {
+          $scope.inviteeError = 'Must be a valid email address.';
+        }
+      };
 
       $scope.createEvent = function () {
         if (this.eventForm.$isValid) {
@@ -42,7 +84,7 @@ angular.module('mean.rideshare')
       };
 
       $scope.resetForm = function () {
-          getUser();
+        getUser();
       };
 
       $scope.updateEvent = function () {
@@ -60,4 +102,4 @@ angular.module('mean.rideshare')
           $scope.submitted = true;
         }
       };
-}]);
+    }]);
