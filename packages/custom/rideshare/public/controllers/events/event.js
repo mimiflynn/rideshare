@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('mean.rideshare')
-  .controller('CreateEvent', ['$scope', '$location', 'Event', 'UsersExtended', 'Statics',
-    function ($scope, $location, Event, UsersExtended, Statics) {
+  .controller('CreateEvent', ['$scope', '$location', '$stateParams', 'Event', 'UsersExtended', 'Statics',
+    function ($scope, $location, $stateParams, Event, UsersExtended, Statics) {
 
       // get user info assign as event organizer
       var getUser = function () {
@@ -37,6 +37,15 @@ angular.module('mean.rideshare')
         ['quote'],
         ['link', 'image']
       ];
+
+      $scope.findOne = function () {
+        console.log('Edit event');
+        Event.get({
+          eventId: $stateParams.eventId
+        }, function (response) {
+          $scope.rsEvent = response;
+        });
+      };
 
       $scope.init = function () {
         getUser();
@@ -75,18 +84,14 @@ angular.module('mean.rideshare')
       };
 
       $scope.createEvent = function () {
-        console.log('attempting to submit');
         if (this.eventForm.$valid) {
-          console.log('submitting');
           var rsEvent = new Event(this.rsEvent);
           rsEvent.$save(function () {
             $location.path('/rideshare/admin');
           });
           this.rsEvent = {};
         } else {
-          console.log('error submitting');
           $scope.submitted = true;
-          debugger;
         }
       };
 

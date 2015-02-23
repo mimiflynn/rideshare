@@ -46,7 +46,7 @@ angular.module('mean.rideshare')
         if (this.signupForm.$valid) {
           var attendee = new Attendee(rider);
           attendee.$save(function () {
-            $location.path('/attendee/list');
+            $location.path('/rideshare/admin');
           });
           this.rider = {};
         } else {
@@ -55,7 +55,9 @@ angular.module('mean.rideshare')
       };
 
       $scope.updateAttendee = function () {
+        console.log('submit button pressed');
         if (this.signupForm.$valid) {
+          console.log('form valid attempting to submit');
           var attendee = $scope.rider;
           if (!attendee.updated) {
             attendee.updated = [];
@@ -63,9 +65,10 @@ angular.module('mean.rideshare')
           attendee.updated.push(new Date().getTime());
 
           attendee.$update(function () {
-            $location.path('/attendee/list');
+            $location.path('/rideshare/admin');
           });
         } else {
+          console.log('form not valid');
           $scope.submitted = true;
         }
       };

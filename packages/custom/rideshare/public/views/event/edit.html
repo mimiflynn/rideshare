@@ -1,0 +1,97 @@
+<div class="container-fluid interior">
+  <h1><span class="glyphicon glyphicon-briefcase"></span> New Event</h1>
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Details</h2>
+
+      <form name="eventForm" class="css-form" novalidate data-ng-init="findOne()">
+
+        <div class="form-group">
+          <label for="eventName">Event Name</label>
+          <input id="eventName" type="text" data-ng-model="rsEvent.name" name="uEventName" data-ng-required class="form-control" placeholder="Event Name"/>
+          <div class="alert alert-danger" data-ng-show="submitted && eventForm.uEventName.$invalid">
+            <span data-ng-show="eventForm.uEventName.$error.required">What is the name of the event?</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="eventLocation">Location</label>
+          <input id="eventLocation" type="text" data-ng-model="rsEvent.location" name="uLocation" data-ng-required class="form-control" placeholder="Location"/>
+          <div class="alert alert-danger" data-ng-show="submitted && eventForm.uLocation.$invalid">
+            <span data-ng-show="eventForm.uLocation.$error.required">Event location?</span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="eventDate">Date</label>
+          <div class="input-group datepicker" data-ng-controller="Date">
+            <input type="text" class="form-control" datepicker-popup="MMMM dd" data-ng-model="rsEvent.date" name="uDate" data-ng-required is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" data-ng-required="true" close-text="Close" placeholder="Date"/>
+            <span class="input-group-btn">
+             <button class="btn btn-default" data-ng-click="open($event)"><span
+              class="glyphicon glyphicon-calendar"></span></button>
+            </span>
+          </div>
+          <div class="alert alert-danger" data-ng-show="submitted && eventForm.uDate.$invalid">
+            When will you arrive?
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="eventNotes">Description</label>
+          <wysiwyg textarea-id="eventNotes" textarea-class="form-control"  textarea-height="200px" textarea-name="uNotes" textarea-required data-ng-model="rsEvent.description" enable-bootstrap-title="true" textarea-menu="{{wysiwygMenu}}"></wysiwyg>
+          <div class="alert alert-danger" data-ng-show="submitted && signupForm.uNotes.$invalid">
+            Event details?
+          </div>
+        </div>
+
+        <div data-ng-show="rsEvent.invitees.length > 0">
+          <h3>Invitees</h3>
+          <ul class="invitees" data-ng-repeat="invited in rsEvent.invitees">
+            <li>{{invited}}</li>
+          </ul>
+        </div>
+
+        <div class="form-group">
+          <label for="inviteeEmail">Invite Attendees</label>
+          <input type="email" name="invitee" id="inviteeEmail" class="form-control" placeholder="jane.doe@example.com" data-ng-model="invitee"">
+          <button data-ng-click="addInvitee()" data-ng-disabled="isUnchanged(invitee)" class="btn btn-default">
+            Add
+          </button>
+        </div>
+
+        <div class="alert alert-danger" data-ng-show="inviteeError">
+          <span>Person has already been invited.</span>
+        </div>
+
+        <div class="form-group">
+          <button data-ng-click="findOne()" data-ng-disabled="isUnchanged(rsEvent)" class="btn btn-default">
+            Reset
+          </button>
+          <button data-ng-click="updateEvent(rsEvent)" data-ng-disabled="isUnchanged(rsEvent)" class="btn btn-primary">
+            Submit
+          </button>
+        </div>
+
+      </form>
+    </div>
+    <div class="col-md-4 summary">
+      <div class="panel panel-primary">
+        <div class="panel-heading">
+          <h2>Summary</h2>
+        </div>
+        <div class="panel-body">
+          <p><span class="text-muted">Current Invitee:</span> {{invitee}}</p>
+
+          <p><span class="text-muted">Organizer:</span> {{rsEvent.organizerId}}</p>
+          <p><span class="text-muted">Name:</span> {{rsEvent.name}}</p>
+          <p><span class="text-muted">Location:</span> {{rsEvent.location}}</p>
+          <p><span class="text-muted">Date:</span> {{rsEvent.date | date : 'MMMM dd'}}</p>
+          <p><span class="text-muted">Description:</span> {{rsEvent.description}}</p>
+          <p><span class="text-muted">Invitees:</span> {{rsEvent.invitees}}</p>
+          <p><span class="text-muted">Form invalid:</span> {{eventForm.$invalid}}</p>
+          <pre>{{eventForm}}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

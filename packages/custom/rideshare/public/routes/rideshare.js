@@ -31,7 +31,7 @@ angular.module('mean.rideshare')
           })
           .state('list attendees', {
             url: '/rideshare/attendee/list',
-            templateUrl: 'rideshare/views/list.html',
+            templateUrl: 'rideshare/views/attendee/list.html',
             resolve: {
               loggedin: checkLoggedin
             },
@@ -39,15 +39,15 @@ angular.module('mean.rideshare')
           })
           .state('attendee signup', {
             url: '/rideshare/attendee/signup',
-            templateUrl: 'rideshare/views/signup.html',
+            templateUrl: 'rideshare/views/attendee/signup.html',
             resolve: {
               loggedin: checkLoggedin
             },
             controller: 'RegisterAttendee'
           })
           .state('edit rideshare', {
-            url: '/rideshare/attendee/:rideshareId/edit',
-            templateUrl: 'rideshare/views/edit.html',
+            url: '/rideshare/attendee/:attendeeId/edit',
+            templateUrl: 'rideshare/views/attendee/edit.html',
             resolve: {
               loggedin: checkLoggedin
             },
@@ -63,15 +63,15 @@ angular.module('mean.rideshare')
           })
           .state('create event', {
             url: '/rideshare/event/create',
-            templateUrl: 'rideshare/views/event.html',
+            templateUrl: 'rideshare/views/event/create.html',
             resolve: {
               loggedin: checkLoggedin
             },
             controller: 'CreateEvent'
           })
           .state('edit event', {
-            url: '/rideshare/event/edit',
-            templateUrl: 'rideshare/views/event.html',
+            url: '/rideshare/event/:eventId/edit',
+            templateUrl: 'rideshare/views/event/edit.html',
             resolve: {
               loggedin: checkLoggedin
             },

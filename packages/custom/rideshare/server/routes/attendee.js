@@ -14,7 +14,7 @@ module.exports = function(Attendees, app, auth) {
       .put(auth.isMongoId, auth.requiresLogin, attendees.update)
       .delete(auth.isMongoId, auth.requiresLogin, attendees.destroy);
 
-    app.route('/event/:attendeeIds')
+    app.route('/event/attendees/:attendeeIds')
       .get(auth.isMongoId, auth.requiresLogin, attendees.attendees);
 
     // Finish with setting up the attendeeId param
