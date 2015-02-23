@@ -4,10 +4,6 @@ angular.module('mean.rideshare')
   .controller('CreateEvent', ['$scope', '$location', 'Event', 'UsersExtended', 'Statics',
     function ($scope, $location, Event, UsersExtended, Statics) {
 
-      $scope.rsEvent = {};
-      $scope.rsEvent.invitees = [];
-      $scope.invitee = '';
-
       // get user info assign as event organizer
       var getUser = function () {
         UsersExtended.get(function (user) {
@@ -16,8 +12,9 @@ angular.module('mean.rideshare')
       };
 
       var isDuplicate = function (item, array) {
+        var i;
         var l = array.length;
-        for (var i = 0; i < l; i++) {
+        for (i = 0; i < l; i++) {
           if (array[i] === item) {
             return true;
           }
@@ -26,8 +23,10 @@ angular.module('mean.rideshare')
       };
 
       $scope.package = Statics;
-
       $scope.submitted = false;
+      $scope.rsEvent = {};
+      $scope.rsEvent.invitees = [];
+      $scope.invitee = '';
 
       $scope.wysiwygMenu = [
         ['bold', 'italic'],
@@ -38,6 +37,10 @@ angular.module('mean.rideshare')
         ['quote'],
         ['link', 'image']
       ];
+
+      $scope.init = function () {
+        getUser();
+      };
 
 /*      $scope.invitee = '';
 
@@ -72,23 +75,23 @@ angular.module('mean.rideshare')
       };
 
       $scope.createEvent = function () {
-        if (this.eventForm.$isValid) {
+        console.log('attempting to submit');
+        if (this.eventForm.$valid) {
+          console.log('submitting');
           var rsEvent = new Event(this.rsEvent);
           rsEvent.$save(function () {
             $location.path('/rideshare/admin');
           });
           this.rsEvent = {};
         } else {
+          console.log('error submitting');
           $scope.submitted = true;
+          debugger;
         }
       };
 
-      $scope.resetForm = function () {
-        getUser();
-      };
-
       $scope.updateEvent = function () {
-        if (this.eventForm.$isValid) {
+        if (this.eventForm.$valid) {
           var rsEvent = $scope.rsEvent;
           if (!rsEvent.updated) {
             rsEvent.updated = [];

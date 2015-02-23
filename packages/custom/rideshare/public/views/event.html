@@ -4,19 +4,19 @@
     <div class="col-md-8">
       <h2>Details</h2>
 
-      <form name="eventForm" class="css-form" novalidate data-ng-init="getUser()">
+      <form name="eventForm" class="css-form" novalidate data-ng-init="init()">
 
         <div class="form-group">
           <label for="eventName">Event Name</label>
-          <input id="eventName" type="text" data-ng-model="rsEvent.name" name="uNameNew" data-ng-required class="form-control" placeholder="Event Name"/>
-          <div class="alert alert-danger" data-ng-show="submitted &&eventForm.uNameNew.$invalid">
-            <span>What is your name?</span>
+          <input id="eventName" type="text" data-ng-model="rsEvent.name" name="uEventName" data-ng-required class="form-control" placeholder="Event Name"/>
+          <div class="alert alert-danger" data-ng-show="submitted && eventForm.uEventName.$invalid">
+            <span data-ng-show="eventForm.uEventName.$error.required">What is the name of the event?</span>
           </div>
         </div>
 
         <div class="form-group">
           <label for="eventLocation">Location</label>
-          <input id="eventLocation" type="text" data-ng-model="rsEvent.location" name="uLocation" required class="form-control" placeholder="Location"/>
+          <input id="eventLocation" type="text" data-ng-model="rsEvent.location" name="uLocation" data-ng-required class="form-control" placeholder="Location"/>
           <div class="alert alert-danger" data-ng-show="submitted && eventForm.uLocation.$invalid">
             <span data-ng-show="eventForm.uLocation.$error.required">Event location?</span>
           </div>
@@ -25,26 +25,22 @@
         <div class="form-group">
           <label for="eventDate">Date</label>
           <div class="input-group datepicker" data-ng-controller="Date">
-            <input type="text" class="form-control" datepicker-popup="MMMM dd" data-ng-model="rsEvent.date" name="uDate" required is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" data-ng-required="true" close-text="Close" placeholder="Date"/>
+            <input type="text" class="form-control" datepicker-popup="MMMM dd" data-ng-model="rsEvent.date" name="uDate" data-ng-required is-open="opened" min="minDate" max="'2015-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" data-ng-required="true" close-text="Close" placeholder="Date"/>
             <span class="input-group-btn">
              <button class="btn btn-default" data-ng-click="open($event)"><span
               class="glyphicon glyphicon-calendar"></span></button>
             </span>
+          </div>
+          <div class="alert alert-danger" data-ng-show="submitted && eventForm.uDate.$invalid">
+            When will you arrive?
           </div>
         </div>
 
         <div class="form-group">
           <label for="eventNotes">Description</label>
           <wysiwyg textarea-id="eventNotes" textarea-class="form-control"  textarea-height="200px" textarea-name="uNotes" textarea-required data-ng-model="rsEvent.description" enable-bootstrap-title="true" textarea-menu="{{wysiwygMenu}}"></wysiwyg>
-        </div>
-
-        <div class="form-inline">
-          <div class="form-group">
-            <label for="inviteeEmail">Invite Attendees</label>
-            <input type="email" name="invitee" id="inviteeEmail" class="form-control" placeholder="jane.doe@example.com" data-ng-model="invitee"">
-            <button data-ng-click="addInvitee()" data-ng-disabled="isUnchanged(invitee)" class="btn btn-default">
-              Add
-            </button>
+          <div class="alert alert-danger" data-ng-show="submitted && signupForm.uNotes.$invalid">
+            Event details?
           </div>
         </div>
 
@@ -55,12 +51,20 @@
           </ul>
         </div>
 
+        <div class="form-group">
+          <label for="inviteeEmail">Invite Attendees</label>
+          <input type="email" name="invitee" id="inviteeEmail" class="form-control" placeholder="jane.doe@example.com" data-ng-model="invitee"">
+          <button data-ng-click="addInvitee()" data-ng-disabled="isUnchanged(invitee)" class="btn btn-default">
+            Add
+          </button>
+        </div>
+
         <div class="alert alert-danger" data-ng-show="inviteeError">
           <span>Person has already been invited.</span>
         </div>
 
         <div class="form-group">
-          <button data-ng-click="reset()" data-ng-disabled="isUnchanged(rsEvent)" class="btn btn-default">
+          <button data-ng-click="init()" data-ng-disabled="isUnchanged(rsEvent)" class="btn btn-default">
             Reset
           </button>
           <button data-ng-click="createEvent(rsEvent)" data-ng-disabled="isUnchanged(rsEvent)" class="btn btn-primary">
@@ -85,6 +89,7 @@
           <p><span class="text-muted">Description:</span> {{rsEvent.description}}</p>
           <p><span class="text-muted">Invitees:</span> {{rsEvent.invitees}}</p>
           <p><span class="text-muted">Form invalid:</span> {{eventForm.$invalid}}</p>
+          <pre>{{eventForm}}</pre>
         </div>
       </div>
     </div>

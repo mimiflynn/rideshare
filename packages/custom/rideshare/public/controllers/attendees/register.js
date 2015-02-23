@@ -43,7 +43,7 @@ angular.module('mean.rideshare')
       $scope.createAttendee = function () {
         var rider = this.rider;
 
-        if (this.signupForm.$isValid) {
+        if (this.signupForm.$valid) {
           var attendee = new Attendee(rider);
           attendee.$save(function () {
             $location.path('/attendee/list');
@@ -55,7 +55,7 @@ angular.module('mean.rideshare')
       };
 
       $scope.updateAttendee = function () {
-        if (this.signupForm.$isValid) {
+        if (this.signupForm.$valid) {
           var attendee = $scope.rider;
           if (!attendee.updated) {
             attendee.updated = [];
