@@ -11,15 +11,6 @@
           <select class="form-control" id="eventSelector" data-ng-model="rider.event" data-ng-options="event.name for event in events"></select>
         </div>
 
-        <div class="form-group">
-          <label for="riderName">Name</label>
-          <input id="riderName" type="text" data-ng-model="rider.name" name="uNameNew" required class="form-control" placeholder="Name"/>
-
-          <div class="alert alert-danger" data-ng-show="submitted && signupForm.uNameNew.$invalid">
-            <span data-ng-show="signupForm.uNameNew.$error.required">What is your name?</span>
-          </div>
-        </div>
-
         <div class="form-group role-selector">
           <label for="riderDriver">You will be</label>
           <div class="btn-group">
@@ -78,14 +69,6 @@
         <div class="form-group">
           <label for="notes">Notes</label>
           <textarea id="notes" data-ng-model="rider.notes" name="uNotes" class="form-control" placeholder="Notes (lots of bags, gets carsick, etc)"/></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input id="email" type="email" data-ng-model="rider.email" name="uEmailNew" required class="form-control" placeholder="E-mail"/><br/>
-          <div class="alert alert-danger" data-ng-show="submitted && signupForm.uEmailNew.$invalid">
-            We need your email to keep in touch.
-          </div>
         </div>
 
         <div class="form-group">
