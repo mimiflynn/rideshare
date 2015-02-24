@@ -11,7 +11,7 @@ var Rideshare = new Module('rideshare');
  * All MEAN packages require registration
  * Dependency injection is used to define required modules
  */
-Rideshare.register(function(app, auth, database) {
+Rideshare.register(function (app, auth, database) {
 
   //We enable routing. By default the Package Object is passed to the routes
   Rideshare.routes(app, auth, database);
@@ -35,7 +35,7 @@ Rideshare.register(function(app, auth, database) {
     roles: ['authenticated'],
     menu: 'main'
   });
-  
+
   Rideshare.aggregateAsset('js', '../lib/angular-moment/angular-moment.min.js', {
     absolute: false,
     global: true
@@ -56,6 +56,7 @@ Rideshare.register(function(app, auth, database) {
     global: true
   });
 
+  // dependency of WYSIWYG
   Rideshare.aggregateAsset('css', '../lib/angular-bootstrap-colorpicker/css/colorpicker.min.css');
   Rideshare.aggregateAsset('js', '../lib/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js', {
     absolute: false,
@@ -69,10 +70,16 @@ Rideshare.register(function(app, auth, database) {
     global: true
   });
 
+  // sanitize HTML output from WYSIWYG
+  Rideshare.aggregateAsset('js', '../lib/angular-sanitize/angular-sanitize.min.js', {
+    absolute: false,
+    global: true
+  });
+
   Rideshare.aggregateAsset('css', 'flatty.css');
   Rideshare.aggregateAsset('css', 'screen.css');
 
-  Rideshare.angularDependencies(['mean.system', 'mean.users-extended', 'ngGrid', 'angularMoment', 'wysiwyg.module', 'colorpicker.module']);
+  Rideshare.angularDependencies(['mean.system', 'mean.users-extended', 'ngGrid', 'angularMoment', 'wysiwyg.module', 'colorpicker.module', 'ngSanitize']);
 
   /**
     //Uncomment to use. Requires meanio@0.3.7 or above

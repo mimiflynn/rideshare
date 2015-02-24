@@ -11,4 +11,6 @@ $fa-font-path:        "/rideshare/assets/fonts" !default;
 @import "base";
 @import "articles";
 @import "rideshare";
+
+// dependency of WYSIWYG
 @import "../public/assets/lib/fontawesome/scss/font-awesome.scss";

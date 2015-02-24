@@ -44,13 +44,6 @@
           </div>
         </div>
 
-        <div data-ng-show="rsEvent.invitees.length > 0">
-          <h3>Invitees</h3>
-          <ul class="invitees" data-ng-repeat="invited in rsEvent.invitees">
-            <li>{{invited}}</li>
-          </ul>
-        </div>
-
         <div class="form-group">
           <label for="inviteeEmail">Invite Attendees</label>
           <input type="email" name="invitee" id="inviteeEmail" class="form-control" placeholder="jane.doe@example.com" data-ng-model="invitee"">
@@ -77,14 +70,31 @@
     <div class="col-md-4 summary">
       <div class="panel panel-primary">
         <div class="panel-heading">
-          <h2>Summary</h2>
+          <h2>Details</h2>
         </div>
         <div class="panel-body">
           <p><span class="text-muted">Name:</span> {{rsEvent.name}}</p>
           <p><span class="text-muted">Location:</span> {{rsEvent.location}}</p>
           <p><span class="text-muted">Date:</span> {{rsEvent.date | date : 'MMMM dd'}}</p>
-          <p><span class="text-muted">Description:</span> {{rsEvent.description}}</p>
-          <p><span class="text-muted">Invitees:</span> {{rsEvent.invitees}}</p>
+        </div>
+      </div>
+
+      <div class="panel panel-primary"  data-ng-show="rsEvent.description">
+        <div class="panel-heading">
+          <h2>Description</h2>
+        </div>
+        <div class="panel-body" ng-bind-html="rsEvent.description">
+        </div>
+      </div>
+
+      <div class="panel panel-primary" data-ng-show="rsEvent.invitees.length > 0">
+        <div class="panel-heading">
+          <h2>Invitees</h2>
+        </div>
+        <div class="panel-body">
+          <ul class="invitees" data-ng-repeat="invited in rsEvent.invitees">
+            <li>{{invited}}</li>
+          </ul>
         </div>
       </div>
     </div>

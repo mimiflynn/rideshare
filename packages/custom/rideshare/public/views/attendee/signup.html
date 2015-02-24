@@ -101,21 +101,10 @@
     <div class="col-md-4 summary">
       <div class="panel panel-primary">
         <div class="panel-heading">
-          <h2>Event Info</h2>
-        </div>
-        <div class="panel-body">
-          <p><span class="text-muted">Organizer:</span> {{rider.event.organizerId}}</p>
-          <p><span class="text-muted">Name:</span> {{rider.event.name}}</p>
-          <p><span class="text-muted">Location:</span> {{rider.event.location}}</p>
-          <p><span class="text-muted">Date:</span> {{rider.event.date | date : 'MMMM dd'}}</p>
-          <p><span class="text-muted">Description:</span> {{rider.event.description}}</p>
-        </div>
-      </div>
-      <div class="panel panel-primary">
-        <div class="panel-heading">
           <h2>Summary</h2>
         </div>
         <div class="panel-body">
+          <p><span class="text-muted">Event:</span> {{rider.event.name}}</p>
           <p><span class="text-muted">Name:</span> {{rider.name}}</p>
           <p><span class="text-muted">Role:</span> {{rider.role}}</p>
           <p><span class="text-muted">Number in party:</span> {{rider.partyNumber}}</p>
