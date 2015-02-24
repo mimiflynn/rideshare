@@ -11,25 +11,31 @@ var Rideshare = new Module('rideshare');
  * All MEAN packages require registration
  * Dependency injection is used to define required modules
  */
-Rideshare.register(function(app, auth, database) {
+Rideshare.register(function (app, auth, database) {
 
   //We enable routing. By default the Package Object is passed to the routes
   Rideshare.routes(app, auth, database);
 
   //We are adding a link to the main menu for all authenticated users
-  /*Rideshare.menus.add({
-    title: 'Rideshare Signup',
-    link: 'rideshare signup',
+  Rideshare.menus.add({
+    title: 'Signup for Event',
+    link: 'attendee signup',
     roles: ['authenticated'],
     menu: 'main'
   });
   Rideshare.menus.add({
-    title: 'Rideshare Admin',
+    title: 'Create Event',
+    link: 'create event',
+    roles: ['authenticated'],
+    menu: 'main'
+  });
+  Rideshare.menus.add({
+    title: 'Admin',
     link: 'rideshare admin',
     roles: ['authenticated'],
     menu: 'main'
-  });*/
-  
+  });
+
   Rideshare.aggregateAsset('js', '../lib/angular-moment/angular-moment.min.js', {
     absolute: false,
     global: true
@@ -45,10 +51,35 @@ Rideshare.register(function(app, auth, database) {
     global: true
   });
 
+  Rideshare.aggregateAsset('js', '../lib/angular-wysiwyg/angular-wysiwyg.js', {
+    absolute: false,
+    global: true
+  });
+
+  // dependency of WYSIWYG
+  Rideshare.aggregateAsset('css', '../lib/angular-bootstrap-colorpicker/css/colorpicker.min.css');
+  Rideshare.aggregateAsset('js', '../lib/angular-bootstrap-colorpicker/js/bootstrap-colorpicker-module.min.js', {
+    absolute: false,
+    global: true
+  });
+
+  // includes only .tooltip() for use with the WYSIWYG
+  Rideshare.aggregateAsset('css', '../js/jquery-ui-1.11.3.custom/jquery-ui.min.css');
+  Rideshare.aggregateAsset('js', '../js/jquery-ui-1.11.3.custom/jquery-ui.min.js', {
+    absolute: false,
+    global: true
+  });
+
+  // sanitize HTML output from WYSIWYG
+  Rideshare.aggregateAsset('js', '../lib/angular-sanitize/angular-sanitize.min.js', {
+    absolute: false,
+    global: true
+  });
+
   Rideshare.aggregateAsset('css', 'flatty.css');
   Rideshare.aggregateAsset('css', 'screen.css');
 
-  Rideshare.angularDependencies(['mean.system', 'ngGrid', 'angularMoment']);
+  Rideshare.angularDependencies(['mean.system', 'mean.users-extended', 'ngGrid', 'angularMoment', 'wysiwyg.module', 'colorpicker.module', 'ngSanitize']);
 
   /**
     //Uncomment to use. Requires meanio@0.3.7 or above

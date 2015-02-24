@@ -29,18 +29,29 @@ angular.module('mean.rideshare')
             url: '/rideshare',
             templateUrl: 'rideshare/views/index.html'
           })
-          .state('list rideshares', {
-            url: '/rideshare/list',
-            templateUrl: 'rideshare/views/list.html',
+          .state('list attendees', {
+            url: '/rideshare/attendee/list',
+            templateUrl: 'rideshare/views/attendee/list.html',
             resolve: {
               loggedin: checkLoggedin
             },
-            controller: 'RideshareList'
+            controller: 'ListAttendees'
           })
-          .state('rideshare signup', {
-            url: '/rideshare/signup',
-            templateUrl: 'rideshare/views/signup.html',
-            controller: 'CreateRideshare'
+          .state('attendee signup', {
+            url: '/rideshare/attendee/signup',
+            templateUrl: 'rideshare/views/attendee/signup.html',
+            resolve: {
+              loggedin: checkLoggedin
+            },
+            controller: 'RegisterAttendee'
+          })
+          .state('edit rideshare', {
+            url: '/rideshare/attendee/:attendeeId/edit',
+            templateUrl: 'rideshare/views/attendee/edit.html',
+            resolve: {
+              loggedin: checkLoggedin
+            },
+            controller: 'RegisterAttendee'
           })
           .state('rideshare admin', {
             url: '/rideshare/admin',
@@ -48,15 +59,23 @@ angular.module('mean.rideshare')
             resolve: {
               loggedin: checkLoggedin
             },
-            controller: 'RideshareList'
+            controller: 'ListAttendees'
           })
-          .state('edit rideshare', {
-            url: '/rideshare/:rideshareId/edit',
-            templateUrl: 'rideshare/views/edit.html',
+          .state('create event', {
+            url: '/rideshare/event/create',
+            templateUrl: 'rideshare/views/event/create.html',
             resolve: {
               loggedin: checkLoggedin
             },
-            controller: 'CreateRideshare'
+            controller: 'CreateEvent'
+          })
+          .state('edit event', {
+            url: '/rideshare/event/:eventId/edit',
+            templateUrl: 'rideshare/views/event/edit.html',
+            resolve: {
+              loggedin: checkLoggedin
+            },
+            controller: 'CreateEvent'
           });
     }
   ]);

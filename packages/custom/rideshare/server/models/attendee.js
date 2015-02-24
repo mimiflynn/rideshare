@@ -3,10 +3,13 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
-var RideshareSchema = new Schema({
+var AttendeeSchema = new Schema({
     created: {
         type: Date,
         default: Date.now
+    },
+    eventId: {
+        type: String
     },
     name: {
         type: String,
@@ -58,10 +61,10 @@ var RideshareSchema = new Schema({
 /**
  * Statics
  */
-RideshareSchema.statics.load = function(id, cb) {
+AttendeeSchema.statics.load = function(id, cb) {
     this.findOne({
         _id: id
     }).populate('user', 'name username').exec(cb);
 };
 
-mongoose.model('Rideshare', RideshareSchema);
+mongoose.model('Attendee', AttendeeSchema);
