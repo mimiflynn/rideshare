@@ -62,6 +62,13 @@ Rideshare.register(function(app, auth, database) {
     global: true
   });
 
+  // includes only .tooltip() for use with the WYSIWYG
+  Rideshare.aggregateAsset('css', '../js/jquery-ui-1.11.3.custom/jquery-ui.min.css');
+  Rideshare.aggregateAsset('js', '../js/jquery-ui-1.11.3.custom/jquery-ui.min.js', {
+    absolute: false,
+    global: true
+  });
+
   Rideshare.aggregateAsset('css', 'flatty.css');
   Rideshare.aggregateAsset('css', 'screen.css');
 
