@@ -5,6 +5,8 @@ angular.module('mean.rideshare')
     function ($scope, $location, $stateParams, Attendee, UsersExtended, Event, Statics) {
       $scope.package = Statics;
 
+      $scope.submitted = false;
+
       var getUser = function () {
         // get user info and fill in associated info for rider
         UsersExtended.get(function (user) {
@@ -24,8 +26,6 @@ angular.module('mean.rideshare')
       var resetForm = function () {
         getUser();
       };
-
-      $scope.submitted = false;
 
       $scope.init = function () {
         resetForm();
@@ -55,9 +55,7 @@ angular.module('mean.rideshare')
       };
 
       $scope.updateAttendee = function () {
-        console.log('submit button pressed');
         if (this.signupForm.$valid) {
-          console.log('form valid attempting to submit');
           var attendee = $scope.rider;
           if (!attendee.updated) {
             attendee.updated = [];
@@ -68,7 +66,6 @@ angular.module('mean.rideshare')
             $location.path('/rideshare/admin');
           });
         } else {
-          console.log('form not valid');
           $scope.submitted = true;
         }
       };

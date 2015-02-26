@@ -88,17 +88,12 @@
         </div>
         <div class="panel-body">
           <p><span class="text-muted">Event:</span> {{rider.event.name}}</p>
-          <p><span class="text-muted">Name:</span> {{rider.name}}</p>
           <p><span class="text-muted">Role:</span> {{rider.role}}</p>
           <p><span class="text-muted">Number in party:</span> {{rider.partyNumber}}</p>
           <p><span class="text-muted">Arrival date:</span> {{rider.arrivalDate | date : 'MMMM dd'}}</p>
           <p><span class="text-muted">Arrival time:</span> {{rider.arrivalTime | date : 'h:mm a'}}</p>
           <p><span class="text-muted">City or Airport Code:</span> {{rider.arrivalLocation}}</p>
           <p><span class="text-muted">Notes:</span> {{rider.notes}}</p>
-          <p><span class="text-muted">Email:</span> {{rider.email}}</p>
-
-          <p><span class="text-muted">Form invalid:</span> {{signupForm.$invalid}}</p>
-          <p><span class="text-muted">Role Error:</span> {{signupForm.uRole.$touched}}</p>
         </div>
       </div>
     </div>
