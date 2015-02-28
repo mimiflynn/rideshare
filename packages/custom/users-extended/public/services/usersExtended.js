@@ -5,7 +5,21 @@ angular.module('mean.users-extended')
     // return current user
     return $resource('users/me');
   }])
-  .factory('LoggedIn', ['$resource', function ($resource) {
+  .factory('LoggedIn', ['$q', '$timeout', '$http', function ($q, $timeout, $http) {
     // Check if the user is connected
-    return $resource('loggedin');
+    // Initialize a new promise
+    var deferred = $q.defer();
+
+    // Make an AJAX call to check if the user is logged in
+    $http.get('/loggedin').success(function (user) {
+      // Authenticated
+      if (user !== '0') {
+        $timeout(deferred.resolve(true));
+      } else {
+        // Not Authenticated
+        $timeout(deferred.reject(false));
+      }
+    });
+
+    return deferred.promise;
   }]);

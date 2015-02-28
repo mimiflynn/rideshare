@@ -5,8 +5,8 @@ angular.module('mean.rideshare')
     function ($scope, LoggedIn, Statics) {
 
       var isLoggedIn = function () {
-        LoggedIn.get(function (user) {
-          $scope.isLoggedIn = (user[0] !== 0) ? true : false;
+        LoggedIn.then(function (status) {
+          $scope.isLoggedIn = status;
         });
       };
 

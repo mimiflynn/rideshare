@@ -1,21 +1,21 @@
 <div class="overlay-color"></div>
-<div class="jumbotron">
-  <h1>
-    <span class="glyphicon glyphicon-plane"></span>
-    RideShare
-    <span class="glyphicon glyphicon-road"></span>
-  </h1>
-  <p>Planning a big adventure? Perhaps you and your friends want to drive across the country but everyone's schedules are all over the place?</p>
-  <p>RideShare is a tool to help you organize such an adventure.</p>
-  <section>
+<div class="jumbotron" ng-controller="Dashboard" ng-init="init()">
+  <section ng-hide="isLoggedIn">
+    <h1>
+      <span class="glyphicon glyphicon-plane"></span>
+      RideShare
+      <span class="glyphicon glyphicon-road"></span>
+    </h1>
+    <p>Planning a big adventure? Perhaps you and your friends want to drive across the country but everyone's schedules are all over the place?</p>
+    <p>RideShare is a tool to help you organize such an adventure.</p>
     <a href="/#!/auth/register" class="btn btn-large btn-primary">Sign Up</a>
   </section>
-  <section ng-controller="Dashboard" ng-init="init()" ng-show="isLoggedIn">
+  <section ng-show="isLoggedIn">
     <p>This user is logged in.</p>
   </section>
 </div>
 <section>
-<h4>Attributions</h4>
+  <h4>Attributions</h4>
   <ul>
     <li><a href="http://thenounproject.com/term/car/41015/">Car icon by Mani Amini from The Noun Project</a>.</li>
     <li><a href="http://www.reddit.com/r/aviation/comments/21vmjq/i_photographed_lax_from_the_same_spot_over_an/">Photo
