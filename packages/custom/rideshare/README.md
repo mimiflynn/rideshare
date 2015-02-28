@@ -109,10 +109,28 @@ db.dropDatabase()
 
 https://angular.github.io/protractor/#/tutorial
 
+Install Protractor globally
+
+```
+npm install -g protractor
+```
+
 To run the tests be sure to have webdriver-manager ready with:
 
-`webdriver-manager update`
+```
+webdriver-manager update
+```
 
-To run tests:
+### To run tests:
 
-`protractor <mean.io root>/tools/e2e/conf.js`
+Be sure webdriver-manager server is running in a separate terminal instance or in the background
+
+```
+webdriver-manager start
+```
+
+Then run:
+
+```
+protractor <mean.io root>/tools/e2e/conf.js
+```

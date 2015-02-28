@@ -5,9 +5,13 @@
     RideShare
     <span class="glyphicon glyphicon-road"></span>
   </h1>
-  <p>Gabi and Rob are getting married in the remote reaches of Utah. This app is to help guests organize transportation.</p>
+  <p>Planning a big adventure? Perhaps you and your friends want to drive across the country but everyone's schedules are all over the place?</p>
+  <p>RideShare is a tool to help you organize such an adventure.</p>
   <section>
-    <a href="/#!/rideshare/attendee/signup" class="btn btn-large btn-primary">Sign Up</a>
+    <a href="/#!/auth/register" class="btn btn-large btn-primary">Sign Up</a>
+  </section>
+  <section ng-controller="Dashboard" ng-init="init()" ng-show="isLoggedIn">
+    <p>This user is logged in.</p>
   </section>
 </div>
 <section>
