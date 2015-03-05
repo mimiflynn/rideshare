@@ -11,7 +11,34 @@
     <a href="/#!/auth/register" class="btn btn-large btn-primary">Sign Up</a>
   </section>
   <section ng-show="isLoggedIn">
-    <p>This user is logged in.</p>
+    <h1>
+      <span class="glyphicon glyphicon-plane"></span>
+      RideShare
+      <span class="glyphicon glyphicon-road"></span>
+    </h1>
+    <h2>Hi {{user.name}}!</h2>
+    <div class="row">
+      <div class="col-md-6 summary">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2>Invites</h2>
+          </div>
+          <div class="panel-body">
+            A list of Events invited to
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 summary">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2>Events</h2>
+          </div>
+          <div class="panel-body">
+            A list of Events
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </div>
 <section>
