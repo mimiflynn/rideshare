@@ -1,11 +1,14 @@
 'use strict';
 
 angular.module('mean.rideshare')
-  .controller('Date', ['$scope',
-    function ($scope) {
+  .controller('Date', ['$scope', 'Statics',
+    function ($scope, Statics) {
       /*
        * @ToDo: refactor calendar and date whatnot into components
        * */
+
+      $scope.dateOptions = Statics.dateOptions;
+      $scope.format = Statics.dateFormats[0];
 
       $scope.today = function () {
           $scope.dt = new Date();
@@ -37,14 +40,6 @@ angular.module('mean.rideshare')
 
           $scope.opened = true;
       };
-
-      $scope.dateOptions = {
-          'year-format': 'yy',
-          'starting-day': 1
-      };
-
-      $scope.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'shortDate'];
-      $scope.format = $scope.formats[0];
 
 
       /*

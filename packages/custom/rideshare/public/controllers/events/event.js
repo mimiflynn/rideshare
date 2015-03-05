@@ -28,18 +28,7 @@ angular.module('mean.rideshare')
       $scope.rsEvent.invitees = [];
       $scope.invitee = '';
 
-      $scope.wysiwygMenu = [
-        ['bold', 'italic'],
-        ['font-size'],
-        ['remove-format'],
-        ['ordered-list', 'unordered-list'],
-        ['left-justify', 'center-justify', 'right-justify'],
-        ['quote'],
-        ['link', 'image']
-      ];
-
       $scope.findOne = function () {
-        console.log('Edit event');
         Event.get({
           eventId: $stateParams.eventId
         }, function (response) {

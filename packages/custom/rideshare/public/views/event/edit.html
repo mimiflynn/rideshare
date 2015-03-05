@@ -1,5 +1,5 @@
 <div class="container-fluid interior">
-  <h1><span class="glyphicon glyphicon-briefcase"></span> Edit Event</h1>
+  <h1><span class="glyphicon glyphicon-globe"></span> Edit Event</h1>
   <div class="row">
     <div class="col-md-8">
       <h2>Details</h2>
@@ -38,7 +38,7 @@
 
         <div class="form-group">
           <label for="eventNotes">Description</label>
-          <wysiwyg textarea-id="eventNotes" textarea-class="form-control"  textarea-height="200px" textarea-name="uNotes" textarea-required data-ng-model="rsEvent.description" enable-bootstrap-title="true" textarea-menu="{{wysiwygMenu}}"></wysiwyg>
+          <wysiwyg textarea-id="eventNotes" textarea-class="form-control"  textarea-height="200px" textarea-name="uNotes" textarea-required data-ng-model="rsEvent.description" enable-bootstrap-title="true" textarea-menu="{{package.wysiwygMenu}}"></wysiwyg>
           <div class="alert alert-danger" data-ng-show="submitted && signupForm.uNotes.$invalid">
             Event details?
           </div>

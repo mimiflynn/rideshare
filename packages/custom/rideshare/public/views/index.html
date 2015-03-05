@@ -1,17 +1,50 @@
 <div class="overlay-color"></div>
-<div class="jumbotron">
-  <h1>
-    <span class="glyphicon glyphicon-plane"></span>
-    RideShare
-    <span class="glyphicon glyphicon-road"></span>
-  </h1>
-  <p>Gabi and Rob are getting married in the remote reaches of Utah. This app is to help guests organize transportation.</p>
-  <section>
-    <a href="/#!/rideshare/attendee/signup" class="btn btn-large btn-primary">Sign Up</a>
+<div class="jumbotron" ng-controller="Dashboard" ng-init="init()">
+  <section ng-hide="isLoggedIn">
+    <h1>
+      <span class="glyphicon glyphicon-plane"></span>
+      RideShare
+      <span class="glyphicon glyphicon-road"></span>
+    </h1>
+    <p>Planning a big adventure? Perhaps you and your friends want to drive across the country but everyone's schedules are all over the place?</p>
+    <p>RideShare is a tool to help you organize such an adventure.</p>
+    <a href="/#!/auth/register" class="btn btn-large btn-primary">Sign Up</a>
+  </section>
+  <section ng-show="isLoggedIn">
+    <h1>
+      <span class="glyphicon glyphicon-plane"></span>
+      RideShare
+      <span class="glyphicon glyphicon-road"></span>
+    </h1>
+    <h2>Hi {{user.name}}!</h2>
+    <div class="row">
+      <div class="col-md-6 summary">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2>Invitations</h2>
+          </div>
+          <div class="panel-body">
+            A list of Events invited to
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 summary">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h2>Events</h2>
+          </div>
+          <div class="panel-body">
+            <ul data-ng-repeat="event in events">
+              <li><a href="/#!/rideshare/event/{{event._id}}">{{event.name}}</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 </div>
 <section>
-<h4>Attributions</h4>
+  <h4>Attributions</h4>
   <ul>
     <li><a href="http://thenounproject.com/term/car/41015/">Car icon by Mani Amini from The Noun Project</a>.</li>
     <li><a href="http://www.reddit.com/r/aviation/comments/21vmjq/i_photographed_lax_from_the_same_spot_over_an/">Photo

@@ -80,7 +80,7 @@ exports.show = function(req, res) {
 };
 
 /**
- * Return list of attendees by id
+ * Return attendee details per list of attendees by id
  */
 
 exports.attendees = function(req, res) {

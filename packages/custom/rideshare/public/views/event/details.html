@@ -1,0 +1,31 @@
+<div class="container-fluid interior" data-ng-init="findOne()">
+  <h1><span class="glyphicon glyphicon-globe"></span> {{rsEvent.name}}</h1>
+  <div class="text-right">
+    <a href="/#!/rideshare/event/{{rsEvent._id}}/edit"><span class="glyphicon glyphicon-edit"></span></a>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Details</h2>
+      <p><span class="text-muted">Location:</span> {{rsEvent.location}}</p>
+      <p><span class="text-muted">Date:</span> {{rsEvent.date | date : 'MMMM dd'}}</p>
+      <div data-ng-show="rsEvent.invitees.length > 0">
+        <h2>Invitees</h2>
+        <ul data-ng-repeat="invited in rsEvent.invitees">
+          <li>{{invited}}</li>
+        </ul>
+      </div>
+      <div data-ng-show="rsEvent.attendees.length > 0">
+        <h2>Attendees</h2>
+        <ul data-ng-repeat="attendee in rsEvent.attendees">
+          <li>{{attendee}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h2>Description</h2>
+      <div class="panel-body" ng-bind-html="rsEvent.description">
+      </div>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d25895663.485556163!2d-95.665!3d37.599999999999994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1425588775035" width="600" height="450" frameborder="0" style="border:0"></iframe>
+    </div>
+  </div>
+</div>

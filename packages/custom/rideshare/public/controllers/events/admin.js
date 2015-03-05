@@ -5,6 +5,21 @@ angular.module('mean.rideshare')
     function ($scope, $location, BrowserDetect, Event, UsersExtended, Statics) {
       $scope.package = Statics;
 
+      $scope.selectedFilter = '';
+      $scope.attendees = [];
+      $scope.selectedEvents = [];
+
+      // grid view of all participants
+      $scope.gridOptions = {
+        data: 'events',
+        selectedItems: $scope.selectedEvents,
+        columnDefs: [
+          {field: 'name', displayName: 'Name'},
+          {field: 'organizerId', displayName: 'Organizer ID'},
+          {field: 'date', displayName: 'Date', cellFilter: 'date : \'MMMM dd\''}
+        ]
+      };
+
       $scope.isDesktop = function () {
         return BrowserDetect.width >= 768;
       };
@@ -14,8 +29,6 @@ angular.module('mean.rideshare')
           $scope.events = events;
         });
       };
-
-      $scope.selectedEvents = [];
 
       // watch above collection and get organizer info
       $scope.$watchCollection('selectedEvents', function (newEvents) {
@@ -28,10 +41,6 @@ angular.module('mean.rideshare')
         });
       });
 
-      $scope.selectedFilter = '';
-
-      $scope.attendees = [];
-
       // watch above collection and get attendee info
 /*      $scope.$watchCollection('attendees', function(newAttendees, oldAttendees) {
         newAttendees.forEach(function(attendee) {
@@ -39,16 +48,6 @@ angular.module('mean.rideshare')
         });
       });
 */
-      // grid view of all participants
-      $scope.gridOptions = {
-        data: 'events',
-        selectedItems: $scope.selectedEvents,
-        columnDefs: [
-          {field: 'name', displayName: 'Name'},
-          {field: 'organizerId', displayName: 'Organizer ID'},
-          {field: 'date', displayName: 'Date', cellFilter: 'date : \'MMMM dd\''}
-        ]
-      };
 
       $scope.remove = function (rsEvent) {
         $scope.rsEvent = rsEvent;
