@@ -1,0 +1,19 @@
+<div class="container-fluid interior" data-ng-init="findOne()">
+  <h1><span class="glyphicon glyphicon-briefcase"></span> {{rsEvent.name}}</h1>
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Details</h2>
+      <p><span class="text-muted">Location:</span> {{rsEvent.location}}</p>
+      <p><span class="text-muted">Date:</span> {{rsEvent.date | date : 'MMMM dd'}}</p>
+      <h2>Description</h2>
+      <div class="panel-body" ng-bind-html="rsEvent.description">
+      </div>
+      <div data-ng-show="rsEvent.invitees.length > 0">
+        <h2>Invitees</h2>
+        <ul class="invitees" data-ng-repeat="invited in rsEvent.invitees">
+          <li>{{invited}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

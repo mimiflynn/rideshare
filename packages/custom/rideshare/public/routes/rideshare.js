@@ -70,6 +70,14 @@ angular.module('mean.rideshare')
           },
           controller: 'CreateEvent'
         })
+        .state('event details', {
+          url: '/rideshare/event/:eventId',
+          templateUrl: 'rideshare/views/event/details.html',
+          resolve: {
+            loggedin: checkLoggedin
+          },
+          controller: 'CreateEvent'
+        })
         .state('edit event', {
           url: '/rideshare/event/:eventId/edit',
           templateUrl: 'rideshare/views/event/edit.html',

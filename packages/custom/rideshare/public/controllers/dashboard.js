@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('mean.rideshare')
-  .controller('Dashboard', ['$scope', 'LoggedIn', 'Statics', 'UsersExtended',
-    function ($scope, LoggedIn, Statics, UsersExtended) {
+  .controller('Dashboard', ['$scope', 'LoggedIn', 'Statics', 'UsersExtended', 'Event',
+    function ($scope, LoggedIn, Statics, UsersExtended, Event) {
 
       var isLoggedIn = function () {
         LoggedIn.then(function (status) {
@@ -19,11 +19,20 @@ angular.module('mean.rideshare')
         });
       };
 
+      var getEvents = function () {
+        Event.query(function (events) {
+          $scope.events = events;
+        });
+      };
+
+      // var getInvites;
+
       $scope.package = Statics;
 
       $scope.init = function () {
         isLoggedIn();
         getUser();
+        getEvents();
       };
 
     }]);
