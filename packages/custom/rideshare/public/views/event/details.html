@@ -1,5 +1,8 @@
 <div class="container-fluid interior" data-ng-init="findOne()">
   <h1><span class="glyphicon glyphicon-globe"></span> {{rsEvent.name}}</h1>
+  <div class="text-right">
+    <a href="/#!/rideshare/event/{{rsEvent._id}}/edit"><span class="glyphicon glyphicon-edit"></span></a>
+  </div>
   <div class="row">
     <div class="col-md-4">
       <h2>Details</h2>
