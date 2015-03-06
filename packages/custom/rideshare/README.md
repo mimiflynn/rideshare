@@ -20,7 +20,16 @@ Be sure to run `bower install` in the `/rideshare` home directory.
 
 ## End to End testing
 
-- test it all
+- signup
+- login
+- create event
+- edit event
+- view event details
+- attendee signup
+- edit attendee details
+- view admin screen
+- delete attendee
+- delete event
 
 
 ## Refactor To Do
